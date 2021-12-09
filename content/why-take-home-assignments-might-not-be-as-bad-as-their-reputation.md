@@ -11,7 +11,7 @@ I have dropped out of recruiting processes in the past after they asked me to do
 
 I'm focusing mostly on hiring developers in this blog post, but in my experience, most will hold true also for hiring other people for in-demand jobs.
 
-If you are interested in more articles and news about web product development and entrepreneurship, please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton).
+If you are interested in more articles and news about web product development and entrepreneurship, please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton).
 
 ## Why I reject most take-home assignments
 
@@ -64,4 +64,4 @@ I am usually hiring in startup contexts. Usually the process I set up looks some
 
 Each of the steps is required for take-home assignments to make sense. If the candidates do not know enough about the job or are obviously a bad fit, then asking them to do a take-home assignment isn't fair to them and their time. And even though the take-home assignment is in my experience quite a good measure for job performance, there is still a need to ensure team fit.
 
-What are your experiences with take-home assignments from both sides? Feel free to jump into a discussion with me [on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton).
+What are your experiences with take-home assignments from both sides? Feel free to jump into a discussion with me [on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton).

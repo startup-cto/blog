@@ -13,7 +13,7 @@ My first realization hit after a few minutes of research: It isn't. And at least
 
 This gave me the courage to try something like this on my own, a journey that lead to [jsx-readme](https://github.com/dbartholomae/jsx-readme) and the underlying [jsx-md](https://github.com/dbartholomae/jsx-md). In this post, I will lead you along my journey and the learnings this sparked about JSX, and about React.
 
-If you are interested in more on tech, entrepreneurship, and how to bring these two together, feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton).
+If you are interested in more on tech, entrepreneurship, and how to bring these two together, feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton).
 
 ## Our goal
 
@@ -28,26 +28,23 @@ We want to be able to write code like
         </Fragment>
       );
     }
-    
+
     writeFile("examples/README.md", <Readme />);
-    
 
 to create markdown like
 
     # jsx-md
     Generate markdown files with a React\-like syntax.
-    
 
 Later on, this will allow us to write more complicated components from these building blocks. But now: Let's start with some fundamentals. You can skip everything you know and follow the headlines.
 
 ## Markdown
 
-Markdown is a markup language. It allows to add formatting like *italics* or **bold** with help of text characters. E. g. this blog post is written in Markdown:
+Markdown is a markup language. It allows to add formatting like _italics_ or **bold** with help of text characters. E. g. this blog post is written in Markdown:
 
     ## Markdown
-    
+
     Markdown is a markup language. It allows to add formatting like *italics* or __bold__ with help of text characters. E. g. this blog post is written in Markdown:
-    
 
 It is also used for documentation of code, e. g. README files.
 
@@ -59,7 +56,6 @@ JSX is syntactic sugar for JavaScript. It is compiled down to pure JavaScript, a
       <h1 id='primary'>Writing Markdown with JSX</h1>
       <p>One of the reasons that React got so popular...</p>
     </article>
-    
 
 becomes
 
@@ -69,7 +65,6 @@ becomes
       React.createElement('h1', { id: 'primary' }, 'Writing Markdown with JSX'),
       React.createElement('p', {}, 'One of the reasons that React got so popular...')
     )
-    
 
 but you can tell the compiler to use a different function `someOtherFunction` instead of `React.createElement` by adding the pragma `/** @jsx someOtherFunction */` to the beginning of the file.
 
@@ -80,20 +75,19 @@ In the end, JSX is just syntactic sugar for function calls
 So if JSX is syntactiv sugar for functions, and markdown is just a special kind of string, then why not just write a function that returns a string? This was the first approach I tried and lead to code like this:
 
     /* @jsx createElement */
-    
+
     function createElement (typeOrComponent, attributes, ...children): string {
       if (typeof typeOrComponent === 'function') {
         return typeOrComponent({ ...(attributes ?? {}), children })
       }
       return children.join('')
     }
-    
+
     function Heading ({ children, level }: Props) {
       return <md-text>{'#'.repeat(level)} {children}</md-text>
     }
-    
+
     assert.strictEqual(<Heading level={1}>Test</Heading>, '# Test')
-    
 
 And I got this to a [working version](https://github.com/dbartholomae/jsx-md/tree/b7552c6ac56ce97f0cd2c430c0670ccd4f3f12d8/src). But why, then, is there no release with this?
 
@@ -122,7 +116,6 @@ To summarize: `<div className='test'>Test</div>` (which is syntactic sugar for `
         className: 'test'
       },
     }
-    
 
 For nested props (e. g. children), the element simply becomes a nested JSON structure.
 
@@ -133,7 +126,7 @@ The render function then takes this structure and converts it into HTML, or, in 
 Instead of directly returning the markdown string from createElement, we now return an element and then render the element in a separate render function:
 
     /* @jsx createElement */
-    
+
     function createElement (type, attributes, ...children) {
       return {
         type,
@@ -144,7 +137,7 @@ Instead of directly returning the markdown string from createElement, we now ret
         key: null,
       };
     }
-    
+
     function render(element): string {
       if (element === null || element === undefined || element === false) {
         return "";
@@ -163,13 +156,12 @@ Instead of directly returning the markdown string from createElement, we now ret
       }
       throw new Error("Invalid element");
     }
-    
+
     function Heading ({ children, level }: Props) {
       return <md-text>{'#'.repeat(level)} {children}</md-text>
     }
-    
+
     assert.strictEqual(render(<Heading level={1}>Test</Heading>), '# Test')
-    
 
 Yoyu can find the full, unabbreviated code as [version 1.1.0](https://github.com/dbartholomae/jsx-md/blob/v1.1.0/src/).
 
@@ -178,7 +170,7 @@ Yoyu can find the full, unabbreviated code as [version 1.1.0](https://github.com
 When starting with jsx-md, I already had an application in mind. One of the first open source projects I wrote, was a script in CoffeeScript that created README files for open source projects. With jsx-md, I can now describe the components of a README file declaratively:
 
     import package from './package.json'
-    
+
     const DescriptionFromPkg: Component<Props> = ({
       pkg: { description },
     }: Props) => {
@@ -193,9 +185,8 @@ When starting with jsx-md, I already had an application in mind. One of the firs
         </Fragment>
       );
     };
-    
+
     writeFileSync('README.md', render(<DescriptionFromPkg pkg={package} />))
-    
 
 Overall this lead me to write [jsx-readme](https://github.com/dbartholomae/jsx-readme), a library for describing README files in JSX.
 
@@ -212,7 +203,7 @@ What if the data that I need to first render a component needs to be fetched asy
 This, fortunately, did no require a full implementation of hooks, or even of context. Instead, all I had to do, was make the rendering asynchronous and allow promises as children of elements:
 
     /* @jsx createElement */
-    
+
     function createElement (type, attributes, ...children) {
       return {
         type,
@@ -223,7 +214,7 @@ This, fortunately, did no require a full implementation of hooks, or even of con
         key: null,
       };
     }
-    
+
     function renderAsync(element): Promise<string> {
       if (element === null || element === undefined || element === false) {
         return Promise.resolv("");
@@ -245,19 +236,18 @@ This, fortunately, did no require a full implementation of hooks, or even of con
       }
       throw new Error("Invalid element");
     }
-    
+
     function Heading ({ children, level }: Props) {
       return <md-text>{'#'.repeat(level)} {children}</md-text>
     }
-    
+
     renderAsync(<Heading level={1}>Test</Heading>).then((result) =>
       assert.strictEqual(result, '# Test')
     );
-    
 
 ## What now?
 
-First of all, if you found the article interesting and would like to hear more about tech, entrepreneurship, and how to bring the two together, then please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton).
+First of all, if you found the article interesting and would like to hear more about tech, entrepreneurship, and how to bring the two together, then please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton).
 
 Both [jsx-md](https://github.com/dbartholomae/jsx-md) as well as [jsx-readme](https://github.com/dbartholomae/jsx-readme) are open source and hopefully in a state where the code is easy to understand, so feel free to roam around a bit.
 

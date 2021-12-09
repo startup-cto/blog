@@ -13,7 +13,7 @@ Part of this is due to a stigma that frontend development is not "real software 
 
 I'm taking React as an example because it is the framework I am most familiar with and the declarative style makes it easier to some of the tests than when using pure JavaScript, HTML, and CSS. But most of the ideas from this article hold also in other contexts.
 
-If you are interested in more articles and news about web product development and entrepreneurship, please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton).
+If you are interested in more articles and news about web product development and entrepreneurship, please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton).
 
 ## Why is frontend testing harder than backend?
 
@@ -39,7 +39,7 @@ The [App component](https://github.com/startup-cto/todos/blob/main/src/App/App.t
 
     const TodoApp: FunctionComponent = () => {
       const { todos, addTodo, completeTodo, deleteTodo } = useTodos([]);
-    
+
       return (
         <>
           <TodoList
@@ -51,7 +51,7 @@ The [App component](https://github.com/startup-cto/todos/blob/main/src/App/App.t
         </>
       );
     };
-    
+
 
     export function useTodos(initialTodos: Todo[]) {
       const [todos, dispatch] = useReducer(todosReducer, initialTodos);
@@ -63,24 +63,22 @@ The [App component](https://github.com/startup-cto/todos/blob/main/src/App/App.t
         deleteTodo: (id: Todo["id"]) => dispatch(createDeleteTodoAction(id)),
       };
     }
-    
 
 Similar to a controller in the backend, this is best tested with [integration tests](https://github.com/startup-cto/todos/blob/main/src/App/App.test.tsx):
 
     describe("TodoApp", () => {
       it("shows an added todo", async () => {
         render(<App />);
-    
+
         const todoInput = screen.getByLabelText("New todo");
         const todoDescription = "My new todo";
         userEvent.type(todoInput, todoDescription);
         const addTodoButton = screen.getByText("Add todo");
         userEvent.click(addTodoButton);
-        
+
         expect(await screen.findByText(todoDescription)).toBeInTheDocument();
       });
     });
-    
 
 The reason why I am talking about these tests first is that this is usually the first kind of test that I write. The difference between a web app and a landing page is that the web app, without any of its functionality and just with its looks, has no value. These tests describe the behavior and allow me to keep focused so that I only implement what is needed.
 
@@ -104,7 +102,6 @@ These are the tests that folks coming from backend testing are most familiar wit
           return todos.filter((todo) => todo.id !== action.payload.id);
       }
     }
-    
 
 [Tests for this kind of code](https://github.com/startup-cto/todos/blob/main/src/model/reducer.test.ts) are deceivingly simple:
 
@@ -116,7 +113,7 @@ These are the tests that folks coming from backend testing are most familiar wit
             expect.objectContaining({ description })
           );
         });
-    
+
         it("does not remove an existing todo", () => {
           const existingTodo = new TodoMock();
           expect(
@@ -125,7 +122,6 @@ These are the tests that folks coming from backend testing are most familiar wit
         });
       });
     });
-    
 
 The hard part about testing business logic is not to write the tests, but to separate the business logic from the rest of the code. Let's have a look at [useTodos](https://github.com/startup-cto/todos/blob/main/src/App/useTodos.ts), which is the glue code bringing this reducer into React:
 
@@ -139,7 +135,6 @@ The hard part about testing business logic is not to write the tests, but to sep
         deleteTodo: (id: Todo["id"]) => dispatch(createDeleteTodoAction(id)),
       };
     }
-    
 
 The danger here would be to write the business logic so that it can only be tested by testing the full hook. Using the hook just to glue together the reducer and action creators with React logic saves us from all that pain.
 
@@ -152,19 +147,18 @@ A **story** is the visual equivalent of a unit test. The main remaining shortcom
 Here's a [story for a button](https://github.com/startup-cto/todos/blob/main/src/components/shared/Button.stories.tsx):
 
     const Template: Story<Props> = (args) => <Button {...args} />;
-    
+
     const actionArgs = {
       onClick: action("onClick"),
     };
-    
+
     export const Default = Template.bind({});
-    
+
     Default.args = {
       ...actionArgs,
       children: "Click me!",
       color: ButtonColor.Success,
     };
-    
 
 and here is [the button itself](https://github.com/startup-cto/todos/blob/main/src/components/shared/Button.tsx):
 
@@ -172,20 +166,20 @@ and here is [the button itself](https://github.com/startup-cto/todos/blob/main/s
       Alert = "Alert",
       Success = "Success",
     }
-    
+
     export enum ButtonType {
       Submit = "submit",
       Reset = "reset",
       Button = "button",
     }
-    
+
     export interface Props {
       children: ReactNode;
       color: ButtonColor;
       onClick?: () => void;
       type?: ButtonType;
     }
-    
+
     export const Button: FunctionComponent<Props> = ({
       children,
       color,
@@ -221,7 +215,6 @@ and here is [the button itself](https://github.com/startup-cto/todos/blob/main/s
         </button>
       );
     };
-    
 
 The story renders the button in isolation. I can first write the story, which allows me to think about the intended interface for this component, and only implement the component itself afterward. If any implementation details change, then as long as the interface stays the same, I won't have to change the story. And I can look at the rendered story in isolation whenever I want to verify that it still looks as intended (this is the "manual" part I mentioned above). As soon as I have a version I am happy with, I can even set up automated regression testing with help of a visual regression tool.
 
@@ -249,4 +242,4 @@ What would it look like in practice, developing this todo app tdd-style?
 
 Obviously, there are many other ways to go about this. But hopefully, this shows one potential workflow to use tdd in the frontend.
 
-If you are interested in more articles and news about web product development and entrepreneurship, please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton). And please send me a tweet about your experiences with tdd in the frontend!
+If you are interested in more articles and news about web product development and entrepreneurship, please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton). And please send me a tweet about your experiences with tdd in the frontend!

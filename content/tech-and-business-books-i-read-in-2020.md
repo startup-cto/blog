@@ -15,7 +15,7 @@ Overall there's three themes in the books I read:
 - **Agile Software Architecture,** based on my general interest in how to get away without any planning and still not end up in a hot mess, and
 - **Product/Engineering Organization**, which I used mostly end of year when working with startups to scale their development teams.
 
-I've added affiliate links for everyone who wants to support me, but please do not feel pressured to use them. Feel free to also [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton) for more startup and tech related content.
+I've added affiliate links for everyone who wants to support me, but please do not feel pressured to use them. Feel free to also [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton) for more startup and tech related content.
 
 ## Ideation and Customer Development
 
@@ -127,4 +127,4 @@ It's a **must-read** for everyone, especially if you are negotiating your salary
 
 ## Outlook
 
-For next year, I have a couple of books on my digital shelf. Currently, I'm reading the [AWS Certified Solutions Architect Study Guide](https://amzn.to/3pT1UTz), and there are reading samples for a lot more books waiting for me. If you want to follow along, feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton) for more startup and tech related content. And if you do, please tweet to me: What books did you read in 2020? And what did you learn from them?
+For next year, I have a couple of books on my digital shelf. Currently, I'm reading the [AWS Certified Solutions Architect Study Guide](https://amzn.to/3pT1UTz), and there are reading samples for a lot more books waiting for me. If you want to follow along, feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton) for more startup and tech related content. And if you do, please tweet to me: What books did you read in 2020? And what did you learn from them?

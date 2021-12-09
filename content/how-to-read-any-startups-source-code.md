@@ -13,7 +13,7 @@ You could also use these tricks for market research and spying on your competiti
 
 I also want to point out that I personally wouldn't consider these loopholes a security problem by itself, but they can be if you are not careful, so you might want to avoid some of them in your own company. And yes, there are ways to avoid them, so, contrary to the click-baity title, you might run into situations, where they don't work.
 
-If you are interested in more articles and news about web product development and entrepreneurship, please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton).
+If you are interested in more articles and news about web product development and entrepreneurship, please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton).
 
 To understand a startup's tech stack, I
 
@@ -76,4 +76,4 @@ And maybe the code is lazy loaded in, so you don't have access to all source map
 
 What kind of things can you learn from here? Since the advent of [Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application), a lot of business logic is living in web applications. You will be able to understand code structure, tools used, important features, features in development that are only rolled out to some of the users, backend structure, external tools used, ...
 
-What did you learn with help of these methods? Feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton) and reach out with your learnings.
+What did you learn with help of these methods? Feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton) and reach out with your learnings.

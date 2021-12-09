@@ -49,14 +49,14 @@ So for `jsx-readme`, I used [TypeDoc](https://typedoc.org/), a TypeScript docume
       find: RegExp;
       replace: string;
     }
-    
+
     /** @internal */
     interface Props {
       fileName: string;
       children: string;
       replacements?: Replacement[];
     }
-    
+
     /** Displays a code file with a heading and a codeblock. */
     export const CodeFile: Component<Props> = ({
       /** The file's content. */
@@ -75,7 +75,7 @@ So for `jsx-readme`, I used [TypeDoc](https://typedoc.org/), a TypeScript docume
           str
         );
       }
-    
+
       return (
         <Fragment>
           <Heading level={3}>{fileName}</Heading>
@@ -86,7 +86,6 @@ So for `jsx-readme`, I used [TypeDoc](https://typedoc.org/), a TypeScript docume
         </Fragment>
       );
     };
-    
 
 Thanks to TypeScript and good naming, not everything needs a long description. A `fileName` that is a `string` should be understandable without additional documentation. For the rest, we can add comments right next to the code, and [the documentation will be created accordingly](https://dbartholomae.github.io/jsx-readme/modules/_components_codefile_.html). This way, when I (or a contributor that comes in for the first time), e. g. adds a new prop, it will show up in the documentation, and the existing documenting comment right next to it will inspire me to add all needed documentation there as well.
 
@@ -110,16 +109,14 @@ But even more important than the documentation deeper down in the code, is the R
         <LicenseFromPkg pkg={pkg} />
       </Fragment>
     );
-    
+
     void renderToFile("./README.md", <Readme />);
-    
 
 This will be autocreated from `package.json` and the examples file, so if either one changes, the README changes with them. In addition, I used the example files as [part of the integration tests](https://github.com/dbartholomae/jsx-readme/blob/main/test/README.md.test.tsx), so I always know that the examples actually work.
 
 Last but not least, building the documentation should happen on each merge automatically. This is done with help of a script
 
     typedoc && touch docs/.nojekyll && ts-node examples/README.md.tsx
-    
 
 which is run via a GitHub Workflow that we will look at later in this article.
 
@@ -147,6 +144,6 @@ For the remaining dependencies, the setup we have so far make it really easy to 
 
 ## What's next?
 
-Overall, the experiment during Hacktoberfest was quite interesting, and I am overall really happy with my setup. My next step on this will be to create a project template out of it to make it easier for me to create new open-source projects. If you don't yet, feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton) for the latest news on that and for more on web technology and entrepreneurship.
+Overall, the experiment during Hacktoberfest was quite interesting, and I am overall really happy with my setup. My next step on this will be to create a project template out of it to make it easier for me to create new open-source projects. If you don't yet, feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton) for the latest news on that and for more on web technology and entrepreneurship.
 
 If you do, please tweet to me what your experiences are on maintaining open-source projects, and how to make it as painless as possible?

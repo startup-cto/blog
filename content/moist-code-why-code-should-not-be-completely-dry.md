@@ -18,7 +18,6 @@ The core idea behind “Don’t repeat yourself” is, as the name suggests, to 
         <main>This is the homepage</main>
       </>
     }
-    
 
 So far, there isn't much repetition. Let's add a contact page:
 
@@ -38,7 +37,7 @@ So far, there isn't much repetition. Let's add a contact page:
           </main>
         </>
       }
-    
+
       return <>
         <nav>
           <h2>Navigation</h2>
@@ -52,7 +51,6 @@ So far, there isn't much repetition. Let's add a contact page:
         </main>
       </>
     }
-    
 
 Now we have a a bit of duplication. Time to split our paths and see the difference between **dry** and **moist** code.
 
@@ -67,7 +65,7 @@ Let's remove as much repetition as possible:
         <Router location={location} />
       </>
      }
-    
+
     function Navigation () {
       return (
         <nav>
@@ -86,22 +84,21 @@ Let's remove as much repetition as possible:
         </nav>
       )
     }
-    
+
     function NavLink ({ to, children }) {
       return <li><Link to={to}>{children}</Link></li>
     }
-    
+
     function Router ({ location }) {
       return <main><Content location={location} /></main>
     }
-    
+
     function Content ({ location }) {
       if (location === '/profile') {
         return 'Contact us!'
       }
       return 'This is the homepage'
     }
-    
 
 We have removed every repetition we could find. Time to add the next feature. We want a login page, and users that are not logged in, should automatically see the login form instead of any other page:
 
@@ -112,7 +109,7 @@ We have removed every repetition we could find. Time to add the next feature. We
         <Router location={location} />
       </>
      }
-    
+
     function Navigation () {
       return (
         <nav>
@@ -134,15 +131,15 @@ We have removed every repetition we could find. Time to add the next feature. We
         </nav>
       )
     }
-    
+
     function NavLink ({ to, children }) {
       return <li><Link to={to}>{children}</Link></li>
     }
-    
+
     function Router ({ location }) {
       return <main><Content location={location} /></main>
     }
-    
+
     function Content ({ location }) {
       const isUserLoggedIn = useLoggedInState()
       if (!isUserLoggedIn || location === '/login') {
@@ -153,7 +150,6 @@ We have removed every repetition we could find. Time to add the next feature. We
       }
      return 'This is the homepage'
     }
-    
 
 Thanks to the strict removal of duplication, we only had to add another link object in the NavBar and another if statement with new content in the `Content` component.
 
@@ -166,7 +162,7 @@ Our app is growing, and we have a UX team now. After some user testing they figu
         <Router location={location} />
       </>
      }
-    
+
     function Navigation ({ location }) {
      return (
         <nav>
@@ -175,7 +171,7 @@ Our app is growing, and we have a UX team now. After some user testing they figu
        </nav>
       )
     }
-    
+
     function NavLinks () {
       return <ul>
         {
@@ -192,15 +188,15 @@ Our app is growing, and we have a UX team now. After some user testing they figu
         }
       </ul>
     }
-    
+
     function NavLink ({ to, children }) {
       return <li><Link to={to}>{children}</Link></li>
     }
-    
+
     function Router ({ location }) {
       return <main><Content location={location} /></main>
     }
-    
+
     function Content ({ location }) {
       const isUserLoggedIn = useLoggedInState()
       if (!isUserLoggedIn || location === '/login') {
@@ -211,7 +207,6 @@ Our app is growing, and we have a UX team now. After some user testing they figu
       }
      return 'This is the homepage'
     }
-    
 
 Again, thanks to the small amount of duplication, the change is small and easy. But something starts to feel off about the code. Let's see what happens after the next feature.
 
@@ -224,7 +219,7 @@ Our marketing team just called. They had this great idea for a special easter pr
         <Router location={location} />
       </>
      }
-    
+
     function Navigation ({ location }) {
      return (
         <nav>
@@ -233,7 +228,7 @@ Our marketing team just called. They had this great idea for a special easter pr
        </nav>
       )
     }
-    
+
     function NavLinks ({ location }) {
       return <ul>
         {
@@ -252,15 +247,15 @@ Our marketing team just called. They had this great idea for a special easter pr
         }
       </ul>
     }
-    
+
     function NavLink ({ to, children }) {
       return <li><Link to={to}>{children}</Link></li>
     }
-    
+
     function Router ({ location }) {
       return <main><Content location={location} /></main>
     }
-    
+
     function Content ({ location }) {
       const isUserLoggedIn = useLoggedInState()
       if (!isUserLoggedIn || location === '/login') {
@@ -271,7 +266,6 @@ Our marketing team just called. They had this great idea for a special easter pr
       }
      return 'This is the homepage'
     }
-    
 
 Let's look at our moist code team, to see how they are doing.
 
@@ -295,7 +289,7 @@ In moist space, we still have the starting code:
           </main>
         </>
       }
-    
+
       return <>
         <nav>
           <h2>Navigation</h2>
@@ -309,7 +303,6 @@ In moist space, we still have the starting code:
         </main>
       </>
     }
-    
 
 We don't mind a bit of repetition, so instead of refactoring right away, let's add the next feature first, the login page:
 
@@ -326,7 +319,7 @@ We don't mind a bit of repetition, so instead of refactoring right away, let's a
           </main>
         </>
       }
-    
+
       if (location === '/login') {
         return <>
           <nav>
@@ -337,7 +330,7 @@ We don't mind a bit of repetition, so instead of refactoring right away, let's a
           </main>
         </>
       }
-    
+
       if (location === '/contact') {
         return <>
           <nav>
@@ -353,7 +346,7 @@ We don't mind a bit of repetition, so instead of refactoring right away, let's a
           </main>
         </>
       }
-    
+
       return <>
         <nav>
           <h2>Navigation</h2>
@@ -368,7 +361,6 @@ We don't mind a bit of repetition, so instead of refactoring right away, let's a
         </main>
       </>
     }
-    
 
 Let's extract some of the concepts that seem to emerge, but not too many:
 
@@ -378,22 +370,22 @@ Let's extract some of the concepts that seem to emerge, but not too many:
       if (!isUserLoggedIn) {
         return <LoginPage />
       }
-    
+
       return <Router />
     }
-    
+
     function Router ({ location }) {
       if (location === '/login') {
         return <LoginPage />
       }
-    
+
       if (location === '/contact') {
         return <ContactPage />
       }
-    
+
       return <HomePage />
     }
-    
+
     function LoginPage () {
       return <>
         <nav>
@@ -409,7 +401,7 @@ Let's extract some of the concepts that seem to emerge, but not too many:
         </main>
       </>
     }
-    
+
     function ContactPage () {
       return <>
         <nav>
@@ -425,7 +417,7 @@ Let's extract some of the concepts that seem to emerge, but not too many:
         </main>
       </>
     }
-    
+
     function HomePage () {
       return <>
         <nav>
@@ -441,7 +433,6 @@ Let's extract some of the concepts that seem to emerge, but not too many:
         </main>
       </>
     }
-    
 
 There is still some repetition left and our fingers might be itching to remove it, but let's add the next feature first: Not showing links on the login page:
 
@@ -451,22 +442,22 @@ There is still some repetition left and our fingers might be itching to remove i
       if (!isUserLoggedIn) {
         return <LoginPage />
       }
-    
+
       return <Router />
     }
-    
+
     function Router ({ location }) {
       if (location === '/login') {
         return <LoginPage />
       }
-    
+
       if (location === '/contact') {
         return <ContactPage />
       }
-    
+
       return <HomePage />
     }
-    
+
     function LoginPage () {
       return <>
         <nav>
@@ -477,7 +468,7 @@ There is still some repetition left and our fingers might be itching to remove i
         </main>
       </>
     }
-    
+
     function ContactPage () {
       return <>
         <nav>
@@ -493,7 +484,7 @@ There is still some repetition left and our fingers might be itching to remove i
         </main>
       </>
     }
-    
+
     function HomePage () {
       return <>
         <nav>
@@ -509,7 +500,6 @@ There is still some repetition left and our fingers might be itching to remove i
         </main>
       </>
     }
-    
 
 That was easy. We literally just had to delete a couple lines. With our new knowledge about how our `Navigation` can change, let's now extract it:
 
@@ -519,22 +509,22 @@ That was easy. We literally just had to delete a couple lines. With our new know
       if (!isUserLoggedIn) {
         return <LoginPage />
       }
-    
+
       return <Router />
     }
-    
+
     function Router ({ location }) {
       if (location === '/login') {
         return <LoginPage />
       }
-    
+
       if (location === '/contact') {
         return <ContactPage />
       }
-    
+
       return <HomePage />
     }
-    
+
     function LoginPage () {
       return <>
         <Navigation />
@@ -543,7 +533,7 @@ That was easy. We literally just had to delete a couple lines. With our new know
         </main>
       </>
     }
-    
+
     function ContactPage () {
       return <>
         <Navigation
@@ -563,7 +553,7 @@ That was easy. We literally just had to delete a couple lines. With our new know
         </main>
       </>
     }
-    
+
     function HomePage () {
       return <>
         <Navigation
@@ -583,7 +573,7 @@ That was easy. We literally just had to delete a couple lines. With our new know
         </main>
       </>
     }
-    
+
     function Navigation ({ links }) {
       return (
         <nav>
@@ -599,7 +589,6 @@ That was easy. We literally just had to delete a couple lines. With our new know
         </nav>
       )
     }
-    
 
 Even though there is a lot more repetition in this code then in the last version (e. g. each page having to explicitly use `main`), it already feels a bit cleaner and more lightweight. Let's see what happens with the marketing request to have a special link for the easter egg hunt:
 
@@ -609,22 +598,22 @@ Even though there is a lot more repetition in this code then in the last version
       if (!isUserLoggedIn) {
         return <LoginPage />
       }
-    
+
       return <Router />
     }
-    
+
     function Router ({ location }) {
       if (location === '/login') {
         return <LoginPage />
       }
-    
+
       if (location === '/contact') {
         return <ContactPage />
       }
-    
+
       return <HomePage />
     }
-    
+
     function LoginPage () {
       return <>
         <Navigation />
@@ -633,7 +622,7 @@ Even though there is a lot more repetition in this code then in the last version
         </main>
       </>
     }
-    
+
     function ContactPage () {
       return <>
         <Navigation
@@ -653,7 +642,7 @@ Even though there is a lot more repetition in this code then in the last version
         </main>
       </>
     }
-    
+
     function HomePage () {
       return <>
         <Navigation
@@ -673,7 +662,7 @@ Even though there is a lot more repetition in this code then in the last version
         </main>
       </>
     }
-    
+
     function Navigation ({ links }) {
       return (
         <nav>
@@ -689,7 +678,6 @@ Even though there is a lot more repetition in this code then in the last version
         </nav>
       )
     }
-    
 
 One link replaced. That's it.
 

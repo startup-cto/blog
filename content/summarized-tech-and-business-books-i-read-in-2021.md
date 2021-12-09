@@ -8,7 +8,7 @@ draft: true
 
 After [last year's focus on customer development and agile architecture](/tech-and-business-books-i-read-in-2020/),
 
-I've added affiliate links for everyone who wants to support me, but please do not feel pressured to use them. Feel free to also [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton) for more startup and tech related content.
+I've added affiliate links for everyone who wants to support me, but please do not feel pressured to use them. Feel free to also [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton) for more startup and tech related content.
 
 ### Networking All-in-One For Dummies (by Doug Lowe)
 

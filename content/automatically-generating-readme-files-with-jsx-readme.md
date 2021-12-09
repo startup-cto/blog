@@ -32,7 +32,7 @@ Here's an example of using `jsx-readme`:
     } from "jsx-readme";
     import { Heading, InlineCode, LineBreak } from "jsx-md";
     import pkg from "./package.json";
-    
+
     const Readme: Component = () => (
       <Fragment>
         {/* Create a header with title, badges and description inferred from package.json */}
@@ -59,9 +59,8 @@ Here's an example of using `jsx-readme`:
         <HomepageFromPkg pkg={pkg} />
       </Fragment>
     );
-    
+
     void renderToFile("./README.md", <Readme />);
-    
 
 As you can see, `jsx-readme` uses a React-like JSX syntax to define Markdown. It is built on top of `jsx-md` which you can also use independently, or together with `jsx-readme`, depending on your needs.
 

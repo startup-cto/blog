@@ -21,7 +21,7 @@ For servers this is usually solved with the pattern of middlewares. For AWS lamb
 Let's use a simple example for all our cases: An endpoint that returns the sum of two numbers:
 
     import { APIGatewayProxyResult, APIGatewayEvent, Context } from "aws-lambda";
-    
+
     export async function add(event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> {
       const { a, b } = JSON.parse(event.body ?? "{}");
       const sum = a + b;
@@ -30,21 +30,20 @@ Let's use a simple example for all our cases: An endpoint that returns the sum o
         body: JSON.stringify({ result: sum })
       }
     }
-    
 
 Even though we haven't even taken care of headers or validation, there is already two middlewares we can extract:
 
     import { APIGatewayProxyResult, APIGatewayEvent, Context } from "aws-lambda";
-    
+
     type Summands = {
       a: number;
       b: number;
     };
-    
+
     async function sum({ a, b }: Summands): Promise<{ result: number }> {
       return { result: a + b };
     }
-    
+
     function inputParser<Result>(
       handler: ({ a, b }: Summands) => Promise<Result>
     ): (event: APIGatewayEvent) => Promise<Result> {
@@ -53,7 +52,7 @@ Even though we haven't even taken care of headers or validation, there is alread
         return handler({ a, b });
       };
     }
-    
+
     function jsonSerializer<Event>(
       handler: (event: Event) => Promise<object>
     ): (event: Event) => Promise<APIGatewayProxyResult> {
@@ -64,12 +63,11 @@ Even though we haven't even taken care of headers or validation, there is alread
         };
       };
     }
-    
+
     export const add: (
       event: APIGatewayEvent,
       context: Context
     ) => Promise<APIGatewayProxyResult> = jsonSerializer(inputParser(sum));
-    
 
 With this example in front of us: What actually is a middleware in our case? In its simplest form, it is a higher-order-function that takes a handler function and returns an augmented handler function. E. g. wrapApiResponse takes a handler that returns an `object` and transforms it into a handler that returns an `ApiGatewayProxyResult`.
 
@@ -93,15 +91,15 @@ How would our example above look like with [lambda-middleware](https://dbartholo
     import { classValidator } from "@lambda-middleware/class-validator";
     import { errorHandler } from "@lambda-middleware/http-error-handler";
     import { jsonSerializer } from "@lambda-middleware/json-serializer";
-    
+
     class Summands {
       @IsNumber()
       a!: number;
-    
+
       @IsNumber()
       b!: number;
     }
-    
+
     async function sum({
       body: { a, b },
     }: {
@@ -109,7 +107,7 @@ How would our example above look like with [lambda-middleware](https://dbartholo
     }): Promise<{ result: number }> {
       return { result: a + b };
     }
-    
+
     export const add: (
       event: APIGatewayEvent,
       context: Context
@@ -118,7 +116,6 @@ How would our example above look like with [lambda-middleware](https://dbartholo
       jsonSerializer(),
       classValidator({ bodyType: Summands })
     )(sum);
-    
 
 `jsonSerializer` does more or less what our custom-made solution above does, but it also adds a `Content-Type` header with value `application/json`.
 
@@ -147,12 +144,12 @@ Another middleware framework for AWS lambdas is [middy](https://github.com/middy
     import httpErrorHandler from "@middy/http-error-handler";
     import responseSerializer from "@middy/http-response-serializer";
     import validator from "@middy/validator";
-    
+
     interface Summands {
       a: number;
       b: number;
     }
-    
+
     const summandsSchema = {
       type: "object",
       properties: {
@@ -166,7 +163,7 @@ Another middleware framework for AWS lambdas is [middy](https://github.com/middy
         },
       },
     };
-    
+
     async function sum({
       body: { a, b },
     }: {
@@ -174,7 +171,7 @@ Another middleware framework for AWS lambdas is [middy](https://github.com/middy
     }): Promise<{ result: number }> {
       return { result: a + b };
     }
-    
+
     export const add: (
       event: APIGatewayEvent,
       context: Context,
@@ -192,7 +189,6 @@ Another middleware framework for AWS lambdas is [middy](https://github.com/middy
         default: 'application/json'
       }))
       .use(httpErrorHandler());
-    
 
 For middy the middleware is defined in a custom format that is added via `.use`. This unfortunately means that we need to force the typing of the handler as TypeScript cannot infer it from the middlewares.
 
@@ -218,13 +214,12 @@ Most of the features seen so far can also be solved by using the AWS API Gateway
       a: number;
       b: number;
     }
-    
+
     export async function sum({
       a,b
     }: Summands): Promise<{ result: number }> {
       return { result: a + b };
     }
-    
 
 And the related serverless configuration
 
@@ -250,7 +245,6 @@ And the related serverless configuration
                         type: "number"
                 template:
                   application/json: '#set($body = $util.parseJson($input.body)) {"a": $body.a, "b": $body.b}'
-    
 
 With [Lambda version 2](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html) we can directly return the JSON object and, as long as it does not have a `statusCode` defined, it will be stringified by the ApiGateway.
 

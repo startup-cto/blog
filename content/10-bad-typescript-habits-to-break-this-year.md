@@ -9,7 +9,7 @@ excerpt: TypeScript and JavaScript have steadily evolved over the last years, an
 
 TypeScript and JavaScript have steadily evolved over the last years, and some of the habits we built over the last decades have become obsolete. Some might never have been meaningful. Here's a list of 10 habits that we all should break.
 
-If you are interested in more articles and news about web product development and entrepreneurship, please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=The_Startup_CTO&amp;tw_p=followbutton).
+If you are interested in more articles and news about web product development and entrepreneurship, please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton).
 
 Onto the examples! Please note that each "What it should look like" only fixes the issue discussed, even if there are further code smells that should be addressed.
 
@@ -25,7 +25,6 @@ Using a `tsconfig.json` without strict mode.
         "module": "commonjs"
       }
     }
-    
 
 ### What it should look like
 
@@ -38,7 +37,6 @@ Just enable `strict` mode:
         "strict": true
       }
     }
-    
 
 ### Why we do it
 
@@ -61,7 +59,6 @@ Falling back with `||` for optional values:
         date: date || new Date()
       }
     }
-    
 
 ### What it should look like
 
@@ -74,7 +71,6 @@ Use the new `??` operator, or, even better, define the fallback right at the par
         date: date
       }
     }
-    
 
 ### Why we do it
 
@@ -95,7 +91,6 @@ Using `any` for data when you are unsure about the structure.
       const products: any = await response.json()
       return products
     }
-    
 
 ### What it should look like
 
@@ -106,7 +101,6 @@ In almost every situation where you type something as `any`, you should type it 
       const products: unknown = await response.json()
       return products as Product[]
     }
-    
 
 ### Why we do it
 
@@ -127,7 +121,6 @@ Forcefully telling the compiler about a type that it cannot infer.
       const products: unknown = await response.json()
       return products as Product[]
     }
-    
 
 ### What it should look like
 
@@ -136,12 +129,12 @@ That's what type guards are for.
     function isArrayOfProducts (obj: unknown): obj is Product[] {
       return Array.isArray(obj) && obj.every(isProduct)
     }
-    
+
     function isProduct (obj: unknown): obj is Product {
       return obj != null
         && typeof (obj as Product).id === 'string'
     }
-    
+
     async function loadProducts(): Promise<Product[]> {
       const response = await fetch('https://api.mysite.com/products')
       const products: unknown = await response.json()
@@ -150,7 +143,6 @@ That's what type guards are for.
       }
       return products
     }
-    
 
 ### Why we do it
 
@@ -172,15 +164,14 @@ Creating incomplete stand-ins when writing tests.
       lastName: string
       email: string
     }
-    
+
     test('createEmailText returns text that greats the user by first name', () => {
       const user: User = {
         firstName: 'John'
       } as any
-      
+
       expect(createEmailText(user)).toContain(user.firstName)
     }
-    
 
 ### What it should look like
 
@@ -192,20 +183,19 @@ If you need to mock data for your tests, move the mocking logic next to the thin
       lastName: string
       email: string
     }
-    
+
     class MockUser implements User {
       id = 'id'
       firstName = 'John'
       lastName = 'Doe'
       email = 'john@doe.com'
     }
-    
+
     test('createEmailText returns text that greats the user by first name', () => {
       const user = new MockUser()
-    
+
       expect(createEmailText(user)).toContain(user.firstName)
     }
-    
 
 ### Why we do it
 
@@ -227,7 +217,6 @@ Marking properties as optional that are sometimes there and sometimes not.
       weightInKg?: number
       sizeInMb?: number
     }
-    
 
 ### What it should look like
 
@@ -237,17 +226,16 @@ Explicitly model which combinations exist and which don't.
       id: string
       type: 'digital' | 'physical'
     }
-    
+
     interface DigitalProduct extends Product {
       type: 'digital'
       sizeInMb: number
     }
-    
+
     interface PhysicalProduct extends Product {
       type: 'physical'
       weightInKg: number
     }
-    
 
 ### Why we do it
 
@@ -266,7 +254,6 @@ Naming a generic with one letter
     function head<T> (arr: T[]): T | undefined {
       return arr[0]
     }
-    
 
 ### What it should look like
 
@@ -275,7 +262,6 @@ Giving a full descriptive type name.
     function head<Element> (arr: Element[]): Element | undefined {
       return arr[0]
     }
-    
 
 ### Why we do it
 
@@ -297,7 +283,6 @@ Checking whether a value is defined by passing the value directly to an `if` sta
       }
       return 'Error: Could not retrieve number of new messages'
     }
-    
 
 ### What it should look like
 
@@ -309,7 +294,6 @@ Explicitly checking for the condition we care about.
       }
       return 'Error: Could not retrieve number of new messages'
     }
-    
 
 ### Why we do it
 
@@ -331,7 +315,6 @@ Converting a non-boolean value to boolean.
       }
       return 'Error: Could not retrieve number of new messages'
     }
-    
 
 ### What it should look like
 
@@ -343,7 +326,6 @@ Explicitly checking for the condition we care about.
       }
       return 'Error: Could not retrieve number of new messages'
     }
-    
 
 ### Why we do it
 
@@ -365,7 +347,6 @@ The little sister of the bang bang operator, `!= null` allows us to check for `n
       }
       return 'Error: Could not retrieve number of new messages'
     }
-    
 
 ### What it should look like
 
@@ -377,11 +358,10 @@ Explicitly checking for the condition we care about.
       }
       return 'Error: Could not retrieve number of new messages'
     }
-    
 
 ### Why we do it
 
-If you got here, your codebase and your skills are already in quite good shape. Even most linting rulesets that enforce using `!==` over `!=` make an exemption  for `!= null`. If there is no clear distinction in the codebase between `null` and `undefined`, then `!= null` helps to shorten a check for both possibilities.
+If you got here, your codebase and your skills are already in quite good shape. Even most linting rulesets that enforce using `!==` over `!=` make an exemption for `!= null`. If there is no clear distinction in the codebase between `null` and `undefined`, then `!= null` helps to shorten a check for both possibilities.
 
 ### Why we shouldn't
 
