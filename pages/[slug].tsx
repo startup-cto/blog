@@ -1,5 +1,8 @@
-export default function Post({ title }) {
-  return <div>{title}</div>;
+import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
+
+export default function Post({ source }) {
+  return <MDXRemote {...source} />;
 }
 
 export async function getStaticPaths() {
@@ -7,5 +10,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps() {
-  return { props: { title: "Title" } };
+  const source = await serialize("# Title");
+  return { props: { source } };
 }
