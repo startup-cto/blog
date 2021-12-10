@@ -23,16 +23,13 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-  const files = await fs.promises.readdir("./content/posts");
+  const files = await fs.promises.readdir("./content");
   const paths = files
     .map((path) => path.replace(/\.mdx?$/, ""))
     .map((path) => `/${path}`);
   const posts = await Promise.all(
     paths.map(async (path) => {
-      const file = await fs.promises.readFile(
-        `./content/posts/${path}.md`,
-        "utf8"
-      );
+      const file = await fs.promises.readFile(`./content/${path}.md`, "utf8");
       const { data, content } = matter(file);
       return JSON.parse(
         JSON.stringify({

@@ -8,7 +8,7 @@ export default function Post({ source }) {
 }
 
 export async function getStaticPaths() {
-  const files = await fs.promises.readdir("./content/posts");
+  const files = await fs.promises.readdir("./content");
   const paths = files
     .map((path) => path.replace(/\.mdx?$/, ""))
     .map((path) => `/${path}`);
@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const file = await fs.promises.readFile(`./content/posts/${slug}.md`, {
+  const file = await fs.promises.readFile(`./content/${slug}.md`, {
     encoding: "utf-8",
   });
   const { data, content } = matter(file);
