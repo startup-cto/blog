@@ -68,7 +68,7 @@ What does this mean for us? It means that the original source code is shipped wi
 
 Here's an example from [my little todo app](https://startup-cto.github.io/todos/):
 
-![Source maps in Chrome dev tools](/content/images/2021/02/source-maps.PNG)
+![Source maps in Chrome dev tools](/images/source-maps.PNG)
 
 Unfortunately, sometimes this doesn't work. But don't give up your hope yet! It might be that source maps are disabled on production. But did you try the staging environment you found in the first step? It might have source maps enabled.
 

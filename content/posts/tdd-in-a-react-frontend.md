@@ -218,7 +218,7 @@ and here is [the button itself](https://github.com/startup-cto/todos/blob/main/s
 
 The story renders the button in isolation. I can first write the story, which allows me to think about the intended interface for this component, and only implement the component itself afterward. If any implementation details change, then as long as the interface stays the same, I won't have to change the story. And I can look at the rendered story in isolation whenever I want to verify that it still looks as intended (this is the "manual" part I mentioned above). As soon as I have a version I am happy with, I can even set up automated regression testing with help of a visual regression tool.
 
-![storybook](/content/images/2021/01/storybook.PNG)
+![storybook](/images/storybook.png)
 
 ## The All Together
 
