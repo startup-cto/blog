@@ -1,17 +1,14 @@
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
-import * as fs from "fs";
-import matter from "gray-matter";
+import { loadPost } from "../lib/loadPost";
+import { loadPostFileNames } from "../lib/loadPostFileNames";
 
 export default function Post({ source }) {
   return <MDXRemote {...source} />;
 }
 
 export async function getStaticPaths() {
-  const files = await fs.promises.readdir("./content");
-  const paths = files
-    .map((path) => path.replace(/\.mdx?$/, ""))
-    .map((path) => `/${path}`);
+  const paths = await loadPostFileNames();
   return {
     paths,
     fallback: false,
@@ -19,10 +16,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const file = await fs.promises.readFile(`./content/${slug}.md`, {
-    encoding: "utf-8",
-  });
-  const { data, content } = matter(file);
+  const { content } = await loadPost(slug);
   const source = await serialize(content);
   return { props: { source } };
 }
