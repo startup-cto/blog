@@ -1,9 +1,15 @@
 import { MDXRemote } from "next-mdx-remote";
+import { Head } from "../src/components/Head";
 import { loadPost } from "../src/helpers/loadPost";
 import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
 
-export default function Post({ source }) {
-  return <MDXRemote {...source} />;
+export default function Post({ source, title }) {
+  return (
+    <>
+      <Head title={title} />
+      <MDXRemote {...source} />
+    </>
+  );
 }
 
 export async function getStaticPaths() {
@@ -15,6 +21,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const { source } = await loadPost(slug);
-  return { props: { source } };
+  const { data, source } = await loadPost(slug);
+  return { props: { source, title: data.title } };
 }
