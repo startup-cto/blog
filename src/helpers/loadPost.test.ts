@@ -20,7 +20,9 @@ describe("loadPost", () => {
     beforeEach(() => {
       mockFs({
         [`./content/${fileName}.md`]: fileContent,
-        node_modules: mockFs.load(path.resolve(__dirname, "../node_modules")),
+        node_modules: mockFs.load(
+          path.resolve(__dirname, "../../node_modules")
+        ),
       });
     });
 

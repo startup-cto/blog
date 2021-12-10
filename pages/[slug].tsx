@@ -1,6 +1,6 @@
 import { MDXRemote } from "next-mdx-remote";
-import { loadPost } from "../src/loadPost";
-import { loadPostFileNames } from "../src/loadPostFileNames";
+import { loadPost } from "../src/helpers/loadPost";
+import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
 
 export default function Post({ source }) {
   return <MDXRemote {...source} />;
