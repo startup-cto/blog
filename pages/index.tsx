@@ -1,14 +1,11 @@
-import Head from "next/head";
 import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
 import { loadPost } from "../src/helpers/loadPost";
+import { Head } from "../src/components/Head";
 
 export default function Home({ posts }) {
   return (
     <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Head title="Create Next App" />
 
       <main>
         {posts.map((post) => (
