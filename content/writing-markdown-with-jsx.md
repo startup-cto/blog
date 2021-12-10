@@ -3,7 +3,10 @@ title: What writing my own JSX renderer taught me about React
 slug: writing-markdown-with-jsx
 date_published: 2021-01-05T22:11:04.000Z
 date_updated: 2021-01-05T22:11:04.000Z
-tags: React, TypeScript, Open source
+tags:
+- React
+- TypeScript
+- Open source
 excerpt: >
   One of the reasons that React got so popular is definitively the syntax it introduced: Writing HTML-like code to declaratively describe components just feels good. But this brought me to the question: Why is this syntax only used for React, basically for describing HTML? Well, it isn't.
 ---

@@ -3,7 +3,9 @@ title: TDD in a React frontend
 slug: tdd-in-a-react-frontend
 date_published: 2021-01-19T22:32:26.000Z
 date_updated: 2021-01-19T22:40:10.000Z
-tags: React, tdd
+tags:
+- React
+- tdd
 excerpt: Only few professional developers seriously doubt the value of tdd. But in reality, tdd is often limited to the backend. Part of it is due to missing skills on how to tdd in the frontend.
 ---
 

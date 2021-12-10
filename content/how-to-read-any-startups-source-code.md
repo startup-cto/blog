@@ -3,7 +3,9 @@ title: How to read any startup's source code
 slug: how-to-read-any-startups-source-code
 date_published: 2021-02-13T10:33:00.000Z
 date_updated: 2021-02-13T10:59:05.000Z
-tags: Marketing, Competitive Analysis
+tags:
+- Marketing
+- Competitive Analysis
 excerpt: So you are in interviews as an engineer with an SaaS-startup and want to impress them with your deep knowledge of their tech stack? Here are some tricks I have used in the past to know more about their technology than the interviewer themself.
 ---
 
