@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { loadPostFileNames } from "../lib/loadPostFileNames";
-import { loadPost } from "../lib/loadPost";
+import { loadPostFileNames } from "../src/loadPostFileNames";
+import { loadPost } from "../src/loadPost";
 
 export default function Home({ posts }) {
   return (
