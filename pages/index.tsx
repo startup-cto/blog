@@ -5,7 +5,12 @@ import { Head } from "../src/components/Head";
 export default function Home({ posts }) {
   return (
     <div className="container">
-      <Head title="Create Next App" />
+      <Head
+        description="Building companies with web technology"
+        slug=""
+        title="The Startup CTO"
+        type="website"
+      />
 
       <main>
         {posts.map((post) => (
