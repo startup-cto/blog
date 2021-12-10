@@ -1,5 +1,4 @@
 import { MDXRemote } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
 import { loadPost } from "../lib/loadPost";
 import { loadPostFileNames } from "../lib/loadPostFileNames";
 
@@ -16,7 +15,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const { content } = await loadPost(slug);
-  const source = await serialize(content);
+  const { source } = await loadPost(slug);
   return { props: { source } };
 }

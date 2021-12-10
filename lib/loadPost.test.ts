@@ -1,6 +1,17 @@
 import mockFs from "mock-fs";
 
 import { loadPost } from "./loadPost";
+import path from "path";
+
+const fileContent = `---
+title: Hello World
+tags:
+- hello
+- world
+---
+
+# Hello World
+`;
 
 describe("loadPost", () => {
   describe("with a post", () => {
@@ -8,12 +19,8 @@ describe("loadPost", () => {
 
     beforeEach(() => {
       mockFs({
-        [`./content/${fileName}.md`]: `---
-title: Hello World
-tags:
-- hello
-- world
----`,
+        [`./content/${fileName}.md`]: fileContent,
+        node_modules: mockFs.load(path.resolve(__dirname, "../node_modules")),
       });
     });
 
@@ -27,6 +34,11 @@ tags:
         title: "Hello World",
         tags: ["hello", "world"],
       });
+    });
+
+    it("returns the source for the post", async () => {
+      const post = await loadPost(fileName);
+      expect(post.source).toBeDefined();
     });
   });
 });

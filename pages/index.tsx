@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { serialize } from "next-mdx-remote/serialize";
 import { loadPostFileNames } from "../lib/loadPostFileNames";
 import { loadPost } from "../lib/loadPost";
 
@@ -26,11 +25,11 @@ export async function getStaticProps() {
   const paths = await loadPostFileNames();
   const posts = await Promise.all(
     paths.map(async (path) => {
-      const { data, content } = await loadPost(path);
+      const { data, source } = await loadPost(path);
       return JSON.parse(
         JSON.stringify({
           path,
-          source: serialize(content),
+          source,
           data,
         })
       );
