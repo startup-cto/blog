@@ -1,35 +1,9 @@
 import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
-import { loadPost, Post } from "../src/helpers/loadPost";
-import { Head } from "../src/components/Head";
+import { loadPost } from "../src/helpers/loadPost";
 import { GetStaticProps } from "next";
-import { Header } from "../src/components/Header";
-import { Footer } from "../src/components/Footer";
-import { PostSummary } from "../src/components/PostSummary";
+import { Home, Props } from "../src/pages/Home";
 
-interface Props {
-  posts: Post[];
-}
-
-export default function Home({ posts }: Props) {
-  return (
-    <>
-      <Head
-        description="Building companies with web technology"
-        slug=""
-        title="The Startup CTO"
-        type="website"
-      />
-
-      <Header />
-      <main>
-        {posts.map((post) => (
-          <PostSummary key={post.slug} post={post} />
-        ))}
-      </main>
-      <Footer />
-    </>
-  );
-}
+export default Home;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const paths = await loadPostFileNames();
