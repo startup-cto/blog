@@ -17,7 +17,7 @@ describe("loadPost", () => {
   describe("with a post", () => {
     const fileName = "fileName";
 
-    beforeEach(() => {
+    beforeAll(() => {
       mockFs({
         [`./content/${fileName}.md`]: fileContent,
         node_modules: mockFs.load(
@@ -26,7 +26,7 @@ describe("loadPost", () => {
       });
     });
 
-    afterEach(() => {
+    afterAll(() => {
       mockFs.restore();
     });
 
