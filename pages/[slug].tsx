@@ -1,36 +1,9 @@
-import { Head } from "../src/components/Head";
-import { loadPost, Post as PostType } from "../src/helpers/loadPost";
+import { loadPost } from "../src/helpers/loadPost";
 import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
 import { GetStaticProps } from "next";
-import { Footer } from "../src/components/Footer";
-import { SmallHeader } from "../src/components/SmallHeader";
-import { AuthorInfo } from "../src/components/AuthorInfo";
-import { BlogPost } from "../src/components/BlogPost";
+import { Post, Props } from "../src/pages/Post";
 
-interface Props {
-  post: PostType;
-}
-
-export default function Post({ post }: Props) {
-  return (
-    <>
-      <Head
-        description={post.excerpt}
-        imagePath={""}
-        publishedAt={post.publishedAt ? new Date(post.publishedAt) : undefined}
-        slug={post.slug}
-        tags={post.tags}
-        title={post.title}
-        type="article"
-        updatedAt={post.updatedAt ? new Date(post.updatedAt) : undefined}
-      />
-      <SmallHeader />
-      <BlogPost post={post} />
-      <AuthorInfo />
-      <Footer />
-    </>
-  );
-}
+export default Post;
 
 export async function getStaticPaths() {
   const paths = await loadPostFileNames();
