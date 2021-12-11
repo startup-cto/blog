@@ -1,4 +1,4 @@
-name: Deploy
+name: Publish Storybook to Chromatic
 on:
   push:
     branches:
@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
@@ -17,14 +19,8 @@ jobs:
           cache: 'npm'
       - name: Install Packages
         run: npm install --prefer-offline --no-audit
-      - name: Test
-        run: npm test
-      - name: Build page
-        run: npm run build
-      - name: Export page
-        run: npm run export
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
