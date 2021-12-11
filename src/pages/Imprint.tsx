@@ -11,8 +11,8 @@ export function Imprint() {
       <h3 id="accountabilityforcontent">Accountability for content</h3>
       <p>
         The contents of our pages have been created with the utmost care.
-        However, we cannot guarantee the contents' accuracy, completeness or
-        topicality. According to statutory provisions, we are furthermore
+        However, we cannot guarantee the contents&apos; accuracy, completeness
+        or topicality. According to statutory provisions, we are furthermore
         responsible for our own content on these web pages. In this matter,
         please note that we are not obliged to monitor the transmitted or saved
         information of third parties, or investigate circumstances pointing to

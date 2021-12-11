@@ -3,9 +3,9 @@ export function PrivacyPolicy() {
     <main>
       <h1>Privacy Policy</h1>
       <p>
-        Your privacy is important to us. It is Startup CTO's policy to respect
-        your privacy regarding any information we may collect from you across
-        our website, https://startup-cto.net/, and other sites we own and
+        Your privacy is important to us. It is Startup CTO&apos;s policy to
+        respect your privacy regarding any information we may collect from you
+        across our website, https://startup-cto.net/, and other sites we own and
         operate.
       </p>
       <p>
