@@ -2,6 +2,7 @@ import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
 import { loadPost, Post } from "../src/helpers/loadPost";
 import { Head } from "../src/components/Head";
 import Link from "next/link";
+import { GetStaticProps } from "next";
 
 interface Props {
   posts: Post[];
@@ -54,7 +55,7 @@ export default function Home({ posts }: Props) {
   );
 }
 
-export async function getStaticProps(): Promise<{ props: Props }> {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const paths = await loadPostFileNames();
   const posts = await Promise.all(
     paths.map(async (path) => {
@@ -71,4 +72,4 @@ export async function getStaticProps(): Promise<{ props: Props }> {
       posts,
     },
   };
-}
+};

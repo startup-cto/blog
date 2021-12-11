@@ -1,7 +1,8 @@
 import { MDXRemote } from "next-mdx-remote";
 import { Head } from "../src/components/Head";
-import { loadPost } from "../src/helpers/loadPost";
+import { loadPost, Post as PostType } from "../src/helpers/loadPost";
 import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
+import { GetStaticProps } from "next";
 
 export default function Post({
   excerpt,
@@ -11,18 +12,18 @@ export default function Post({
   tags,
   title,
   updatedAt,
-}) {
+}: PostType) {
   return (
     <>
       <Head
         description={excerpt}
         imagePath={""}
-        publishedAt={new Date(publishedAt)}
+        publishedAt={publishedAt ? new Date(publishedAt) : undefined}
         slug={slug}
         tags={tags}
         title={title}
         type="article"
-        updatedAt={new Date(updatedAt)}
+        updatedAt={updatedAt ? new Date(updatedAt) : undefined}
       />
       <MDXRemote {...source} />
     </>
@@ -37,17 +38,21 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params: { slug } }) {
+export const getStaticProps: GetStaticProps<
+  PostType,
+  { slug: string }
+> = async ({ params }) => {
+  const slug = params?.slug ?? "";
   const { source, ...data } = await loadPost(slug);
   return {
     props: {
       source,
       title: data.title,
-      excerpt: data.excerpt ?? null,
+      excerpt: data.excerpt ?? undefined,
       slug,
-      publishedAt: data.publishedAt ?? null,
-      updatedAt: data.updatedAt ?? null,
+      publishedAt: data.publishedAt ?? undefined,
+      updatedAt: data.updatedAt ?? undefined,
       tags: data.tags ?? [],
     },
   };
-}
+};
