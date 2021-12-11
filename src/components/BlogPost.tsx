@@ -1,4 +1,4 @@
-import { Post as PostType } from "../src/helpers/loadPost";
+import { Post as PostType } from "../helpers/loadPost";
 import { MDXRemote } from "next-mdx-remote";
 
 export function BlogPost({

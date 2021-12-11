@@ -2,10 +2,10 @@ import { Head } from "../src/components/Head";
 import { loadPost, Post as PostType } from "../src/helpers/loadPost";
 import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
 import { GetStaticProps } from "next";
-import { Footer } from "../components/Footer";
-import { SmallHeader } from "../components/SmallHeader";
-import { AuthorInfo } from "../components/AuthorInfo";
-import { BlogPost } from "../components/BlogPost";
+import { Footer } from "../src/components/Footer";
+import { SmallHeader } from "../src/components/SmallHeader";
+import { AuthorInfo } from "../src/components/AuthorInfo";
+import { BlogPost } from "../src/components/BlogPost";
 
 interface Props {
   post: PostType;

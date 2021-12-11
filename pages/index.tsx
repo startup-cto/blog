@@ -2,9 +2,9 @@ import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
 import { loadPost, Post } from "../src/helpers/loadPost";
 import { Head } from "../src/components/Head";
 import { GetStaticProps } from "next";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
-import { PostSummary } from "../components/PostSummary";
+import { Header } from "../src/components/Header";
+import { Footer } from "../src/components/Footer";
+import { PostSummary } from "../src/components/PostSummary";
 
 interface Props {
   posts: Post[];

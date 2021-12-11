@@ -1,4 +1,4 @@
-import { Post } from "../src/helpers/loadPost";
+import { Post } from "../helpers/loadPost";
 
 interface Props {
   post: Post;
