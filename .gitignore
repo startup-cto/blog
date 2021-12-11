@@ -31,3 +31,6 @@ yarn-error.log*
 
 # IDEs
 .idea
+
+# Logs
+build-storybook.log
