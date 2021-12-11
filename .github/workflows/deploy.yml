@@ -20,6 +20,8 @@ jobs:
         run: npm test
       - name: Build page
         run: npm run build
+      - name: Export page
+        run: npm run export
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
