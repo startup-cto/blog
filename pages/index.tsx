@@ -4,7 +4,7 @@ import { Head } from "../src/components/Head";
 
 export default function Home({ posts }) {
   return (
-    <div className="container">
+    <>
       <Head
         description="Building companies with web technology"
         slug=""
@@ -12,6 +12,13 @@ export default function Home({ posts }) {
         type="website"
       />
 
+      <header>
+        <h1>The Startup CTO</h1>
+        <h2>Building companies with web technology</h2>
+        <a href="https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton">
+          Follow on Twitter
+        </a>
+      </header>
       <main>
         {posts.map((post) => (
           <p key={post.data.slug}>
@@ -19,7 +26,7 @@ export default function Home({ posts }) {
           </p>
         ))}
       </main>
-    </div>
+    </>
   );
 }
 
