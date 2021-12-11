@@ -1,6 +1,7 @@
 import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
 import { loadPost, Post } from "../src/helpers/loadPost";
 import { Head } from "../src/components/Head";
+import Link from "next/link";
 
 interface Props {
   posts: Post[];
@@ -35,6 +36,20 @@ export default function Home({ posts }: Props) {
           </article>
         ))}
       </main>
+      <footer>
+        <div>
+          All content copyright The Startup CTO © {new Date().getFullYear()} •
+          All rights reserved.
+        </div>
+        <ul>
+          <li>
+            <Link href="/imprint">Imprint</Link>
+          </li>
+          <li>
+            <Link href="/privacy-policy">Privacy policy</Link>
+          </li>
+        </ul>
+      </footer>
     </>
   );
 }
