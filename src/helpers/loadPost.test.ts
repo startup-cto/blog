@@ -4,10 +4,9 @@ import { loadPost } from "./loadPost";
 import path from "path";
 
 const fileContent = `---
+slug: test-post
 title: Hello World
-tags:
-- hello
-- world
+excerpt: Hello World
 ---
 
 # Hello World
@@ -30,12 +29,9 @@ describe("loadPost", () => {
       mockFs.restore();
     });
 
-    it("returns the front matter of the post", async () => {
+    it("returns the title of the post", async () => {
       const post = await loadPost(fileName);
-      expect(post.data).toEqual({
-        title: "Hello World",
-        tags: ["hello", "world"],
-      });
+      expect(post.title).toEqual("Hello World");
     });
 
     it("returns the source for the post", async () => {

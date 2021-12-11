@@ -38,15 +38,15 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const { data, source } = await loadPost(slug);
+  const { source, ...data } = await loadPost(slug);
   return {
     props: {
       source,
       title: data.title,
       excerpt: data.excerpt ?? null,
       slug,
-      publishedAt: data.date_published.toISOString() ?? null,
-      updatedAt: data.date_updated.toISOString() ?? null,
+      publishedAt: data.publishedAt ?? null,
+      updatedAt: data.updatedAt ?? null,
       tags: data.tags ?? [],
     },
   };

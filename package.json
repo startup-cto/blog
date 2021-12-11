@@ -8,6 +8,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "@sinclair/typebox": "^0.23.1",
+    "ajv": "^8.8.2",
+    "ajv-formats": "^2.1.1",
     "gray-matter": "^4.0.3",
     "next": "latest",
     "next-mdx-remote": "^3.0.8",

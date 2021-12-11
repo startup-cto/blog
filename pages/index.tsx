@@ -34,7 +34,7 @@ export async function getStaticProps() {
   const paths = await loadPostFileNames();
   const posts = await Promise.all(
     paths.map(async (path) => {
-      const { data, source } = await loadPost(path);
+      const { source, ...data } = await loadPost(path);
       return JSON.parse(
         JSON.stringify({
           path,
