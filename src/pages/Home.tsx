@@ -1,11 +1,10 @@
 import { Head } from "../components/Head";
 import { Header } from "../components/Header";
-import { PostSummary } from "../components/PostSummary";
+import { PostSummary, PostSummaryType } from "../components/PostSummary";
 import { Footer } from "../components/Footer";
-import { Post } from "../helpers/loadPost";
 
 export interface Props {
-  posts: Post[];
+  posts: PostSummaryType[];
 }
 
 export function Home({ posts }: Props) {

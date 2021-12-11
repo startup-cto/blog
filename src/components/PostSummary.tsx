@@ -1,7 +1,12 @@
 import { Post } from "../helpers/loadPost";
 
+export type PostSummaryType = Pick<
+  Post,
+  "excerpt" | "publishedAt" | "slug" | "tags" | "title"
+>;
+
 interface Props {
-  post: Pick<Post, "excerpt" | "publishedAt" | "slug" | "tags" | "title">;
+  post: PostSummaryType;
 }
 
 export function PostSummary({
