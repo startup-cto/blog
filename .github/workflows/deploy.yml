@@ -15,7 +15,7 @@ jobs:
           node-version: '17'
           cache: 'npm'
       - name: Install Packages
-        run: npm install
+        run: npm install --prefer-offline --no-audit
       - name: Test
         run: npm test
       - name: Build page
