@@ -1,8 +1,12 @@
 import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
-import { loadPost } from "../src/helpers/loadPost";
+import { loadPost, Post } from "../src/helpers/loadPost";
 import { Head } from "../src/components/Head";
 
-export default function Home({ posts }) {
+interface Props {
+  posts: Post[];
+}
+
+export default function Home({ posts }: Props) {
   return (
     <>
       <Head
@@ -21,27 +25,30 @@ export default function Home({ posts }) {
       </header>
       <main>
         {posts.map((post) => (
-          <p key={post.data.slug}>
-            <a href={post.data.slug}>{post.data.title}</a>
-          </p>
+          <article key={post.slug}>
+            {post.publishedAt && (
+              <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
+            )}
+            {post.tags && <span>{post.tags.join(", ")}</span>}
+            <a href={post.slug}>{post.title}</a>
+            <p>{post.excerpt}</p>
+          </article>
         ))}
       </main>
     </>
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<{ props: Props }> {
   const paths = await loadPostFileNames();
   const posts = await Promise.all(
     paths.map(async (path) => {
       const { source, ...data } = await loadPost(path);
-      return JSON.parse(
-        JSON.stringify({
-          path,
-          source,
-          data,
-        })
-      );
+      return {
+        path,
+        source,
+        ...data,
+      };
     })
   );
   return {
