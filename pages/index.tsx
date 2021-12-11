@@ -1,8 +1,10 @@
 import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
 import { loadPost, Post } from "../src/helpers/loadPost";
 import { Head } from "../src/components/Head";
-import Link from "next/link";
 import { GetStaticProps } from "next";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import { PostSummary } from "../components/PostSummary";
 
 interface Props {
   posts: Post[];
@@ -18,39 +20,13 @@ export default function Home({ posts }: Props) {
         type="website"
       />
 
-      <header>
-        <h1>The Startup CTO</h1>
-        <h2>Building companies with web technology</h2>
-        <a href="https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton">
-          Follow on Twitter
-        </a>
-      </header>
+      <Header />
       <main>
         {posts.map((post) => (
-          <article key={post.slug}>
-            {post.publishedAt && (
-              <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
-            )}
-            {post.tags && <span>{post.tags.join(", ")}</span>}
-            <a href={post.slug}>{post.title}</a>
-            <p>{post.excerpt}</p>
-          </article>
+          <PostSummary key={post.slug} post={post} />
         ))}
       </main>
-      <footer>
-        <div>
-          All content copyright The Startup CTO © {new Date().getFullYear()} •
-          All rights reserved.
-        </div>
-        <ul>
-          <li>
-            <Link href="/imprint">Imprint</Link>
-          </li>
-          <li>
-            <Link href="/privacy-policy">Privacy policy</Link>
-          </li>
-        </ul>
-      </footer>
+      <Footer />
     </>
   );
 }
