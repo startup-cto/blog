@@ -6,7 +6,7 @@ import path from "path";
 const fileContent = `---
 slug: test-post
 title: Hello World
-publishedAt: 2020-01-01
+publishedAt: 2021-02-13T10:33:00.000Z
 excerpt: Hello World
 ---
 
@@ -37,7 +37,7 @@ describe("loadPost", () => {
 
     it("returns the publishedAt of the post", async () => {
       const post = await loadPost(fileName);
-      expect(post.publishedAt).toEqual(new Date("2020-01-01"));
+      expect(post.publishedAt).toEqual("2021-02-13T10:33:00.000Z");
     });
 
     it("returns the source for the post", async () => {

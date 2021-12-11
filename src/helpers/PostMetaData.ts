@@ -1,18 +1,17 @@
-import { z } from "zod";
+import { compile, TypeOf, v } from "suretype";
 
-const postMetaDataSchema = z.object({
-  title: z.string(),
-  slug: z.string(),
-  publishedAt: z.optional(z.date()),
-  updatedAt: z.optional(z.date()),
-  tags: z.optional(z.array(z.string())),
-  excerpt: z.string(),
+const postMetaDataSchema = v.object({
+  title: v.string().required(),
+  slug: v.string().required(),
+  publishedAt: v.string().format("date-time"),
+  updatedAt: v.string().format("date-time"),
+  tags: v.array(v.string().required()),
+  excerpt: v.string().required(),
 });
 
-export function assertPostMetaData(
+export const assertPostMetaData: (
   data: unknown
-): asserts data is PostMetaData {
-  postMetaDataSchema.parse(data);
-}
-
-export type PostMetaData = z.infer<typeof postMetaDataSchema>;
+) => asserts data is PostMetaData = compile(postMetaDataSchema, {
+  ensure: true,
+});
+export type PostMetaData = TypeOf<typeof postMetaDataSchema>;
