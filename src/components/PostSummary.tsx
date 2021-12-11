@@ -1,7 +1,7 @@
 import { Post } from "../helpers/loadPost";
 
 interface Props {
-  post: Post;
+  post: Pick<Post, "excerpt" | "publishedAt" | "slug" | "tags" | "title">;
 }
 
 export function PostSummary({
