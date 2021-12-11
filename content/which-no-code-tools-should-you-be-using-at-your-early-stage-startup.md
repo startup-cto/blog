@@ -1,8 +1,8 @@
 ---
 title: Which no-code tools should you be using at your early-stage startup
 slug: which-no-code-tools-should-you-be-using-at-your-early-stage-startup
-date_published: 1970-01-01T00:00:00.000Z
-date_updated: 2021-02-14T11:34:29.000Z
+publishedAt: 1970-01-01T00:00:00.000Z
+updatedAt: 2021-02-14T11:34:29.000Z
 draft: true
 excerpt: >
   Which no-code tools should you be using at your early-stage startup?

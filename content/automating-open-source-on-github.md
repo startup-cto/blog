@@ -1,8 +1,8 @@
 ---
 title: Automating Open-Source on GitHub
 slug: automating-open-source-on-github
-date_published: 2021-01-08T20:54:19.000Z
-date_updated: 2021-01-08T20:54:19.000Z
+publishedAt: 2021-01-08T20:54:19.000Z
+updatedAt: 2021-01-08T20:54:19.000Z
 tags:
 - Open source
 - GitHub

@@ -1,8 +1,8 @@
 ---
 title: Moist code - Why code should not be completely DRY
 slug: moist-code-why-code-should-not-be-completely-dry
-date_published: 2020-08-21T13:08:00.000Z
-date_updated: 2020-08-21T13:08:00.000Z
+publishedAt: 2020-08-21T13:08:00.000Z
+updatedAt: 2020-08-21T13:08:00.000Z
 excerpt: At some point, each developer encounters the term “dry code”. It comes from the acronym DRY for “Don’t repeat yourself”. But if code is too dry, it easily can become brittle. To keep the code moldable, it is helpful to leave in a bit of repetition - a concept I personally like to call “Moist code”.
 ---
 

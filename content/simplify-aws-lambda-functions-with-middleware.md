@@ -1,8 +1,8 @@
 ---
 title: Simplify AWS lambda TypeScript functions with middleware
 slug: simplify-aws-lambda-functions-with-middleware
-date_published: 2020-08-17T23:11:55.000Z
-date_updated: 2020-08-18T15:37:47.000Z
+publishedAt: 2020-08-17T23:11:55.000Z
+updatedAt: 2020-08-18T15:37:47.000Z
 tags:
 - AWS
 - TypeScript

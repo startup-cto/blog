@@ -1,8 +1,8 @@
 ---
 title: TDD in a React frontend
 slug: tdd-in-a-react-frontend
-date_published: 2021-01-19T22:32:26.000Z
-date_updated: 2021-01-19T22:40:10.000Z
+publishedAt: 2021-01-19T22:32:26.000Z
+updatedAt: 2021-01-19T22:40:10.000Z
 tags:
 - React
 - tdd

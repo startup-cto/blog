@@ -1,8 +1,8 @@
 ---
 title: Why take-home assignments might not be as bad as their reputation
 slug: why-take-home-assignments-might-not-be-as-bad-as-their-reputation
-date_published: 2021-02-07T19:06:55.000Z
-date_updated: 2021-02-07T19:14:02.000Z
+publishedAt: 2021-02-07T19:06:55.000Z
+updatedAt: 2021-02-07T19:14:02.000Z
 tags:
 - Hiring
 - People
