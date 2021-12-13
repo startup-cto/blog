@@ -29,7 +29,7 @@ jobs:
       - name: Build page
         run: npm run build
         env:
-          NEXT_ASSET_PREFIX: ${{ secrets.NEXT_ASSET_PREFIX }}
+          NEXT_PUBLIC_ASSET_PREFIX: ${{ secrets.NEXT_PUBLIC_ASSET_PREFIX }}
       - name: Export page
         run: npm run export
       - name: Deploy to gh-pages

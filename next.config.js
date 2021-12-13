@@ -1,4 +1,4 @@
-const assetPrefix = process.env.NEXT_ASSET_PREFIX ?? "";
+const assetPrefix = process.env.NEXT_PUBLIC_ASSET_PREFIX ?? "";
 
 /**
  * @type {import('next').NextConfig}

@@ -26,6 +26,7 @@ const profilePictureUrl =
 const profilePictureWidth = 993;
 const profilePictureHeight = 993;
 const authorUrl = "http://twitter.com/the_startup_cto";
+const assetPrefix = process.env.NEXT_PUBLIC_ASSET_PREFIX ?? "";
 
 export function Head({
   imagePath,
@@ -51,7 +52,7 @@ export function Head({
       <meta name="MobileOptimized" content="320" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href={`${assetPrefix}/favicon.ico`} />
       <link rel="canonical" href={postUrl} />
       <meta name="referrer" content="no-referrer-when-downgrade" />
 
