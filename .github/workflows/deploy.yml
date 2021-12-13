@@ -19,6 +19,13 @@ jobs:
         run: npm install --prefer-offline --no-audit
       - name: Test
         run: npm test
+      - name: Restore cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Build page
         run: npm run build
         env:
