@@ -37,7 +37,7 @@ export function Head({
   type,
   updatedAt,
 }: Props) {
-  const postUrl = `${baseUrl}${slug}/`;
+  const postUrl = `${baseUrl}${slug}${slug === "" ? "" : "/"}`;
   const imageUrl = imagePath && `${baseUrl}${imagePath}`;
 
   return (
