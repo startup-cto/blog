@@ -1,18 +1,16 @@
 import Image from "next/image";
 import avatar from "./avatar.png";
-import { staticImageLoader } from "../helpers/StaticImageLoader";
 import styles from "./Header.module.css";
 
 export function Header() {
-  console.log(styles);
   return (
     <header className={styles.container}>
       <Image
-        loader={staticImageLoader}
         src={avatar}
         alt="The Startup CTO"
         width={100}
         height={100}
+        unoptimized
         className={styles.avatar}
       />
       <h1 className={styles.header}>The Startup CTO</h1>

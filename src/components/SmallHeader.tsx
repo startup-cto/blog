@@ -1,14 +1,13 @@
 import Image from "next/image";
 import avatar from "./avatar.png";
 import Link from "next/link";
-import { staticImageLoader } from "../helpers/StaticImageLoader";
 
 export function SmallHeader() {
   return (
     <header>
       <Image
         src={avatar}
-        loader={staticImageLoader}
+        unoptimized
         alt="The Startup CTO"
         width={100}
         height={100}
