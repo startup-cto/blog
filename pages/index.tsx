@@ -9,12 +9,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const paths = await loadPostFileNames();
   const posts = await Promise.all(
     paths.map(async (path) => {
-      const { source, ...data } = await loadPost(path);
-      return {
-        path,
-        source,
-        ...data,
-      };
+      const { excerpt, publishedAt, slug, tags, title } = await loadPost(path);
+      return { excerpt, publishedAt, slug, tags, title };
     })
   );
   return {
