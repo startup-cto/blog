@@ -5,6 +5,7 @@ import {
   PostSummaryType,
 } from "../components/PostSummary/PostSummary";
 import { Footer } from "../components/Footer/Footer";
+import styles from "./Home.module.css";
 
 export interface Props {
   posts: PostSummaryType[];
@@ -21,7 +22,7 @@ export function Home({ posts }: Props) {
       />
 
       <Header />
-      <main>
+      <main className={styles.container}>
         {posts.map((post) => (
           <PostSummary key={post.slug} post={post} />
         ))}
