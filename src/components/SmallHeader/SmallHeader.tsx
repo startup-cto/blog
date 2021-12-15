@@ -1,5 +1,5 @@
 import Image from "next/image";
-import avatar from "./avatar.png";
+import avatar from "../avatar.png";
 import Link from "next/link";
 
 export function SmallHeader() {

@@ -1,4 +1,4 @@
-import { Post } from "../helpers/loadPost";
+import { Post } from "../../helpers/loadPost";
 
 export type PostSummaryType = Pick<
   Post,

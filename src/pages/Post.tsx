@@ -1,9 +1,9 @@
 import { Post as PostType } from "../helpers/loadPost";
-import { Head } from "../components/Head";
-import { SmallHeader } from "../components/SmallHeader";
-import { BlogPost } from "../components/BlogPost";
-import { AuthorInfo } from "../components/AuthorInfo";
-import { Footer } from "../components/Footer";
+import { Head } from "../components/Head/Head";
+import { SmallHeader } from "../components/SmallHeader/SmallHeader";
+import { BlogPost } from "../components/BlogPost/BlogPost";
+import { AuthorInfo } from "../components/AuthorInfo/AuthorInfo";
+import { Footer } from "../components/Footer/Footer";
 
 export interface Props {
   post: PostType;

@@ -2,7 +2,7 @@ import React from "react";
 
 import { BlogPost } from "./BlogPost";
 import { ComponentStory } from "@storybook/react";
-import { exampleBlogPost } from "./exampleBlogPost";
+import { exampleBlogPost } from "../../fixtures/exampleBlogPost";
 
 export default {
   title: "Components/BlogPost",
