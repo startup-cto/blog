@@ -26,8 +26,8 @@ export function Post({ post }: Props) {
       <SmallHeader />
       <div className={styles.container}>
         <BlogPost post={post} />
+        <AuthorInfo />
       </div>
-      <AuthorInfo />
       <Footer />
     </>
   );
