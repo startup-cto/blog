@@ -4,6 +4,7 @@ import { SmallHeader } from "../components/SmallHeader/SmallHeader";
 import { BlogPost } from "../components/BlogPost/BlogPost";
 import { AuthorInfo } from "../components/AuthorInfo/AuthorInfo";
 import { Footer } from "../components/Footer/Footer";
+import styles from "./Post.module.css";
 
 export interface Props {
   post: PostType;
@@ -23,7 +24,9 @@ export function Post({ post }: Props) {
         updatedAt={post.updatedAt ? new Date(post.updatedAt) : undefined}
       />
       <SmallHeader />
-      <BlogPost post={post} />
+      <div className={styles.container}>
+        <BlogPost post={post} />
+      </div>
       <AuthorInfo />
       <Footer />
     </>
