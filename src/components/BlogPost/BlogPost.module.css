@@ -2,7 +2,8 @@
     color: #dddbe6;
     font-family: "Courier New", Courier, monospace;
     max-width: 700px;
-    margin: 1rem auto;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .publishDate {
