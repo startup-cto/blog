@@ -5,7 +5,7 @@ const postMetaDataSchema = v.object({
   slug: v.string().required(),
   publishedAt: v.string().format("date-time"),
   updatedAt: v.string().format("date-time"),
-  tags: v.array(v.string().required()),
+  tags: v.array(v.string()),
   excerpt: v.string().required(),
 });
 
