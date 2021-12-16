@@ -19,6 +19,6 @@ Default.args = {
     title: "Blog title",
     publishedAt: "2020-01-01",
     source: exampleBlogPost,
-    tags: [],
+    tags: ["Tag 1"],
   },
 };

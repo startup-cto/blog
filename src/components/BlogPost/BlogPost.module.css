@@ -1,0 +1,41 @@
+.container {
+    background-color: #0a090c;
+    color: #dddbe6;
+    font-family: "Courier New", Courier, monospace;
+    padding: 2rem 1rem;
+}
+
+.publishDate {
+    color: #9cabf2;
+    margin-right: 1rem;
+}
+
+.tags {
+    color: #9cabf2;
+}
+
+.title {
+    font-weight: normal;
+}
+
+.content h2 {
+    font-weight: normal;
+}
+
+.content a {
+    color: #a0a6f8;
+}
+
+.content a:hover {
+    color: #c6cafb;
+}
+
+.content :not(pre) > code {
+    padding: 1px 3px;
+    font-family: "Courier New",Courier,monospace;
+    font-size: .75em;
+    white-space: pre;
+    border: 1px solid #424a5a;
+    background: #27232f;
+    border-radius: 2px;
+}

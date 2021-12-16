@@ -15,6 +15,7 @@ What if, instead of having to update the README file manually whenever your code
 
 Here's an example of using `jsx-readme`:
 
+```tsx
     // We need to tell the JSX transpiler that in this file,
     // instead of React we use the custom createElement and Fragment
     // functions from jsx-readme
@@ -63,6 +64,7 @@ Here's an example of using `jsx-readme`:
     );
 
     void renderToFile("./README.md", <Readme />);
+```
 
 As you can see, `jsx-readme` uses a React-like JSX syntax to define Markdown. It is built on top of `jsx-md` which you can also use independently, or together with `jsx-readme`, depending on your needs.
 
