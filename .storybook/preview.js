@@ -1,4 +1,5 @@
 import * as nextImage from "next/image";
+import "normalize.css";
 
 Object.defineProperty(nextImage, "default", {
   configurable: true,
