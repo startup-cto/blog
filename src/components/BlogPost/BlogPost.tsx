@@ -31,6 +31,7 @@ export function BlogPost({
       />
       <Script
         async
+        id="start-prism"
       >{`setTimeout(function(){Prism.highlightAll();},100)`}</Script>
     </main>
   );
