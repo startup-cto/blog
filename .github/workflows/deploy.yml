@@ -44,11 +44,13 @@ jobs:
           NEXT_PUBLIC_ASSET_PREFIX: ${{ secrets.NEXT_PUBLIC_ASSET_PREFIX }}
       - name: Export page
         run: npm run export
+      - name: Create page archive
+        run: tar -cvf page.tar out/
       - name: Save page
         uses: actions/upload-artifact@v2
         with:
           name: page
-          path: ./out
+          path: page.tar
   deploy:
     needs:
       - test
@@ -59,7 +61,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: page
-          path: ./out
+          path: out
+      - run: cd out && ls -l && cd ..
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
