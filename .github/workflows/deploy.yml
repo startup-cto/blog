@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -19,6 +19,18 @@ jobs:
         run: npm install --prefer-offline --no-audit
       - name: Test
         run: npm test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+      - name: Install Packages
+        run: npm install --prefer-offline --no-audit
       - name: Restore cache
         uses: actions/cache@v2
         with:
@@ -32,6 +44,22 @@ jobs:
           NEXT_PUBLIC_ASSET_PREFIX: ${{ secrets.NEXT_PUBLIC_ASSET_PREFIX }}
       - name: Export page
         run: npm run export
+      - name: Save page
+        uses: actions/upload-artifact@v2
+        with:
+          name: page
+          path: ./out
+  deploy:
+    needs:
+      - test
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Load page
+        uses: actions/download-artifact@v2
+        with:
+          name: page
+          path: ./out
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
