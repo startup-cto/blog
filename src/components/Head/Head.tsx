@@ -26,7 +26,7 @@ const profilePictureUrl =
 const profilePictureWidth = 993;
 const profilePictureHeight = 993;
 const authorUrl = "http://twitter.com/the_startup_cto";
-const assetPrefix = process.env.NEXT_PUBLIC_ASSET_PREFIX ?? "";
+const assetPrefix = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function Head({
   imagePath,
