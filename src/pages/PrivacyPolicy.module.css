@@ -1,0 +1,19 @@
+.container {
+    background-color: #27232f;
+    color: #dddbe6;
+    font-family: "Courier New", Courier, monospace;
+    padding: 2rem;
+}
+
+.header {
+    font-weight: normal;
+}
+
+.link {
+    color: #a0a6f8;
+    font-size: 18px;
+}
+
+.link:hover {
+    color: #c6cafb;
+}
