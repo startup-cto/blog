@@ -39,48 +39,52 @@ Let's take a [classical React todo app](https://startup-cto.github.io/todos) as 
 
 The [App component](https://github.com/startup-cto/todos/blob/main/src/App/App.tsx) and the [useTodos hook](https://github.com/startup-cto/todos/blob/main/src/App/useTodos.ts) are what I like to call glue code. It "glues" together the rest of the code to bring the functionality to life:
 
-    const TodoApp: FunctionComponent = () => {
-      const { todos, addTodo, completeTodo, deleteTodo } = useTodos([]);
+```tsx
+const TodoApp: FunctionComponent = () => {
+  const { todos, addTodo, completeTodo, deleteTodo } = useTodos([]);
 
-      return (
-        <>
-          <TodoList
-            todos={todos}
-            onCompleteTodo={completeTodo}
-            onDeleteTodo={deleteTodo}
-          />
-          <AddTodo onAdd={addTodo} />
-        </>
-      );
-    };
+  return (
+    <>
+      <TodoList
+        todos={todos}
+        onCompleteTodo={completeTodo}
+        onDeleteTodo={deleteTodo}
+      />
+      <AddTodo onAdd={addTodo} />
+    </>
+  );
+};
 
 
-    export function useTodos(initialTodos: Todo[]) {
-      const [todos, dispatch] = useReducer(todosReducer, initialTodos);
-      return {
-        todos,
-        addTodo: (description: string) =>
-          dispatch(createAddTodoAction(description)),
-        completeTodo: (id: Todo["id"]) => dispatch(createCompleteTodoAction(id)),
-        deleteTodo: (id: Todo["id"]) => dispatch(createDeleteTodoAction(id)),
-      };
-    }
+export function useTodos(initialTodos: Todo[]) {
+  const [todos, dispatch] = useReducer(todosReducer, initialTodos);
+  return {
+    todos,
+    addTodo: (description: string) =>
+      dispatch(createAddTodoAction(description)),
+    completeTodo: (id: Todo["id"]) => dispatch(createCompleteTodoAction(id)),
+    deleteTodo: (id: Todo["id"]) => dispatch(createDeleteTodoAction(id)),
+  };
+}
+```
 
 Similar to a controller in the backend, this is best tested with [integration tests](https://github.com/startup-cto/todos/blob/main/src/App/App.test.tsx):
 
-    describe("TodoApp", () => {
-      it("shows an added todo", async () => {
-        render(<App />);
+```tsx
+describe("TodoApp", () => {
+  it("shows an added todo", async () => {
+    render(<App />);
 
-        const todoInput = screen.getByLabelText("New todo");
-        const todoDescription = "My new todo";
-        userEvent.type(todoInput, todoDescription);
-        const addTodoButton = screen.getByText("Add todo");
-        userEvent.click(addTodoButton);
+    const todoInput = screen.getByLabelText("New todo");
+    const todoDescription = "My new todo";
+    userEvent.type(todoInput, todoDescription);
+    const addTodoButton = screen.getByText("Add todo");
+    userEvent.click(addTodoButton);
 
-        expect(await screen.findByText(todoDescription)).toBeInTheDocument();
-      });
-    });
+    expect(await screen.findByText(todoDescription)).toBeInTheDocument();
+  });
+});
+```
 
 The reason why I am talking about these tests first is that this is usually the first kind of test that I write. The difference between a web app and a landing page is that the web app, without any of its functionality and just with its looks, has no value. These tests describe the behavior and allow me to keep focused so that I only implement what is needed.
 
@@ -92,51 +96,57 @@ The reason for this is that the tests are written from a user perspective: Find 
 
 These are the tests that folks coming from backend testing are most familiar with. The [business logic of our todo app](https://github.com/startup-cto/todos/tree/main/src/model) takes care of creating, removing, and marking todos as done. The exact same could also be used in the backend.
 
-    export function todosReducer(todos: Todo[], action: TodoAction) {
-      switch (action.type) {
-        case TodoActionType.AddTodo:
-          return [...todos, action.payload];
-        case TodoActionType.CompleteTodo:
-          return todos.map((todo) =>
-            todo.id === action.payload.id ? { ...todo, completed: true } : todo
-          );
-        case TodoActionType.DeleteTodo:
-          return todos.filter((todo) => todo.id !== action.payload.id);
-      }
-    }
+```tsx
+export function todosReducer(todos: Todo[], action: TodoAction) {
+  switch (action.type) {
+    case TodoActionType.AddTodo:
+      return [...todos, action.payload];
+    case TodoActionType.CompleteTodo:
+      return todos.map((todo) =>
+        todo.id === action.payload.id ? { ...todo, completed: true } : todo
+      );
+    case TodoActionType.DeleteTodo:
+      return todos.filter((todo) => todo.id !== action.payload.id);
+  }
+}
+```
 
 [Tests for this kind of code](https://github.com/startup-cto/todos/blob/main/src/model/reducer.test.ts) are deceivingly simple:
 
-    describe("todo reducer", () => {
-      describe("addTodoAction", () => {
-        it("adds a new todo to the list", () => {
-          const description = "This is a todo";
-          expect(todosReducer([], createAddTodoAction(description))).toContainEqual(
-            expect.objectContaining({ description })
-          );
-        });
-
-        it("does not remove an existing todo", () => {
-          const existingTodo = new TodoMock();
-          expect(
-            todosReducer([existingTodo], createAddTodoAction("This is a todo"))
-          ).toContainEqual(existingTodo);
-        });
-      });
+```tsx
+describe("todo reducer", () => {
+  describe("addTodoAction", () => {
+    it("adds a new todo to the list", () => {
+      const description = "This is a todo";
+      expect(todosReducer([], createAddTodoAction(description))).toContainEqual(
+        expect.objectContaining({ description })
+      );
     });
+
+    it("does not remove an existing todo", () => {
+      const existingTodo = new TodoMock();
+      expect(
+        todosReducer([existingTodo], createAddTodoAction("This is a todo"))
+      ).toContainEqual(existingTodo);
+    });
+  });
+});
+```
 
 The hard part about testing business logic is not to write the tests, but to separate the business logic from the rest of the code. Let's have a look at [useTodos](https://github.com/startup-cto/todos/blob/main/src/App/useTodos.ts), which is the glue code bringing this reducer into React:
 
-    export function useTodos(initialTodos: Todo[]) {
-      const [todos, dispatch] = useReducer(todosReducer, initialTodos);
-      return {
-        todos,
-        addTodo: (description: string) =>
-          dispatch(createAddTodoAction(description)),
-        completeTodo: (id: Todo["id"]) => dispatch(createCompleteTodoAction(id)),
-        deleteTodo: (id: Todo["id"]) => dispatch(createDeleteTodoAction(id)),
-      };
-    }
+```tsx
+export function useTodos(initialTodos: Todo[]) {
+  const [todos, dispatch] = useReducer(todosReducer, initialTodos);
+  return {
+    todos,
+    addTodo: (description: string) =>
+      dispatch(createAddTodoAction(description)),
+    completeTodo: (id: Todo["id"]) => dispatch(createCompleteTodoAction(id)),
+    deleteTodo: (id: Todo["id"]) => dispatch(createDeleteTodoAction(id)),
+  };
+}
+```
 
 The danger here would be to write the business logic so that it can only be tested by testing the full hook. Using the hook just to glue together the reducer and action creators with React logic saves us from all that pain.
 
@@ -148,75 +158,79 @@ A **story** is the visual equivalent of a unit test. The main remaining shortcom
 
 Here's a [story for a button](https://github.com/startup-cto/todos/blob/main/src/components/shared/Button.stories.tsx):
 
-    const Template: Story<Props> = (args) => <Button {...args} />;
+```tsx
+const Template: Story<Props> = (args) => <Button {...args} />;
 
-    const actionArgs = {
-      onClick: action("onClick"),
-    };
+const actionArgs = {
+  onClick: action("onClick"),
+};
 
-    export const Default = Template.bind({});
+export const Default = Template.bind({});
 
-    Default.args = {
-      ...actionArgs,
-      children: "Click me!",
-      color: ButtonColor.Success,
-    };
+Default.args = {
+  ...actionArgs,
+  children: "Click me!",
+  color: ButtonColor.Success,
+};
+```
 
 and here is [the button itself](https://github.com/startup-cto/todos/blob/main/src/components/shared/Button.tsx):
 
-    export enum ButtonColor {
-      Alert = "Alert",
-      Success = "Success",
-    }
+```tsx
+export enum ButtonColor {
+  Alert = "Alert",
+  Success = "Success",
+}
 
-    export enum ButtonType {
-      Submit = "submit",
-      Reset = "reset",
-      Button = "button",
-    }
+export enum ButtonType {
+  Submit = "submit",
+  Reset = "reset",
+  Button = "button",
+}
 
-    export interface Props {
-      children: ReactNode;
-      color: ButtonColor;
-      onClick?: () => void;
-      type?: ButtonType;
-    }
+export interface Props {
+  children: ReactNode;
+  color: ButtonColor;
+  onClick?: () => void;
+  type?: ButtonType;
+}
 
-    export const Button: FunctionComponent<Props> = ({
-      children,
-      color,
-      onClick,
-      type,
-    }) => {
-      const colorStyles = {
-        [ButtonColor.Alert]: {
-          border: "#b33 solid 1px",
-          borderRadius: "4px",
-          boxShadow: "2px 2px 2px rgba(100,0,0,0.8)",
-          color: "white",
-          backgroundColor: "#a00",
-        },
-        [ButtonColor.Success]: {
-          border: "#3b3 solid 1px",
-          borderRadius: "4px",
-          boxShadow: "2px 2px 2px rgba(0,100,0,0.8)",
-          color: "white",
-          backgroundColor: "#0a0",
-        },
-      };
-      return (
-        <button
-          style={{
-            ...colorStyles[color],
-            padding: "0.2rem 0.5rem",
-          }}
-          onClick={onClick}
-          type={type}
-        >
-          {children}
-        </button>
-      );
-    };
+export const Button: FunctionComponent<Props> = ({
+  children,
+  color,
+  onClick,
+  type,
+}) => {
+  const colorStyles = {
+    [ButtonColor.Alert]: {
+      border: "#b33 solid 1px",
+      borderRadius: "4px",
+      boxShadow: "2px 2px 2px rgba(100,0,0,0.8)",
+      color: "white",
+      backgroundColor: "#a00",
+    },
+    [ButtonColor.Success]: {
+      border: "#3b3 solid 1px",
+      borderRadius: "4px",
+      boxShadow: "2px 2px 2px rgba(0,100,0,0.8)",
+      color: "white",
+      backgroundColor: "#0a0",
+    },
+  };
+  return (
+    <button
+      style={{
+        ...colorStyles[color],
+        padding: "0.2rem 0.5rem",
+      }}
+      onClick={onClick}
+      type={type}
+    >
+      {children}
+    </button>
+  );
+};
+```
 
 The story renders the button in isolation. I can first write the story, which allows me to think about the intended interface for this component, and only implement the component itself afterward. If any implementation details change, then as long as the interface stays the same, I won't have to change the story. And I can look at the rendered story in isolation whenever I want to verify that it still looks as intended (this is the "manual" part I mentioned above). As soon as I have a version I am happy with, I can even set up automated regression testing with help of a visual regression tool.
 

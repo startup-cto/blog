@@ -23,54 +23,58 @@ For servers this is usually solved with the pattern of middlewares. For AWS lamb
 
 Let's use a simple example for all our cases: An endpoint that returns the sum of two numbers:
 
-    import { APIGatewayProxyResult, APIGatewayEvent, Context } from "aws-lambda";
+```tsx
+import { APIGatewayProxyResult, APIGatewayEvent, Context } from "aws-lambda";
 
-    export async function add(event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> {
-      const { a, b } = JSON.parse(event.body ?? "{}");
-      const sum = a + b;
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ result: sum })
-      }
-    }
+export async function add(event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> {
+  const { a, b } = JSON.parse(event.body ?? "{}");
+  const sum = a + b;
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ result: sum })
+  }
+}
+```
 
 Even though we haven't even taken care of headers or validation, there is already two middlewares we can extract:
 
-    import { APIGatewayProxyResult, APIGatewayEvent, Context } from "aws-lambda";
+```tsx
+import { APIGatewayProxyResult, APIGatewayEvent, Context } from "aws-lambda";
 
-    type Summands = {
-      a: number;
-      b: number;
+type Summands = {
+  a: number;
+  b: number;
+};
+
+async function sum({ a, b }: Summands): Promise<{ result: number }> {
+  return { result: a + b };
+}
+
+function inputParser<Result>(
+  handler: ({ a, b }: Summands) => Promise<Result>
+): (event: APIGatewayEvent) => Promise<Result> {
+  return (event: APIGatewayEvent) => {
+    const { a, b } = JSON.parse(event.body ?? "{}");
+    return handler({ a, b });
+  };
+}
+
+function jsonSerializer<Event>(
+  handler: (event: Event) => Promise<object>
+): (event: Event) => Promise<APIGatewayProxyResult> {
+  return async (event: Event) => {
+    return {
+      statusCode: 200,
+      body: JSON.stringify(await handler(event)),
     };
+  };
+}
 
-    async function sum({ a, b }: Summands): Promise<{ result: number }> {
-      return { result: a + b };
-    }
-
-    function inputParser<Result>(
-      handler: ({ a, b }: Summands) => Promise<Result>
-    ): (event: APIGatewayEvent) => Promise<Result> {
-      return (event: APIGatewayEvent) => {
-        const { a, b } = JSON.parse(event.body ?? "{}");
-        return handler({ a, b });
-      };
-    }
-
-    function jsonSerializer<Event>(
-      handler: (event: Event) => Promise<object>
-    ): (event: Event) => Promise<APIGatewayProxyResult> {
-      return async (event: Event) => {
-        return {
-          statusCode: 200,
-          body: JSON.stringify(await handler(event)),
-        };
-      };
-    }
-
-    export const add: (
-      event: APIGatewayEvent,
-      context: Context
-    ) => Promise<APIGatewayProxyResult> = jsonSerializer(inputParser(sum));
+export const add: (
+  event: APIGatewayEvent,
+  context: Context
+) => Promise<APIGatewayProxyResult> = jsonSerializer(inputParser(sum));
+```
 
 With this example in front of us: What actually is a middleware in our case? In its simplest form, it is a higher-order-function that takes a handler function and returns an augmented handler function. E. g. wrapApiResponse takes a handler that returns an `object` and transforms it into a handler that returns an `ApiGatewayProxyResult`.
 
@@ -88,37 +92,39 @@ With this example in front of us: What actually is a middleware in our case? In 
 
 How would our example above look like with [lambda-middleware](https://dbartholomae.github.io/lambda-middleware/)?
 
-    import { APIGatewayProxyResult, APIGatewayEvent, Context } from "aws-lambda";
-    import { IsNumber } from "class-validator";
-    import { compose } from "@lambda-middleware/compose";
-    import { classValidator } from "@lambda-middleware/class-validator";
-    import { errorHandler } from "@lambda-middleware/http-error-handler";
-    import { jsonSerializer } from "@lambda-middleware/json-serializer";
+```tsx
+import { APIGatewayProxyResult, APIGatewayEvent, Context } from "aws-lambda";
+import { IsNumber } from "class-validator";
+import { compose } from "@lambda-middleware/compose";
+import { classValidator } from "@lambda-middleware/class-validator";
+import { errorHandler } from "@lambda-middleware/http-error-handler";
+import { jsonSerializer } from "@lambda-middleware/json-serializer";
 
-    class Summands {
-      @IsNumber()
-      a!: number;
+class Summands {
+  @IsNumber()
+  a!: number;
 
-      @IsNumber()
-      b!: number;
-    }
+  @IsNumber()
+  b!: number;
+}
 
-    async function sum({
-      body: { a, b },
-    }: {
-      body: Summands;
-    }): Promise<{ result: number }> {
-      return { result: a + b };
-    }
+async function sum({
+  body: { a, b },
+}: {
+  body: Summands;
+}): Promise<{ result: number }> {
+  return { result: a + b };
+}
 
-    export const add: (
-      event: APIGatewayEvent,
-      context: Context
-    ) => Promise<APIGatewayProxyResult> = compose(
-      errorHandler(),
-      jsonSerializer(),
-      classValidator({ bodyType: Summands })
-    )(sum);
+export const add: (
+  event: APIGatewayEvent,
+  context: Context
+) => Promise<APIGatewayProxyResult> = compose(
+  errorHandler(),
+  jsonSerializer(),
+  classValidator({ bodyType: Summands })
+)(sum);
+```
 
 `jsonSerializer` does more or less what our custom-made solution above does, but it also adds a `Content-Type` header with value `application/json`.
 
@@ -141,57 +147,59 @@ How would our example above look like with [lambda-middleware](https://dbartholo
 
 Another middleware framework for AWS lambdas is [middy](https://github.com/middyjs/middy). The same function would look like this:
 
-    import { APIGatewayEvent, APIGatewayProxyResult, Callback, Context } from 'aws-lambda'
-    import middy from "@middy/core";
-    import jsonBodyParser from "@middy/http-json-body-parser";
-    import httpErrorHandler from "@middy/http-error-handler";
-    import responseSerializer from "@middy/http-response-serializer";
-    import validator from "@middy/validator";
+```tsx
+import { APIGatewayEvent, APIGatewayProxyResult, Callback, Context } from 'aws-lambda'
+import middy from "@middy/core";
+import jsonBodyParser from "@middy/http-json-body-parser";
+import httpErrorHandler from "@middy/http-error-handler";
+import responseSerializer from "@middy/http-response-serializer";
+import validator from "@middy/validator";
 
-    interface Summands {
-      a: number;
-      b: number;
-    }
+interface Summands {
+  a: number;
+  b: number;
+}
 
-    const summandsSchema = {
+const summandsSchema = {
+  type: "object",
+  properties: {
+    body: {
       type: "object",
       properties: {
-        body: {
-          type: "object",
-          properties: {
-            a: { type: "number" },
-            b: { type: "number" },
-          },
-          required: ["a", "b"],
-        },
+        a: { type: "number" },
+        b: { type: "number" },
       },
-    };
+      required: ["a", "b"],
+    },
+  },
+};
 
-    async function sum({
-      body: { a, b },
-    }: {
-      body: Summands;
-    }): Promise<{ result: number }> {
-      return { result: a + b };
-    }
+async function sum({
+  body: { a, b },
+}: {
+  body: Summands;
+}): Promise<{ result: number }> {
+  return { result: a + b };
+}
 
-    export const add: (
-      event: APIGatewayEvent,
-      context: Context,
-      callback: Callback
-    ) => Promise<APIGatewayProxyResult> | void = middy(
-      (sum as unknown) as (event: APIGatewayEvent) => Promise<APIGatewayProxyResult>
-    )
-      .use(jsonBodyParser())
-      .use(validator({ inputSchema: summandsSchema }))
-      .use(responseSerializer({
-        serializers: [{
-          regex: /^application\/json$/,
-          serializer: ({ body }) => JSON.stringify(body)
-        }],
-        default: 'application/json'
-      }))
-      .use(httpErrorHandler());
+export const add: (
+  event: APIGatewayEvent,
+  context: Context,
+  callback: Callback
+) => Promise<APIGatewayProxyResult> | void = middy(
+  (sum as unknown) as (event: APIGatewayEvent) => Promise<APIGatewayProxyResult>
+)
+  .use(jsonBodyParser())
+  .use(validator({ inputSchema: summandsSchema }))
+  .use(responseSerializer({
+    serializers: [{
+      regex: /^application\/json$/,
+      serializer: ({ body }) => JSON.stringify(body)
+    }],
+    default: 'application/json'
+  }))
+  .use(httpErrorHandler());
+```
 
 For middy the middleware is defined in a custom format that is added via `.use`. This unfortunately means that we need to force the typing of the handler as TypeScript cannot infer it from the middlewares.
 
@@ -213,41 +221,45 @@ The validation with a JSON schema is limited a bit, e. g. you cannot use any asy
 
 Most of the features seen so far can also be solved by using the AWS API Gateway. Let's look at the handler:
 
-    interface Summands {
-      a: number;
-      b: number;
-    }
+```tsx
+interface Summands {
+  a: number;
+  b: number;
+}
 
-    export async function sum({
-      a,b
-    }: Summands): Promise<{ result: number }> {
-      return { result: a + b };
-    }
+export async function sum({
+  a,b
+}: Summands): Promise<{ result: number }> {
+  return { result: a + b };
+}
+```
 
 And the related serverless configuration
 
-    functions:
-      create:
-        handler: handlers.add
-        events:
-          - http:
-              path: /
-              method: post
-              request:
-                schema:
-                  application/json:
-                    definitions: {}
-                    $schema: http://json-schema.org/draft-04/schema#
-                    type: object
-                    title: Summands
-                    required: ["a", "b"],
-                    properties:
-                      a:
-                        type: "number"
-                      b:
-                        type: "number"
-                template:
-                  application/json: '#set($body = $util.parseJson($input.body)) {"a": $body.a, "b": $body.b}'
+```yaml
+functions:
+  create:
+    handler: handlers.add
+    events:
+      - http:
+          path: /
+          method: post
+          request:
+            schema:
+              application/json:
+                definitions: {}
+                $schema: http://json-schema.org/draft-04/schema#
+                type: object
+                title: Summands
+                required: ["a", "b"],
+                properties:
+                  a:
+                    type: "number"
+                  b:
+                    type: "number"
+            template:
+              application/json: '#set($body = $util.parseJson($input.body)) {"a": $body.a, "b": $body.b}'
+```
 
 With [Lambda version 2](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html) we can directly return the JSON object and, as long as it does not have a `statusCode` defined, it will be stringified by the ApiGateway.
 
