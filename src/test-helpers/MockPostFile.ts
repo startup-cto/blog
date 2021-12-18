@@ -16,6 +16,7 @@ export class MockPostFile {
     name?: string;
   } = {}) {
     const defaultMetaData: PostMetaData = {
+      draft: false,
       excerpt: "excerpt",
       slug: "slug",
       tags: [],
@@ -27,8 +28,9 @@ export class MockPostFile {
   }
 
   toString() {
+    const { draft, ...metaData } = this.metaData;
     return `---
-${yaml.dump(this.metaData)}---
+${yaml.dump(draft ? { ...metaData, draft } : metaData)}---
 
 ${this.content}
 `;
