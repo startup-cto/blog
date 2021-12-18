@@ -17,7 +17,14 @@ export const loadPostSummaries = async () => {
   );
   return {
     props: {
-      posts,
+      posts: posts.sort(
+        ({ publishedAt: firstDate }, { publishedAt: secondDate }) => {
+          if (firstDate === secondDate) {
+            return 0;
+          }
+          return firstDate! < secondDate! ? -1 : 1;
+        }
+      ),
     },
   };
 };
