@@ -2,6 +2,7 @@ import { compile, TypeOf, v } from "suretype";
 
 const postMetaDataSchema = v.object({
   title: v.string().required(),
+  draft: v.boolean(),
   slug: v.string().required(),
   publishedAt: v.string().format("date-time"),
   updatedAt: v.string().format("date-time"),

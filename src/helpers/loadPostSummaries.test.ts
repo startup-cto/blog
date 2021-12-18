@@ -49,4 +49,23 @@ describe("loadPostSummaries", () => {
       expect(posts[0].publishedAt).toBe(firstPublishedAt);
     });
   });
+
+  describe("with a draft post", () => {
+    const postFiles: MockPostFile[] = [
+      new MockPostFile({ metaData: { draft: true } }),
+    ];
+
+    beforeAll(() => {
+      mockPostFiles(postFiles);
+    });
+
+    afterAll(() => {
+      resetPostFiles();
+    });
+
+    it("loads no posts", async () => {
+      const posts = (await loadPostSummaries()).props.posts;
+      expect(posts).toEqual([]);
+    });
+  });
 });
