@@ -1,29 +1,16 @@
 import { loadPostSummaries } from "./loadPostSummaries";
 import { MockFile } from "./MockFile";
-import mockFs from "mock-fs";
-import path from "path";
+import { mockPostFiles, resetPostFiles } from "../test-helpers";
 
 describe("loadPostSummaries", () => {
   const files = [new MockFile()];
 
   beforeAll(() => {
-    mockFs(
-      files.reduce(
-        (obj, file) => ({
-          ...obj,
-          [`./content/${file.name}.md`]: file.toString(),
-        }),
-        {
-          node_modules: mockFs.load(
-            path.resolve(__dirname, "../../node_modules")
-          ),
-        }
-      )
-    );
+    mockPostFiles(files);
   });
 
   afterAll(() => {
-    mockFs.restore();
+    resetPostFiles();
   });
 
   it("loads the summary of the first post", async () => {
