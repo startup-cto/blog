@@ -4,13 +4,16 @@ import yaml from "js-yaml";
 export class MockFile {
   metaData: PostMetaData;
   content: string;
+  name: string;
 
   constructor({
     metaData = {},
     content = "# Hello World",
+    name = "file-name",
   }: {
     metaData?: Partial<PostMetaData>;
     content?: string;
+    name?: string;
   } = {}) {
     const defaultMetaData: PostMetaData = {
       excerpt: "excerpt",
@@ -20,6 +23,7 @@ export class MockFile {
     };
     this.metaData = { ...defaultMetaData, ...metaData };
     this.content = content;
+    this.name = name;
   }
 
   toString() {
