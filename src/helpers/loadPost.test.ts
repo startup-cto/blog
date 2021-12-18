@@ -1,39 +1,31 @@
-import mockFs from "mock-fs";
-
 import { loadPost } from "./loadPost";
-import path from "path";
 import { MockFile } from "./MockFile";
+import { mockPostFiles, resetPostFiles } from "../test-helpers";
 
 describe("loadPost", () => {
   describe("with a post", () => {
-    const fileName = "fileName";
     const file = new MockFile();
 
     beforeAll(() => {
-      mockFs({
-        [`./content/${fileName}.md`]: file.toString(),
-        node_modules: mockFs.load(
-          path.resolve(__dirname, "../../node_modules")
-        ),
-      });
+      mockPostFiles([file]);
     });
 
     afterAll(() => {
-      mockFs.restore();
+      resetPostFiles();
     });
 
     it("returns the title of the post", async () => {
-      const post = await loadPost(fileName);
+      const post = await loadPost(file.name);
       expect(post.title).toEqual(file.metaData.title);
     });
 
     it("returns the publishedAt of the post", async () => {
-      const post = await loadPost(fileName);
+      const post = await loadPost(file.name);
       expect(post.publishedAt).toEqual(file.metaData.publishedAt);
     });
 
     it("returns the source for the post", async () => {
-      const post = await loadPost(fileName);
+      const post = await loadPost(file.name);
       expect(post.source).toBeDefined();
     });
   });
