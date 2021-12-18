@@ -3,6 +3,7 @@
     margin: 1rem auto 3rem auto;
     padding: 0 1rem;
     font-family: "Courier New", Courier, monospace;
+    cursor: pointer;
 }
 
 .publishDate {
@@ -23,4 +24,9 @@
 .excerpt {
     color: #dddbe6;
     line-height: 1.6rem;
+}
+
+.link {
+    color: #a0a6f8;
+    text-decoration: underline;
 }

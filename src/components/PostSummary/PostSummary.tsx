@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Post } from "../../helpers/loadPost";
 import styles from "./PostSummary.module.css";
 
@@ -14,17 +15,18 @@ export function PostSummary({
   post: { excerpt, publishedAt, slug, tags, title },
 }: Props) {
   return (
-    <article className={styles.container}>
-      {publishedAt && (
-        <time className={styles.publishDate} dateTime={publishedAt}>
-          {new Date(publishedAt).toLocaleDateString()}
-        </time>
-      )}
-      {tags && <span className={styles.tags}>{tags.join(", ")}</span>}
-      <a href={slug}>
+    <Link href={slug}>
+      <article className={styles.container}>
+        {publishedAt && (
+          <time className={styles.publishDate} dateTime={publishedAt}>
+            {new Date(publishedAt).toLocaleDateString()}
+          </time>
+        )}
+        {tags && <span className={styles.tags}>{tags.join(", ")}</span>}
         <h1 className={styles.title}>{title}</h1>
-      </a>
-      <p className={styles.excerpt}>{excerpt}</p>
-    </article>
+        <p className={styles.excerpt}>{excerpt}</p>
+        <a className={styles.link}>Read more</a>
+      </article>
+    </Link>
   );
 }
