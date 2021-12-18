@@ -1,4 +1,4 @@
-import type { MockPostFile } from "../helpers/MockPostFile";
+import type { MockPostFile } from "./MockPostFile";
 import mockFs from "mock-fs";
 import path from "path";
 

@@ -1,5 +1,5 @@
 import { loadPost } from "./loadPost";
-import { MockPostFile } from "./MockPostFile";
+import { MockPostFile } from "../test-helpers/MockPostFile";
 import { mockPostFiles, resetPostFiles } from "../test-helpers";
 
 describe("loadPost", () => {

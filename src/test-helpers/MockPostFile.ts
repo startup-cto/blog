@@ -1,4 +1,4 @@
-import { PostMetaData } from "./PostMetaData";
+import { PostMetaData } from "../helpers/PostMetaData";
 import yaml from "js-yaml";
 
 export class MockPostFile {
