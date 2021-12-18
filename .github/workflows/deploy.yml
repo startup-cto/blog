@@ -5,21 +5,7 @@ on:
       - main
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'npm'
-      - name: Install Packages
-        run: npm install --prefer-offline --no-audit
-      - name: Test
-        run: npm test
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -38,32 +24,12 @@ jobs:
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
-      - name: Build page
-        run: npm run build
+      - name: Test and build
+        run: npm test & npm run build
         env:
           NEXT_PUBLIC_ASSET_PREFIX: ${{ secrets.NEXT_PUBLIC_ASSET_PREFIX }}
       - name: Export page
         run: npm run export
-      - name: Create page archive
-        run: tar -cvf page.tar out/
-      - name: Save page
-        uses: actions/upload-artifact@v2
-        with:
-          name: page
-          path: page.tar
-  deploy:
-    needs:
-      - test
-      - build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Load page
-        uses: actions/download-artifact@v2
-        with:
-          name: page
-          path: .
-      - name: Unarchive page
-        run: tar -xvf page.tar
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
