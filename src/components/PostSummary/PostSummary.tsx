@@ -19,7 +19,7 @@ export function PostSummary({
       <article className={styles.container}>
         {publishedAt && (
           <time className={styles.publishDate} dateTime={publishedAt}>
-            {new Date(publishedAt).toLocaleDateString()}
+            {new Date(publishedAt).toLocaleDateString("en-ca")}
           </time>
         )}
         {tags && <span className={styles.tags}>{tags.join(", ")}</span>}
