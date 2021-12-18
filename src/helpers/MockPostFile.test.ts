@@ -1,8 +1,8 @@
-import { MockFile } from "./MockFile";
+import { MockPostFile } from "./MockPostFile";
 
-describe("MockFile", () => {
+describe("MockPostFile", () => {
   it("returns default file contents as a string", () => {
-    expect(new MockFile().toString()).toBe(`---
+    expect(new MockPostFile().toString()).toBe(`---
 excerpt: excerpt
 slug: slug
 tags: []

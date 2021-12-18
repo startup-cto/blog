@@ -1,13 +1,13 @@
 import { loadPost } from "./loadPost";
-import { MockFile } from "./MockFile";
+import { MockPostFile } from "./MockPostFile";
 import { mockPostFiles, resetPostFiles } from "../test-helpers";
 
 describe("loadPost", () => {
   describe("with a post", () => {
-    const file = new MockFile();
+    const postFile = new MockPostFile();
 
     beforeAll(() => {
-      mockPostFiles([file]);
+      mockPostFiles([postFile]);
     });
 
     afterAll(() => {
@@ -15,17 +15,17 @@ describe("loadPost", () => {
     });
 
     it("returns the title of the post", async () => {
-      const post = await loadPost(file.name);
-      expect(post.title).toEqual(file.metaData.title);
+      const post = await loadPost(postFile.name);
+      expect(post.title).toEqual(postFile.metaData.title);
     });
 
     it("returns the publishedAt of the post", async () => {
-      const post = await loadPost(file.name);
-      expect(post.publishedAt).toEqual(file.metaData.publishedAt);
+      const post = await loadPost(postFile.name);
+      expect(post.publishedAt).toEqual(postFile.metaData.publishedAt);
     });
 
     it("returns the source for the post", async () => {
-      const post = await loadPost(file.name);
+      const post = await loadPost(postFile.name);
       expect(post.source).toBeDefined();
     });
   });

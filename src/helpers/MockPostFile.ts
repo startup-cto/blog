@@ -1,7 +1,7 @@
 import { PostMetaData } from "./PostMetaData";
 import yaml from "js-yaml";
 
-export class MockFile {
+export class MockPostFile {
   metaData: PostMetaData;
   content: string;
   name: string;
