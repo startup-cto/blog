@@ -21,7 +21,7 @@ describe("loadPostSummaries", () => {
   });
 
   describe("with three posts not in order", () => {
-    const firstPublishedAt = new Date("2020-01-01").toISOString();
+    const lastPublishedAt = new Date("2022-01-01").toISOString();
 
     beforeAll(() => {
       mockPostFiles([
@@ -30,11 +30,11 @@ describe("loadPostSummaries", () => {
           name: "name1",
         }),
         new MockPostFile({
-          metaData: { publishedAt: firstPublishedAt },
+          metaData: { publishedAt: new Date("2020-01-01").toISOString() },
           name: "name2",
         }),
         new MockPostFile({
-          metaData: { publishedAt: new Date("2022-01-01").toISOString() },
+          metaData: { publishedAt: lastPublishedAt },
           name: "name3",
         }),
       ]);
@@ -46,7 +46,7 @@ describe("loadPostSummaries", () => {
 
     it("loads the summaries ordered by publishedAt", async () => {
       const posts = (await loadPostSummaries()).props.posts;
-      expect(posts[0].publishedAt).toBe(firstPublishedAt);
+      expect(posts[0].publishedAt).toBe(lastPublishedAt);
     });
   });
 

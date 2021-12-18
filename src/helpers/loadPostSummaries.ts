@@ -31,7 +31,7 @@ export const loadPostSummaries = async () => {
           if (firstDate === secondDate) {
             return 0;
           }
-          return firstDate! < secondDate! ? -1 : 1;
+          return firstDate! > secondDate! ? -1 : 1;
         }),
     },
   };
