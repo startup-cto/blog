@@ -58,7 +58,7 @@ export function Head({
         rel="alternate"
         type="application/rss+xml"
         title={siteName}
-        href={`${baseUrl}rss/`}
+        href={`${baseUrl}rss.xml`}
       />
       <meta name="referrer" content="no-referrer-when-downgrade" />
 
