@@ -6,7 +6,7 @@ export async function createRSSFile() {
   const postSummaries = (await loadPostSummaries()).props.posts;
   const rss = createRSSFeed(postSummaries);
   await createDirUnlessExists("public");
-  await writeFile("public/rss.xml", rss);
+  await writeFile("public/rss", rss);
 }
 
 async function createDirUnlessExists(dir: string) {
