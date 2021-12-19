@@ -22,13 +22,14 @@ export function createRSSFeed(posts: PostSummaryType[]) {
       categories: post.tags,
       date: post.publishedAt!,
       author: "Daniel Bartholomae",
-      custom_elements: [
-        {
-          "media:content": {
-            _attr: { url: "preview_img_url", medium: "image" },
-          },
-        },
-      ],
+      // TODO: Add image once posts have preview images
+      // custom_elements: [
+      //   {
+      //     "media:content": {
+      //       _attr: { url: "preview_img_url", medium: "image" },
+      //     },
+      //   },
+      // ],
     })
   );
   return feed.xml();
