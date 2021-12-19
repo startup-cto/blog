@@ -54,6 +54,12 @@ export function Head({
 
       <link rel="icon" href={`${assetPrefix}/favicon.ico`} />
       <link rel="canonical" href={postUrl} />
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title={siteName}
+        href={`${baseUrl}rss/`}
+      />
       <meta name="referrer" content="no-referrer-when-downgrade" />
 
       <meta property="og:site_name" content={siteName} />
