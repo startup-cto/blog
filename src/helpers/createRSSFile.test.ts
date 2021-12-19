@@ -13,9 +13,9 @@ describe("createRSSFile", () => {
     resetPostFiles();
   });
 
-  it("creates an RSS file", async () => {
+  it("creates an RSS file with the post title in it", async () => {
     await createRSSFile();
     const file = await readFile("./public/rss.xml", "utf8");
-    expect(typeof file).toBe("string");
+    expect(file).toContain(post.metaData.title);
   });
 });
