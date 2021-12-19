@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export && npm run create-rss-feed",
+    "build": "npm run create-rss-feed && next build && next export",
     "start": "next start",
     "test": "jest",
     "create-rss-feed": "tsc --project ./scripts/tsconfig.json && node ./scripts/createRSSFeed.js",
