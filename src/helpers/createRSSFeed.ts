@@ -1,5 +1,5 @@
 import RSS from "rss";
-import { PostSummaryType } from "../components/PostSummary/PostSummary";
+import { PostSummaryType } from "../model/PostSummaryType";
 
 export function createRSSFeed(posts: PostSummaryType[]) {
   const feed = new RSS({

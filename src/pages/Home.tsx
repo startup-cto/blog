@@ -1,11 +1,9 @@
 import { Head } from "../components/Head/Head";
 import { Header } from "../components/Header/Header";
-import {
-  PostSummary,
-  PostSummaryType,
-} from "../components/PostSummary/PostSummary";
+import { PostSummary } from "../components/PostSummary/PostSummary";
 import { Footer } from "../components/Footer/Footer";
 import styles from "./Home.module.css";
+import { PostSummaryType } from "../model/PostSummaryType";
 
 export interface Props {
   posts: PostSummaryType[];

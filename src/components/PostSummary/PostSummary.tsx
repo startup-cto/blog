@@ -1,11 +1,6 @@
 import Link from "next/link";
-import { Post } from "../../helpers/loadPost";
 import styles from "./PostSummary.module.css";
-
-export type PostSummaryType = Pick<
-  Post,
-  "excerpt" | "publishedAt" | "slug" | "tags" | "title"
->;
+import { PostSummaryType } from "../../model/PostSummaryType";
 
 interface Props {
   post: PostSummaryType;
