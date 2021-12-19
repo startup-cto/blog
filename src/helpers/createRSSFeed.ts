@@ -7,7 +7,7 @@ export function createRSSFeed(posts: PostSummaryType[]) {
     description: "Building companies with web technology",
     feed_url: "https://startup-cto.net/rss/",
     site_url: "https://startup-cto.net/",
-    image_url: "https://startup-cto.net/favicon.png",
+    image_url: "https://startup-cto.net/rss-icon.png",
     ttl: 60,
     custom_namespaces: {
       content: "https://purl.org/rss/1.0/modules/content/",
