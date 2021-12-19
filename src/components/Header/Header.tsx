@@ -11,6 +11,7 @@ export function Header() {
         width={100}
         height={100}
         unoptimized
+        priority
         className={styles.avatar}
       />
       <h1 className={styles.header}>The Startup CTO</h1>
