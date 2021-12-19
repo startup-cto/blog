@@ -5,7 +5,7 @@
     "build": "next build && next export && npm run create-rss-feed",
     "start": "next start",
     "test": "jest",
-    "create-rss-feed": "tsc --project ./scripts/tsconfig.json && node ./scripts/createRssFeed.js",
+    "create-rss-feed": "tsc --project ./scripts/tsconfig.json && node ./scripts/createRSSFeed.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
