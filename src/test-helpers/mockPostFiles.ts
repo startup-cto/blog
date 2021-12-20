@@ -10,6 +10,7 @@ export function mockPostFiles(posts: MockPostFile[]) {
         [`./content/${file.name}.md`]: file.toString(),
       }),
       {
+        "./public/images/teaser": {},
         node_modules: mockFs.load(
           path.resolve(__dirname, "../../node_modules")
         ),

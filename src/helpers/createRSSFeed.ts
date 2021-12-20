@@ -22,14 +22,18 @@ export function createRSSFeed(posts: PostSummaryType[]) {
       categories: post.tags,
       date: post.publishedAt!,
       author: "Daniel Bartholomae",
-      // TODO: Add image once posts have preview images
-      // custom_elements: [
-      //   {
-      //     "media:content": {
-      //       _attr: { url: "preview_img_url", medium: "image" },
-      //     },
-      //   },
-      // ],
+      ...(post.previewImage && {
+        custom_elements: [
+          {
+            "media:content": {
+              _attr: {
+                url: `https://startup-cto.net${post.previewImage}`,
+                medium: "image",
+              },
+            },
+          },
+        ],
+      }),
     })
   );
   return feed.xml();

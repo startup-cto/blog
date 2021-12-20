@@ -15,7 +15,7 @@ export function Post({ post }: Props) {
     <>
       <Head
         description={post.excerpt}
-        imagePath={""}
+        imagePath={post.previewImage}
         publishedAt={post.publishedAt ? new Date(post.publishedAt) : undefined}
         slug={post.slug}
         tags={post.tags}
