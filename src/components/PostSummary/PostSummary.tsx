@@ -20,7 +20,12 @@ export function PostSummary({
         {tags && <span className={styles.tags}>{tags.join(", ")}</span>}
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.excerpt}>{excerpt}</p>
-        <a className={styles.link}>Read more</a>
+        <Link href={slug} passHref>
+          <a className={styles.link}>
+            Read the article
+            <span className={styles.visuallyHidden}> "{title}"</span>
+          </a>
+        </Link>
       </article>
     </Link>
   );
