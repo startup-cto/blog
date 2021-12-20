@@ -62,6 +62,8 @@ export function Head({
       />
       <meta name="referrer" content="no-referrer-when-downgrade" />
 
+      <meta name="description" content={description} />
+
       <meta property="og:site_name" content={siteName} />
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
