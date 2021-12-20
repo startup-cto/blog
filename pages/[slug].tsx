@@ -25,6 +25,7 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({
         title: data.title,
         excerpt: data.excerpt,
         slug,
+        ...(data.previewImage && { previewImage: data.previewImage }),
         ...(data.publishedAt && { publishedAt: data.publishedAt }),
         ...(data.updatedAt && { updatedAt: data.updatedAt }),
         tags: data.tags ?? [],
