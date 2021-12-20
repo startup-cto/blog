@@ -23,7 +23,7 @@ export function PostSummary({
         <Link href={slug} passHref>
           <a className={styles.link}>
             Read the article
-            <span className={styles.visuallyHidden}> "{title}"</span>
+            <span className={styles.visuallyHidden}> {title}</span>
           </a>
         </Link>
       </article>
