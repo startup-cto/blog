@@ -1,7 +1,5 @@
 # Todos
 
-- Add header image to posts
-- Check head tags
 - Publish on Domain
 - Extract design system
 - Add pagination
