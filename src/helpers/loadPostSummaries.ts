@@ -18,7 +18,7 @@ export const loadPostSummaries = async () => {
         draft,
         excerpt,
         ...(publishedAt && { publishedAt }),
-        previewImage,
+        ...(previewImage && { previewImage }),
         slug,
         ...(tags && { tags }),
         title,

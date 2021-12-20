@@ -23,10 +23,10 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({
       post: {
         source,
         title: data.title,
-        excerpt: data.excerpt ?? undefined,
+        excerpt: data.excerpt,
         slug,
-        publishedAt: data.publishedAt ?? undefined,
-        updatedAt: data.updatedAt ?? undefined,
+        ...(data.publishedAt && { publishedAt: data.publishedAt }),
+        ...(data.updatedAt && { updatedAt: data.updatedAt }),
         tags: data.tags ?? [],
       },
     },
