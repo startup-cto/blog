@@ -1,6 +1,6 @@
-import { Post } from "../helpers/loadPost";
+import { PostMetaData } from "../helpers/PostMetaData";
 
 export type PostSummaryType = Pick<
-  Post,
+  PostMetaData,
   "excerpt" | "publishedAt" | "slug" | "tags" | "title"
 >;
