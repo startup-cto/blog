@@ -3,12 +3,3 @@
     margin: 0 auto;
     padding: 0 1rem;
 }
-
-.content :not(pre) > code {
-    padding: 1px 3px;
-    font-size: .75em;
-    white-space: pre;
-    border: 1px solid #424a5a;
-    background: #27232f;
-    border-radius: 2px;
-}
