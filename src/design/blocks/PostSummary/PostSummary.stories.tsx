@@ -4,7 +4,7 @@ import { PostSummary } from "./PostSummary";
 import { ComponentStory } from "@storybook/react";
 
 export default {
-  title: "Blocks/PostSummary",
+  title: "blocks/PostSummary",
   component: PostSummary,
 };
 

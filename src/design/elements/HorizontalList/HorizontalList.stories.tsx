@@ -3,7 +3,7 @@ import React from "react";
 import { HorizontalList } from "./HorizontalList";
 
 export default {
-  title: "Elements/HorizontalList",
+  title: "elements/HorizontalList",
   component: HorizontalList,
 };
 

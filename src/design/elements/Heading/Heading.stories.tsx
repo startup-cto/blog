@@ -4,7 +4,7 @@ import { Heading } from "./Heading";
 import { ComponentStory } from "@storybook/react";
 
 export default {
-  title: "Elements/Heading",
+  title: "elements/Heading",
   component: Heading,
 };
 

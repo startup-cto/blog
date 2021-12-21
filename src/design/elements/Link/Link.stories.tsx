@@ -4,7 +4,7 @@ import { Link } from "./Link";
 import { ComponentStory } from "@storybook/react";
 
 export default {
-  title: "Elements/Link",
+  title: "elements/Link",
   component: Link,
 };
 

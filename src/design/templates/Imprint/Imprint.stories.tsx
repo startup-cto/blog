@@ -3,7 +3,7 @@ import React from "react";
 import { Imprint } from "./Imprint";
 
 export default {
-  title: "Templates/Imprint",
+  title: "templates/Imprint",
   component: Imprint,
 };
 

@@ -5,7 +5,7 @@ import { ComponentStory } from "@storybook/react";
 import { exampleBlogPost } from "../../../fixtures/exampleBlogPost";
 
 export default {
-  title: "Blocks/BlogPost",
+  title: "blocks/BlogPost",
   component: BlogPost,
 };
 
