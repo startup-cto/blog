@@ -43,82 +43,88 @@ Unfortunately, documentation has the tendency of getting out-of-sync with the co
 
 So for `jsx-readme`, I used [TypeDoc](https://typedoc.org/), a TypeScript documentation library based on the [JSDoc standard](https://jsdoc.app/) (which also lead me to discover something about [how React and JSX work together](/writing-markdown-with-jsx/)). This way, my documentation is next to the code:
 
-    /**
-     * Defines a regex to search with and a string that should be used
-     * to replace the results found.
-     */
-    interface Replacement {
-      find: RegExp;
-      replace: string;
-    }
+```tsx
+/**
+ * Defines a regex to search with and a string that should be used
+ * to replace the results found.
+ */
+interface Replacement {
+  find: RegExp;
+  replace: string;
+}
 
-    /** @internal */
-    interface Props {
-      fileName: string;
-      children: string;
-      replacements?: Replacement[];
-    }
+/** @internal */
+interface Props {
+  fileName: string;
+  children: string;
+  replacements?: Replacement[];
+}
 
-    /** Displays a code file with a heading and a codeblock. */
-    export const CodeFile: Component<Props> = ({
-      /** The file's content. */
-      children,
-      fileName,
-      /**
-       * A list of replacements to be made in the file's content,
-       * e. g. for replacing relative import paths.
-       * */
-      replacements = [],
-    }) => {
-      function executeReplacements(str: string): string {
-        return replacements.reduce(
-          (replacedStr, replacement) =>
-            replacedStr.replace(replacement.find, replacement.replace),
-          str
-        );
-      }
+/** Displays a code file with a heading and a codeblock. */
+export const CodeFile: Component<Props> = ({
+  /** The file's content. */
+  children,
+  fileName,
+  /**
+   * A list of replacements to be made in the file's content,
+   * e. g. for replacing relative import paths.
+   * */
+  replacements = [],
+}) => {
+  function executeReplacements(str: string): string {
+    return replacements.reduce(
+      (replacedStr, replacement) =>
+        replacedStr.replace(replacement.find, replacement.replace),
+      str
+    );
+  }
 
-      return (
-        <Fragment>
-          <Heading level={3}>{fileName}</Heading>
-          <CodeBlock language={path.parse(fileName).ext.slice(1)}>
-            {executeReplacements(children.trimEnd())}
-          </CodeBlock>
-          <LineBreak />
-        </Fragment>
-      );
-    };
+  return (
+    <Fragment>
+      <Heading level={3}>{fileName}</Heading>
+      <CodeBlock language={path.parse(fileName).ext.slice(1)}>
+        {executeReplacements(children.trimEnd())}
+      </CodeBlock>
+      <LineBreak />
+    </Fragment>
+  );
+};
+```
 
 Thanks to TypeScript and good naming, not everything needs a long description. A `fileName` that is a `string` should be understandable without additional documentation. For the rest, we can add comments right next to the code, and [the documentation will be created accordingly](https://dbartholomae.github.io/jsx-readme/modules/_components_codefile_.html). This way, when I (or a contributor that comes in for the first time), e. g. adds a new prop, it will show up in the documentation, and the existing documenting comment right next to it will inspire me to add all needed documentation there as well.
 
 But even more important than the documentation deeper down in the code, is the README on top of it. This is where `jsx-readme` itself comets in:
 
-    const Readme: Component = () => (
-      <Fragment>
-        {/* Create a header with title, badges and description inferred from package.json */}
-        <TitleFromPkg pkg={pkg} />
-        <BadgesFromPkg pkg={pkg} />
-        {/* Add additional badges. */}
-        <LineBreak />
-        <DescriptionFromPkg pkg={pkg} />
-        {/* Create an example section based on all files from the example directory set up in package.json */}
-        <ExamplesFromPkg pkg={pkg} />
-        {/* Create a section linking to the homepage from package.json */}
-        <HomepageFromPkg pkg={pkg} />
-        {/* Create a section linking to the contributing guidelines file */}
-        <ContributingSection />
-        {/* Create a section linking to the license file. */}
-        <LicenseFromPkg pkg={pkg} />
-      </Fragment>
-    );
+```tsx
+const Readme: Component = () => (
+  <Fragment>
+    {/* Create a header with title, badges and description inferred from package.json */}
+    <TitleFromPkg pkg={pkg} />
+    <BadgesFromPkg pkg={pkg} />
+    {/* Add additional badges. */}
+    <LineBreak />
+    <DescriptionFromPkg pkg={pkg} />
+    {/* Create an example section based on all files from the example directory set up in package.json */}
+    <ExamplesFromPkg pkg={pkg} />
+    {/* Create a section linking to the homepage from package.json */}
+    <HomepageFromPkg pkg={pkg} />
+    {/* Create a section linking to the contributing guidelines file */}
+    <ContributingSection />
+    {/* Create a section linking to the license file. */}
+    <LicenseFromPkg pkg={pkg} />
+  </Fragment>
+);
 
-    void renderToFile("./README.md", <Readme />);
+void renderToFile("./README.md", <Readme />);
+```
 
 This will be autocreated from `package.json` and the examples file, so if either one changes, the README changes with them. In addition, I used the example files as [part of the integration tests](https://github.com/dbartholomae/jsx-readme/blob/main/test/README.md.test.tsx), so I always know that the examples actually work.
 
 Last but not least, building the documentation should happen on each merge automatically. This is done with help of a script
 
-    typedoc && touch docs/.nojekyll && ts-node examples/README.md.tsx
+```sh
+typedoc && touch docs/.nojekyll && ts-node examples/README.md.tsx
+```
 
 which is run via a GitHub Workflow that we will look at later in this article.
 

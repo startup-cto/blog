@@ -20,24 +20,28 @@ Onto the examples! Please note that each "What it should look like" only fixes t
 
 Using a `tsconfig.json` without strict mode.
 
-    {
-      "compilerOptions": {
-        "target": "ES2015",
-        "module": "commonjs"
-      }
-    }
+```json
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs"
+  }
+}
+```
 
 ### What it should look like
 
 Just enable `strict` mode:
 
-    {
-      "compilerOptions": {
-        "target": "ES2015",
-        "module": "commonjs",
-        "strict": true
-      }
-    }
+```json
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs",
+    "strict": true
+  }
+}
+```
 
 ### Why we do it
 
@@ -53,25 +57,29 @@ Stricter rules will make it easier to change code in the future, so the time spe
 
 Falling back with `||` for optional values:
 
-    function createBlogPost (text: string, author: string, date?: Date) {
-      return {
-        text: text,
-        author: author,
-        date: date || new Date()
-      }
-    }
+```ts
+function createBlogPost (text: string, author: string, date?: Date) {
+  return {
+    text: text,
+    author: author,
+    date: date || new Date()
+  }
+}
+```
 
 ### What it should look like
 
 Use the new `??` operator, or, even better, define the fallback right at the parameter level.
 
-    function createBlogPost (text: string, author: string, date: Date = new Date())
-      return {
-        text: text,
-        author: author,
-        date: date
-      }
-    }
+```ts
+function createBlogPost (text: string, author: string, date: Date = new Date())
+  return {
+    text: text,
+    author: author,
+    date: date
+  }
+}
+```
 
 ### Why we do it
 
@@ -87,21 +95,25 @@ The `??` operator has just been introduced last year, and when using values in t
 
 Using `any` for data when you are unsure about the structure.
 
-    async function loadProducts(): Promise<Product[]> {
-      const response = await fetch('https://api.mysite.com/products')
-      const products: any = await response.json()
-      return products
-    }
+```ts
+async function loadProducts(): Promise<Product[]> {
+  const response = await fetch('https://api.mysite.com/products')
+  const products: any = await response.json()
+  return products
+}
+```
 
 ### What it should look like
 
 In almost every situation where you type something as `any`, you should type it as `unknown` instead.
 
-    async function loadProducts(): Promise<Product[]> {
-      const response = await fetch('https://api.mysite.com/products')
-      const products: unknown = await response.json()
-      return products as Product[]
-    }
+```ts
+async function loadProducts(): Promise<Product[]> {
+  const response = await fetch('https://api.mysite.com/products')
+  const products: unknown = await response.json()
+  return products as Product[]
+}
+```
 
 ### Why we do it
 
@@ -117,33 +129,37 @@ It basically disables all type-checks. Anything that comes in via `any` will com
 
 Forcefully telling the compiler about a type that it cannot infer.
 
-    async function loadProducts(): Promise<Product[]> {
-      const response = await fetch('https://api.mysite.com/products')
-      const products: unknown = await response.json()
-      return products as Product[]
-    }
+```ts
+async function loadProducts(): Promise<Product[]> {
+  const response = await fetch('https://api.mysite.com/products')
+  const products: unknown = await response.json()
+  return products as Product[]
+}
+```
 
 ### What it should look like
 
 That's what type guards are for.
 
-    function isArrayOfProducts (obj: unknown): obj is Product[] {
-      return Array.isArray(obj) && obj.every(isProduct)
-    }
+```ts
+function isArrayOfProducts (obj: unknown): obj is Product[] {
+  return Array.isArray(obj) && obj.every(isProduct)
+}
 
-    function isProduct (obj: unknown): obj is Product {
-      return obj != null
-        && typeof (obj as Product).id === 'string'
-    }
+function isProduct (obj: unknown): obj is Product {
+  return obj != null
+    && typeof (obj as Product).id === 'string'
+}
 
-    async function loadProducts(): Promise<Product[]> {
-      const response = await fetch('https://api.mysite.com/products')
-      const products: unknown = await response.json()
-      if (!isArrayOfProducts(products)) {
-        throw new TypeError('Received malformed products API response')
-      }
-      return products
-    }
+async function loadProducts(): Promise<Product[]> {
+  const response = await fetch('https://api.mysite.com/products')
+  const products: unknown = await response.json()
+  if (!isArrayOfProducts(products)) {
+    throw new TypeError('Received malformed products API response')
+  }
+  return products
+}
+```
 
 ### Why we do it
 
@@ -159,44 +175,48 @@ Even if the assertion might be save right now, this might change when someone mo
 
 Creating incomplete stand-ins when writing tests.
 
-    interface User {
-      id: string
-      firstName: string
-      lastName: string
-      email: string
-    }
+```ts
+interface User {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+}
 
-    test('createEmailText returns text that greats the user by first name', () => {
-      const user: User = {
-        firstName: 'John'
-      } as any
+test('createEmailText returns text that greats the user by first name', () => {
+  const user: User = {
+    firstName: 'John'
+  } as any
 
-      expect(createEmailText(user)).toContain(user.firstName)
-    }
+  expect(createEmailText(user)).toContain(user.firstName)
+}
+```
 
 ### What it should look like
 
 If you need to mock data for your tests, move the mocking logic next to the thing you mock and make it reusable.
 
-    interface User {
-      id: string
-      firstName: string
-      lastName: string
-      email: string
-    }
+```ts
+interface User {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+}
 
-    class MockUser implements User {
-      id = 'id'
-      firstName = 'John'
-      lastName = 'Doe'
-      email = 'john@doe.com'
-    }
+class MockUser implements User {
+  id = 'id'
+  firstName = 'John'
+  lastName = 'Doe'
+  email = 'john@doe.com'
+}
 
-    test('createEmailText returns text that greats the user by first name', () => {
-      const user = new MockUser()
+test('createEmailText returns text that greats the user by first name', () => {
+  const user = new MockUser()
 
-      expect(createEmailText(user)).toContain(user.firstName)
-    }
+  expect(createEmailText(user)).toContain(user.firstName)
+}
+```
 
 ### Why we do it
 
@@ -212,31 +232,35 @@ Foregoing the creation of a mock will bite us, latest when one of the properties
 
 Marking properties as optional that are sometimes there and sometimes not.
 
-    interface Product {
-      id: string
-      type: 'digital' | 'physical'
-      weightInKg?: number
-      sizeInMb?: number
-    }
+```ts
+interface Product {
+  id: string
+  type: 'digital' | 'physical'
+  weightInKg?: number
+  sizeInMb?: number
+}
+```
 
 ### What it should look like
 
 Explicitly model which combinations exist and which don't.
 
-    interface Product {
-      id: string
-      type: 'digital' | 'physical'
-    }
+```ts
+interface Product {
+  id: string
+  type: 'digital' | 'physical'
+}
 
-    interface DigitalProduct extends Product {
-      type: 'digital'
-      sizeInMb: number
-    }
+interface DigitalProduct extends Product {
+  type: 'digital'
+  sizeInMb: number
+}
 
-    interface PhysicalProduct extends Product {
-      type: 'physical'
-      weightInKg: number
-    }
+interface PhysicalProduct extends Product {
+  type: 'physical'
+  weightInKg: number
+}
+```
 
 ### Why we do it
 
@@ -252,17 +276,21 @@ The big benefit of type systems is that they can replace runtime checks with com
 
 Naming a generic with one letter
 
-    function head<T> (arr: T[]): T | undefined {
-      return arr[0]
-    }
+```ts
+function head<T> (arr: T[]): T | undefined {
+  return arr[0]
+}
+```
 
 ### What it should look like
 
 Giving a full descriptive type name.
 
-    function head<Element> (arr: Element[]): Element | undefined {
-      return arr[0]
-    }
+```ts
+function head<Element> (arr: Element[]): Element | undefined {
+  return arr[0]
+}
+```
 
 ### Why we do it
 
@@ -278,23 +306,27 @@ Generic type variables are variables, like any other. We have abandoned the idea
 
 Checking whether a value is defined by passing the value directly to an `if` statement.
 
-    function createNewMessagesResponse (countOfNewMessages?: number) {
-      if (countOfNewMessages) {
-        return `You have ${countOfNewMessages} new messages`
-      }
-      return 'Error: Could not retrieve number of new messages'
-    }
+```ts
+function createNewMessagesResponse (countOfNewMessages?: number) {
+  if (countOfNewMessages) {
+    return `You have ${countOfNewMessages} new messages`
+  }
+  return 'Error: Could not retrieve number of new messages'
+}
+```
 
 ### What it should look like
 
 Explicitly checking for the condition we care about.
 
-    function createNewMessagesResponse (countOfNewMessages?: number) {
-      if (countOfNewMessages !== undefined) {
-        return `You have ${countOfNewMessages} new messages`
-      }
-      return 'Error: Could not retrieve number of new messages'
-    }
+```ts
+function createNewMessagesResponse (countOfNewMessages?: number) {
+  if (countOfNewMessages !== undefined) {
+    return `You have ${countOfNewMessages} new messages`
+  }
+  return 'Error: Could not retrieve number of new messages'
+}
+```
 
 ### Why we do it
 
@@ -310,23 +342,27 @@ Maybe we should think about what we actually want to check. The examples above f
 
 Converting a non-boolean value to boolean.
 
-    function createNewMessagesResponse (countOfNewMessages?: number) {
-      if (!!countOfNewMessages) {
-        return `You have ${countOfNewMessages} new messages`
-      }
-      return 'Error: Could not retrieve number of new messages'
-    }
+```ts
+function createNewMessagesResponse (countOfNewMessages?: number) {
+  if (!!countOfNewMessages) {
+    return `You have ${countOfNewMessages} new messages`
+  }
+  return 'Error: Could not retrieve number of new messages'
+}
+```
 
 ### What it should look like
 
 Explicitly checking for the condition we care about.
 
-    function createNewMessagesResponse (countOfNewMessages?: number) {
-      if (countOfNewMessages !== undefined) {
-        return `You have ${countOfNewMessages} new messages`
-      }
-      return 'Error: Could not retrieve number of new messages'
-    }
+```ts
+function createNewMessagesResponse (countOfNewMessages?: number) {
+  if (countOfNewMessages !== undefined) {
+    return `You have ${countOfNewMessages} new messages`
+  }
+  return 'Error: Could not retrieve number of new messages'
+}
+```
 
 ### Why we do it
 
@@ -342,23 +378,27 @@ Like many shortcuts and initiation rituals, using `!!` obfuscates the true meani
 
 The little sister of the bang bang operator, `!= null` allows us to check for `null` and `undefined` at the same time.
 
-    function createNewMessagesResponse (countOfNewMessages?: number) {
-      if (countOfNewMessages != null) {
-        return `You have ${countOfNewMessages} new messages`
-      }
-      return 'Error: Could not retrieve number of new messages'
-    }
+```ts
+function createNewMessagesResponse (countOfNewMessages?: number) {
+  if (countOfNewMessages != null) {
+    return `You have ${countOfNewMessages} new messages`
+  }
+  return 'Error: Could not retrieve number of new messages'
+}
+```
 
 ### What it should look like
 
 Explicitly checking for the condition we care about.
 
-    function createNewMessagesResponse (countOfNewMessages?: number) {
-      if (countOfNewMessages !== undefined) {
-        return `You have ${countOfNewMessages} new messages`
-      }
-      return 'Error: Could not retrieve number of new messages'
-    }
+```ts
+function createNewMessagesResponse (countOfNewMessages?: number) {
+  if (countOfNewMessages !== undefined) {
+    return `You have ${countOfNewMessages} new messages`
+  }
+  return 'Error: Could not retrieve number of new messages'
+}
+```
 
 ### Why we do it
 
