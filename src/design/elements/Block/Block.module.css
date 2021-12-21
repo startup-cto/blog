@@ -1,5 +1,5 @@
 @value colors: "../../tokens/colors/colors.module.css";
-@value background1, background2 from colors;
+@value accent, background1, background2 from colors;
 
 .padding{
     padding: 2rem 0 2rem 0;
@@ -15,4 +15,8 @@
 
 .backgroundColor2 {
     background-color: background2;
+}
+
+.colorAccent {
+    color: accent;
 }
