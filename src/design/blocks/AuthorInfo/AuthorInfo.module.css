@@ -13,11 +13,3 @@
     font-weight: normal;
     font-size: 22px;
 }
-
-.link {
-    color: accent;
-}
-
-.link:hover {
-    color: accent-light;
-}

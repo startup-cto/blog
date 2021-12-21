@@ -5,6 +5,7 @@ import "prismjs/themes/prism-tomorrow.css";
 import Script from "next/script";
 import Image from "next/image";
 import { ComponentProps } from "react";
+import { Link } from "../../elements/Link/Link";
 
 export function BlogPost({
   post: { publishedAt, source, tags, title },
@@ -12,6 +13,7 @@ export function BlogPost({
   post: Pick<PostType, "publishedAt" | "source" | "tags" | "title">;
 }) {
   const components = {
+    a: Link,
     img: (props: ComponentProps<typeof Image>) => (
       <Image {...props} width={800} height={640} unoptimized />
     ),

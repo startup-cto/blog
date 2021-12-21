@@ -1,0 +1,33 @@
+@value colors: "../../tokens/colors/colors.module.css";
+@value accent, text from colors;
+
+@value fontSizes: "../../tokens/typeScale/typeScale.module.css";
+@value small, medium, large, big from fontSizes;
+
+.colorAccent {
+    color: accent;
+}
+
+.colorText {
+    color: text;
+}
+
+.fontSizeSmall {
+    font-size: small;
+}
+
+.fontSizeMedium {
+    font-size: medium;
+}
+
+.fontSizeLarge {
+    font-size: large;
+}
+
+.fontSizeBig {
+    font-size: big;
+}
+
+.link:hover {
+    filter: brightness(1.2);
+}

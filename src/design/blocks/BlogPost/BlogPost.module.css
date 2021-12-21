@@ -23,14 +23,6 @@
     font-weight: normal;
 }
 
-.content a {
-    color: #a0a6f8;
-}
-
-.content a:hover {
-    color: #c6cafb;
-}
-
 .content :not(pre) > code {
     padding: 1px 3px;
     font-family: "Courier New",Courier,monospace;

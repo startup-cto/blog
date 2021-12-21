@@ -1,5 +1,6 @@
-import Link from "next/link";
+import { Link } from "../../elements/Link/Link";
 import styles from "./Footer.module.css";
+import { HorizontalList } from "../../elements/HorizontalList/HorizontalList";
 
 export function Footer() {
   return (
@@ -8,14 +9,14 @@ export function Footer() {
         All content copyright The Startup CTO © {new Date().getFullYear()} • All
         rights reserved.
       </div>
-      <ul className={styles.nav}>
-        <li className={styles.navLink}>
-          <Link href="/imprint">Imprint</Link>
-        </li>
-        <li className={styles.navLink}>
-          <Link href="/privacy-policy">Privacy policy</Link>
-        </li>
-      </ul>
+      <HorizontalList>
+        <Link color="text" href="/imprint">
+          Imprint
+        </Link>
+        <Link color="text" href="/privacy-policy">
+          Privacy policy
+        </Link>
+      </HorizontalList>
     </footer>
   );
 }
