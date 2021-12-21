@@ -1,11 +1,11 @@
-name: Deploy
+name: Test and build
 on:
   push:
     branches:
       - main
 
 jobs:
-  deploy:
+  testAndBuild:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -26,11 +26,3 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Test and build
         run: npx concurrently -s -n "test,build" "npm test" "npm run build"
-        env:
-          NEXT_PUBLIC_BASE_PATH: ${{ secrets.NEXT_PUBLIC_BASE_PATH }}
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-          cname: startup-cto.net
