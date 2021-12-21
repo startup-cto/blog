@@ -7,12 +7,15 @@ import Image from "next/image";
 import { ComponentProps, PropsWithChildren } from "react";
 import { Link } from "../../elements/Link/Link";
 import { Heading } from "../../elements/Heading/Heading";
+import { PostHeader } from "../PostHeader/PostHeader";
+
+interface Props {
+  post: Pick<PostType, "publishedAt" | "source" | "tags" | "title">;
+}
 
 export function BlogPost({
   post: { publishedAt, source, tags, title },
-}: {
-  post: Pick<PostType, "publishedAt" | "source" | "tags" | "title">;
-}) {
+}: Props) {
   const components = {
     a: Link,
     h1: ({ children }: PropsWithChildren<{}>) => (
@@ -36,13 +39,7 @@ export function BlogPost({
   };
   return (
     <main className={styles.container}>
-      {publishedAt && (
-        <time dateTime={publishedAt} className={styles.publishDate}>
-          {new Date(publishedAt).toLocaleDateString()}
-        </time>
-      )}
-      {tags && <span className={styles.tags}>{tags.join(", ")}</span>}
-      <Heading variant="h1">{title}</Heading>
+      <PostHeader post={{ title, publishedAt, tags }} />
       <div className={styles.content}>
         <MDXRemote {...source} components={components} />
       </div>

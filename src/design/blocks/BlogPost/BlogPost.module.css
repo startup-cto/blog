@@ -4,15 +4,6 @@
     padding: 0 1rem;
 }
 
-.publishDate {
-    color: #9cabf2;
-    margin-right: 1rem;
-}
-
-.tags {
-    color: #9cabf2;
-}
-
 .content :not(pre) > code {
     padding: 1px 3px;
     font-size: .75em;
