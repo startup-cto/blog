@@ -1,5 +1,4 @@
 # Todos
 
-- Extract design system
-- Add pagination
-- Add AMP
+- Refactor data loading
+- Add pagination to main page
