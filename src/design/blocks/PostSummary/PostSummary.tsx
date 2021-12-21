@@ -22,7 +22,7 @@ export function PostSummary({
         )}
         {tags && <span className={styles.tags}>{tags.join(", ")}</span>}
         <Heading variant="h1">{title}</Heading>
-        <p className={styles.excerpt}>{excerpt}</p>
+        <p>{excerpt}</p>
         <Link href={slug}>
           Read the article
           <VisuallyHidden> {title}</VisuallyHidden>

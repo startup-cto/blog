@@ -7,4 +7,5 @@
 .base {
     font-family: fontFamily;
     color: text;
+    line-height: 1.6rem;
 }
