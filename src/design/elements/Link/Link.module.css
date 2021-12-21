@@ -1,7 +1,7 @@
 @value colors: "../../tokens/colors/colors.module.css";
 @value accent, text from colors;
 
-@value fontSizes: "../../tokens/typeScale/typeScale.module.css";
+@value fontSizes: "../../tokens/typography/typography.module.css";
 @value small, medium, large, big from fontSizes;
 
 .colorAccent {

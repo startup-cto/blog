@@ -1,5 +1,5 @@
-@value typeScale: "../../tokens/typeScale/typeScale.module.css";
-@value giant, big, large, medium, small from typeScale;
+@value fontSizes: "../../tokens/typography/typography.module.css";
+@value giant, big, large, medium, small from fontSizes;
 
 .heading {
     font-weight: normal;
