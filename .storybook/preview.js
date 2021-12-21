@@ -1,5 +1,6 @@
 import * as nextImage from "next/image";
-import "../src/design/base.module.css";
+import "normalize.css";
+import styles from "../src/design/base.module.css";
 
 Object.defineProperty(nextImage, "default", {
   configurable: true,
@@ -18,3 +19,11 @@ export const parameters = {
     },
   },
 };
+
+export const decorators = [
+  (Story) => (
+    <div className={styles.base}>
+      <Story />
+    </div>
+  ),
+];
