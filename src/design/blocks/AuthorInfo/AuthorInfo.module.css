@@ -1,6 +1,9 @@
+@value colors: "../../tokens/colors/colors.module.css";
+@value accent, accent-light, text, background from colors;
+
 .container {
-    background-color: #27232f;
-    color: #dddbe6;
+    background-color: background;
+    color: text;
     font-family: "Courier New", Courier, monospace;
     padding: 2rem 0 2rem 0;
     text-align: center;
@@ -12,9 +15,9 @@
 }
 
 .link {
-    color: #a0a6f8;
+    color: accent;
 }
 
 .link:hover {
-    color: #c6cafb;
+    color: accent-light;
 }
