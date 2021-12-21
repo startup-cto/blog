@@ -1,4 +1,4 @@
-import { Head } from "../../blocks/Head/Head";
+import { Head } from "../../helpers/Head/Head";
 import { Header } from "../../blocks/Header/Header";
 import { PostSummary } from "../../blocks/PostSummary/PostSummary";
 import { Footer } from "../../blocks/Footer/Footer";

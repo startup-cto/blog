@@ -1,5 +1,5 @@
 import { Post as PostType } from "../../../helpers/loadPost";
-import { Head } from "../../blocks/Head/Head";
+import { Head } from "../../helpers/Head/Head";
 import { SmallHeader } from "../../blocks/SmallHeader/SmallHeader";
 import { BlogPost } from "../../blocks/BlogPost/BlogPost";
 import { AuthorInfo } from "../../blocks/AuthorInfo/AuthorInfo";
