@@ -3,6 +3,7 @@ import styles from "./PostSummary.module.css";
 import { PostSummaryType } from "../../../model/PostSummaryType";
 import { Link } from "../../elements/Link/Link";
 import { Heading } from "../../elements/Heading/Heading";
+import { VisuallyHidden } from "../../helpers/VisuallyHidden/VisuallyHidden";
 
 interface Props {
   post: PostSummaryType;
@@ -24,7 +25,7 @@ export function PostSummary({
         <p className={styles.excerpt}>{excerpt}</p>
         <Link href={slug}>
           Read the article
-          <span className={styles.visuallyHidden}> {title}</span>
+          <VisuallyHidden> {title}</VisuallyHidden>
         </Link>
       </article>
     </NextLink>
