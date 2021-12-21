@@ -1,6 +1,10 @@
-import { PropsWithChildren } from "react";
+import { ReactElement } from "react";
 import styles from "./VisuallyHidden.module.css";
 
-export function VisuallyHidden({ children }: PropsWithChildren<{}>) {
+interface Props {
+  children?: ReactElement | undefined;
+}
+
+export function VisuallyHidden({ children }: Props) {
   return <span className={styles.visuallyHidden}>{children}</span>;
 }
