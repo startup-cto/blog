@@ -1,11 +1,11 @@
-import styles from "./Header.module.css";
 import { Avatar } from "../../elements/Avatar/Avatar";
 import { Link } from "../../elements/Link/Link";
 import { Heading } from "../../elements/Heading/Heading";
+import { Block } from "../../elements/Block/Block";
 
 export function Header() {
   return (
-    <header className={styles.container}>
+    <Block textAlign="center" backgroundColor="background2">
       <Avatar />
       <Heading variant="h1">The Startup CTO</Heading>
       <Heading variant="h2">Building companies with web technology</Heading>
@@ -15,6 +15,6 @@ export function Header() {
       >
         Follow on Twitter
       </Link>
-    </header>
+    </Block>
   );
 }

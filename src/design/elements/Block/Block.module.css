@@ -1,0 +1,18 @@
+@value colors: "../../tokens/colors/colors.module.css";
+@value background1, background2 from colors;
+
+.padding{
+    padding: 2rem 0 2rem 0;
+}
+
+.center {
+    text-align: center;
+}
+
+.backgroundColor1 {
+    background-color: background1;
+}
+
+.backgroundColor2 {
+    background-color: background2;
+}

@@ -1,11 +1,11 @@
-import styles from "./SmallHeader.module.css";
 import { Avatar } from "../../elements/Avatar/Avatar";
 import { Link } from "../../elements/Link/Link";
 import { HorizontalList } from "../../elements/HorizontalList/HorizontalList";
+import { Block } from "../../elements/Block/Block";
 
 export function SmallHeader() {
   return (
-    <header className={styles.container}>
+    <Block textAlign="center" backgroundColor="background2">
       <Avatar />
       <br />
       <HorizontalList>
@@ -14,6 +14,6 @@ export function SmallHeader() {
           Follow on Twitter
         </Link>
       </HorizontalList>
-    </header>
+    </Block>
   );
 }

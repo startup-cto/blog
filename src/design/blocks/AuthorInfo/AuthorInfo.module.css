@@ -1,8 +1,0 @@
-@value colors: "../../tokens/colors/colors.module.css";
-@value background2 from colors;
-
-.container {
-    background-color: background2;
-    padding: 2rem 0 2rem 0;
-    text-align: center;
-}

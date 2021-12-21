@@ -1,10 +1,10 @@
 import { Link } from "../../elements/Link/Link";
-import styles from "./Footer.module.css";
 import { HorizontalList } from "../../elements/HorizontalList/HorizontalList";
+import { Block } from "../../elements/Block/Block";
 
 export function Footer() {
   return (
-    <footer className={styles.container}>
+    <Block as="footer" backgroundColor="background2" textAlign="center">
       <div>
         All content copyright The Startup CTO © {new Date().getFullYear()} • All
         rights reserved.
@@ -17,6 +17,6 @@ export function Footer() {
           Privacy policy
         </Link>
       </HorizontalList>
-    </footer>
+    </Block>
   );
 }
