@@ -1,4 +1,4 @@
-.content :not(pre) > code {
+.code {
     padding: 1px 3px;
     font-size: .75em;
     white-space: pre;

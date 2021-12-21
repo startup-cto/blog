@@ -1,4 +1,3 @@
-import styles from "./PostContent.module.css";
 import { MDXRemote } from "next-mdx-remote";
 import Script from "next/script";
 import { Link } from "../../elements/Link/Link";
@@ -6,6 +5,7 @@ import { ComponentProps, PropsWithChildren } from "react";
 import { Heading } from "../../elements/Heading/Heading";
 import Image from "next/image";
 import { Post as PostType } from "../../../helpers/loadPost";
+import { InlineCode } from "../../elements/InlineCode/InlineCode";
 
 interface Props {
   source: PostType["source"];
@@ -32,12 +32,11 @@ export function PostContent({ source }: Props) {
     img: (props: ComponentProps<typeof Image>) => (
       <Image {...props} width={800} height={640} unoptimized />
     ),
+    inlineCode: InlineCode,
   };
   return (
     <>
-      <div className={styles.content}>
-        <MDXRemote {...source} components={components} />
-      </div>
+      <MDXRemote {...source} components={components} />
       <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"
         async
