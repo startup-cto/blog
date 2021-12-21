@@ -14,22 +14,8 @@
     color: #99afff;
 }
 
-.title {
-    display: block;
-    font-weight: normal;
-}
-
 .excerpt {
     line-height: 1.6rem;
-}
-
-.link {
-    color: #a0a6f8;
-    text-decoration: underline;
-}
-
-.articleLink {
-    text-decoration: none;
 }
 
 .visuallyHidden {
