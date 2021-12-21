@@ -1,11 +1,11 @@
 import { Avatar } from "../../elements/Avatar/Avatar";
 import { Link } from "../../elements/Link/Link";
 import { HorizontalList } from "../../elements/HorizontalList/HorizontalList";
-import { Block } from "../../elements/Block/Block";
+import { Box } from "../../elements/Box/Box";
 
 export function SmallHeader() {
   return (
-    <Block textAlign="center" backgroundColor="background2">
+    <Box textAlign="center" backgroundColor="background2">
       <Avatar />
       <br />
       <HorizontalList>
@@ -14,6 +14,6 @@ export function SmallHeader() {
           Follow on Twitter
         </Link>
       </HorizontalList>
-    </Block>
+    </Box>
   );
 }

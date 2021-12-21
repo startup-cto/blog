@@ -1,14 +1,14 @@
 import React from "react";
 
-import { Block } from "./Block";
+import { Box } from "./Box";
 import { ComponentStory } from "@storybook/react";
 
 export default {
-  title: "elements/Block",
-  component: Block,
+  title: "elements/Box",
+  component: Box,
 };
 
-const Template: ComponentStory<typeof Block> = (args) => <Block {...args} />;
+const Template: ComponentStory<typeof Box> = (args) => <Box {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

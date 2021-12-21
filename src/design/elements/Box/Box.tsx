@@ -1,4 +1,4 @@
-import styles from "./Block.module.css";
+import styles from "./Box.module.css";
 import { ComponentType, HTMLProps, ReactNode } from "react";
 
 interface Props extends Omit<HTMLProps<unknown>, "as"> {
@@ -9,7 +9,7 @@ interface Props extends Omit<HTMLProps<unknown>, "as"> {
   as?: string | ComponentType<{ className: string }>;
 }
 
-export function Block({
+export function Box({
   children,
   color,
   as: Component = "div",

@@ -4,7 +4,7 @@ import { PostSummaryType } from "../../../model/PostSummaryType";
 import { Link } from "../../elements/Link/Link";
 import { Heading } from "../../elements/Heading/Heading";
 import { VisuallyHidden } from "../../helpers/VisuallyHidden/VisuallyHidden";
-import { Block } from "../../elements/Block/Block";
+import { Box } from "../../elements/Box/Box";
 
 interface Props {
   post: PostSummaryType;
@@ -18,15 +18,15 @@ export function PostSummary({
       <article className={styles.container}>
         {publishedAt && (
           <>
-            <Block as="time" color="accent" dateTime={publishedAt}>
+            <Box as="time" color="accent" dateTime={publishedAt}>
               {new Date(publishedAt).toLocaleDateString("en-ca")}
-            </Block>{" "}
+            </Box>{" "}
           </>
         )}
         {tags && (
-          <Block as="span" color="accent">
+          <Box as="span" color="accent">
             {tags.join(", ")}
-          </Block>
+          </Box>
         )}
         <Heading variant="h1">{title}</Heading>
         <p>{excerpt}</p>
