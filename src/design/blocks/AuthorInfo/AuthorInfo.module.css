@@ -3,8 +3,6 @@
 
 .container {
     background-color: background;
-    color: text;
-    font-family: "Courier New", Courier, monospace;
     padding: 2rem 0 2rem 0;
     text-align: center;
 }

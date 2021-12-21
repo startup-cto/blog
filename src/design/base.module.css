@@ -1,0 +1,12 @@
+@import "~normalize.css/normalize.css";
+
+@value typography: './tokens/typography/typography.module.css';
+@value fontFamily from typography;
+
+@value colors: './tokens/colors/colors.module.css';
+@value text from colors;
+
+* {
+    font-family: fontFamily;
+    color: text;
+}
