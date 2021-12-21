@@ -3,7 +3,7 @@ import React from "react";
 import { PrivacyPolicy } from "./PrivacyPolicy";
 
 export default {
-  title: "Pages/PrivacyPolicy",
+  title: "Templates/PrivacyPolicy",
   component: PrivacyPolicy,
 };
 

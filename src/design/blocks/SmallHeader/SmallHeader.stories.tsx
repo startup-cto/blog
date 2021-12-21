@@ -3,7 +3,7 @@ import React from "react";
 import { SmallHeader } from "./SmallHeader";
 
 export default {
-  title: "Components/SmallHeader",
+  title: "Blocks/SmallHeader",
   component: SmallHeader,
 };
 

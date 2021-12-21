@@ -4,7 +4,7 @@ import { ComponentStory } from "@storybook/react";
 import { Home } from "./Home";
 
 export default {
-  title: "Pages/Home",
+  title: "Templates/Home",
   component: Home,
 };
 

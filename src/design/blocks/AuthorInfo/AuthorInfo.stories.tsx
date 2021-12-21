@@ -3,7 +3,7 @@ import React from "react";
 import { AuthorInfo } from "./AuthorInfo";
 
 export default {
-  title: "Components/AuthorInfo",
+  title: "Blocks/AuthorInfo",
   component: AuthorInfo,
 };
 

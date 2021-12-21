@@ -5,7 +5,7 @@ import { exampleBlogPost } from "../../../fixtures/exampleBlogPost";
 import { Post } from "./Post";
 
 export default {
-  title: "Pages/Post",
+  title: "Templates/Post",
   component: Post,
 };
 
