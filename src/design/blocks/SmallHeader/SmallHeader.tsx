@@ -1,5 +1,5 @@
 import Image from "next/image";
-import avatar from "../avatar.webp";
+import avatar from "../../elements/avatar.webp";
 import styles from "./SmallHeader.module.css";
 import Link from "next/link";
 

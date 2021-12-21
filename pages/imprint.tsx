@@ -1,3 +1,3 @@
-import { Imprint } from "../src/pages/Imprint";
+import { Imprint } from "../src/design/templates/Imprint/Imprint";
 
 export default Imprint;

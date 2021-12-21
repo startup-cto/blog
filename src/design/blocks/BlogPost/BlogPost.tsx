@@ -1,4 +1,4 @@
-import { Post as PostType } from "../../helpers/loadPost";
+import { Post as PostType } from "../../../helpers/loadPost";
 import { MDXRemote } from "next-mdx-remote";
 import styles from "./BlogPost.module.css";
 import "prismjs/themes/prism-tomorrow.css";

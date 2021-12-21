@@ -1,9 +1,9 @@
-import { Post as PostType } from "../helpers/loadPost";
-import { Head } from "../components/Head/Head";
-import { SmallHeader } from "../components/SmallHeader/SmallHeader";
-import { BlogPost } from "../components/BlogPost/BlogPost";
-import { AuthorInfo } from "../components/AuthorInfo/AuthorInfo";
-import { Footer } from "../components/Footer/Footer";
+import { Post as PostType } from "../../../helpers/loadPost";
+import { Head } from "../../blocks/Head/Head";
+import { SmallHeader } from "../../blocks/SmallHeader/SmallHeader";
+import { BlogPost } from "../../blocks/BlogPost/BlogPost";
+import { AuthorInfo } from "../../blocks/AuthorInfo/AuthorInfo";
+import { Footer } from "../../blocks/Footer/Footer";
 import styles from "./Post.module.css";
 
 export interface Props {

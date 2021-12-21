@@ -1,6 +1,6 @@
 import styles from "./PrivacyPolicy.module.css";
-import { Footer } from "../components/Footer/Footer";
-import { SmallHeader } from "../components/SmallHeader/SmallHeader";
+import { Footer } from "../../blocks/Footer/Footer";
+import { SmallHeader } from "../../blocks/SmallHeader/SmallHeader";
 
 export function PrivacyPolicy() {
   return (

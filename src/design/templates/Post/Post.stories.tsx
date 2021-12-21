@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ComponentStory } from "@storybook/react";
-import { exampleBlogPost } from "../fixtures/exampleBlogPost";
+import { exampleBlogPost } from "../../../fixtures/exampleBlogPost";
 import { Post } from "./Post";
 
 export default {

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import avatar from "../avatar.webp";
+import avatar from "../../elements/avatar.webp";
 import styles from "./Header.module.css";
 
 export function Header() {

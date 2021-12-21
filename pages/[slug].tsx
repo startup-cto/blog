@@ -1,7 +1,7 @@
 import { loadPost } from "../src/helpers/loadPost";
 import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
 import { GetStaticProps } from "next";
-import { Post, Props } from "../src/pages/Post";
+import { Post, Props } from "../src/design/templates/Post/Post";
 
 export default Post;
 

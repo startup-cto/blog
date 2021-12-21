@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./PostSummary.module.css";
-import { PostSummaryType } from "../../model/PostSummaryType";
+import { PostSummaryType } from "../../../model/PostSummaryType";
 
 interface Props {
   post: PostSummaryType;

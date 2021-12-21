@@ -1,3 +1,3 @@
-import { PrivacyPolicy } from "../src/pages/PrivacyPolicy";
+import { PrivacyPolicy } from "../src/design/templates/PrivacyPolicy/PrivacyPolicy";
 
 export default PrivacyPolicy;

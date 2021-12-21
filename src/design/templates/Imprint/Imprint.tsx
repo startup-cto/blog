@@ -1,5 +1,5 @@
-import { Footer } from "../components/Footer/Footer";
-import { SmallHeader } from "../components/SmallHeader/SmallHeader";
+import { Footer } from "../../blocks/Footer/Footer";
+import { SmallHeader } from "../../blocks/SmallHeader/SmallHeader";
 import styles from "./Imprint.module.css";
 
 export function Imprint() {
