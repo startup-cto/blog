@@ -1,20 +1,11 @@
-import Image from "next/image";
-import avatar from "../../elements/avatar.webp";
 import styles from "./SmallHeader.module.css";
 import Link from "next/link";
+import { Avatar } from "../../elements/Avatar/Avatar";
 
 export function SmallHeader() {
   return (
     <header className={styles.container}>
-      <Image
-        className={styles.avatar}
-        src={avatar}
-        unoptimized
-        alt="The Startup CTO"
-        width={100}
-        height={100}
-        priority
-      />
+      <Avatar />
       <br />
       <Link href="/">
         <a className={styles.link}>Home</a>

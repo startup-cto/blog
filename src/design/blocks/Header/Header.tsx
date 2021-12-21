@@ -1,19 +1,10 @@
-import Image from "next/image";
-import avatar from "../../elements/avatar.webp";
 import styles from "./Header.module.css";
+import { Avatar } from "../../elements/Avatar/Avatar";
 
 export function Header() {
   return (
     <header className={styles.container}>
-      <Image
-        src={avatar}
-        alt="The Startup CTO"
-        width={100}
-        height={100}
-        unoptimized
-        priority
-        className={styles.avatar}
-      />
+      <Avatar />
       <h1 className={styles.header}>The Startup CTO</h1>
       <h2 className={styles.header}>Building companies with web technology</h2>
       <a

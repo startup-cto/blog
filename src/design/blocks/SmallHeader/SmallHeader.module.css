@@ -6,12 +6,6 @@
     text-align: center;
 }
 
-.avatar {
-    display: block;
-    border-radius: 50%;
-    margin: 0 auto;
-}
-
 .link {
     color: #a0a6f8;
     font-size: 18px;
