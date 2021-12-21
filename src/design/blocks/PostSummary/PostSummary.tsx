@@ -2,6 +2,7 @@ import NextLink from "next/link";
 import styles from "./PostSummary.module.css";
 import { PostSummaryType } from "../../../model/PostSummaryType";
 import { Link } from "../../elements/Link/Link";
+import { Heading } from "../../elements/Heading/Heading";
 
 interface Props {
   post: PostSummaryType;
@@ -19,7 +20,7 @@ export function PostSummary({
           </time>
         )}
         {tags && <span className={styles.tags}>{tags.join(", ")}</span>}
-        <h1 className={styles.title}>{title}</h1>
+        <Heading variant="h1">{title}</Heading>
         <p className={styles.excerpt}>{excerpt}</p>
         <Link href={slug}>
           Read the article

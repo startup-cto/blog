@@ -1,0 +1,26 @@
+@value typeScale: "../../tokens/typeScale/typeScale.module.css";
+@value giant, big, large, medium, small from typeScale;
+
+.heading {
+    font-weight: normal;
+}
+
+.fontSizeGiant {
+    font-size: giant;
+}
+
+.fontSizeBig {
+    font-size: big;
+}
+
+.fontSizeLarge {
+    font-size: large;
+}
+
+.fontSizeMedium {
+    font-size: medium;
+}
+
+.fontSizeSmall {
+    font-size: small;
+}
