@@ -1,10 +1,10 @@
 import { loadPostSummaries } from "./loadPostSummaries";
-import { MockPostFile } from "../test-helpers/MockPostFile";
+import { MockPost } from "../test-helpers/MockPost";
 import { mockPostFiles, resetPostFiles } from "../test-helpers";
 
 describe("loadPostSummaries", () => {
   describe("with one post", () => {
-    const postFiles: MockPostFile[] = [new MockPostFile()];
+    const postFiles: MockPost[] = [new MockPost()];
 
     beforeAll(() => {
       mockPostFiles(postFiles);
@@ -25,15 +25,15 @@ describe("loadPostSummaries", () => {
 
     beforeAll(() => {
       mockPostFiles([
-        new MockPostFile({
+        new MockPost({
           metaData: { publishedAt: new Date("2021-01-01").toISOString() },
           name: "name1",
         }),
-        new MockPostFile({
+        new MockPost({
           metaData: { publishedAt: new Date("2020-01-01").toISOString() },
           name: "name2",
         }),
-        new MockPostFile({
+        new MockPost({
           metaData: { publishedAt: lastPublishedAt },
           name: "name3",
         }),
@@ -51,9 +51,7 @@ describe("loadPostSummaries", () => {
   });
 
   describe("with a draft post", () => {
-    const postFiles: MockPostFile[] = [
-      new MockPostFile({ metaData: { draft: true } }),
-    ];
+    const postFiles: MockPost[] = [new MockPost({ metaData: { draft: true } })];
 
     beforeAll(() => {
       mockPostFiles(postFiles);

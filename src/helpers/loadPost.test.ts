@@ -1,10 +1,10 @@
 import { loadPost } from "./loadPost";
-import { MockPostFile } from "../test-helpers/MockPostFile";
+import { MockPost } from "../test-helpers/MockPost";
 import { mockPostFiles, resetPostFiles } from "../test-helpers";
 
 describe("loadPost", () => {
   describe("with a post", () => {
-    const postFile = new MockPostFile();
+    const postFile = new MockPost();
 
     beforeAll(() => {
       mockPostFiles([postFile]);

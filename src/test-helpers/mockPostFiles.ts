@@ -1,8 +1,8 @@
-import type { MockPostFile } from "./MockPostFile";
+import type { MockPost } from "./MockPost";
 import mockFs from "mock-fs";
 import path from "path";
 
-export function mockPostFiles(posts: MockPostFile[]) {
+export function mockPostFiles(posts: MockPost[]) {
   mockFs(
     posts.reduce(
       (obj, file) => ({

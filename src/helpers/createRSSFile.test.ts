@@ -1,10 +1,10 @@
 import { mockPostFiles, resetPostFiles } from "../test-helpers";
-import { MockPostFile } from "../test-helpers/MockPostFile";
+import { MockPost } from "../test-helpers/MockPost";
 import { readFile } from "fs/promises";
 import { createRSSFile } from "./createRSSFile";
 
 describe("createRSSFile", () => {
-  const post = new MockPostFile();
+  const post = new MockPost();
   beforeAll(() => {
     mockPostFiles([post]);
   });
