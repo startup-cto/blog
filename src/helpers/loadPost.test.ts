@@ -24,6 +24,11 @@ describe("loadPost", () => {
       expect(post.publishedAt).toEqual(postFile.metaData.publishedAt);
     });
 
+    it("returns the excerpt of the post", async () => {
+      const post = await loadPost(postFile.name);
+      expect(post.excerpt).toEqual(postFile.metaData.excerpt);
+    });
+
     it("returns the source for the post", async () => {
       const post = await loadPost(postFile.name);
       expect(post.source).toBeDefined();

@@ -28,9 +28,10 @@ export class MockPostFile {
   }
 
   toString() {
-    const { draft, ...metaData } = this.metaData;
+    const { draft, excerpt, ...metaData } = this.metaData;
     return `---
 ${yaml.dump(draft ? { ...metaData, draft } : metaData)}---
+${excerpt}---
 
 ${this.content}
 `;

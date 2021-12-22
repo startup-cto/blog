@@ -7,8 +7,8 @@ tags:
 - React
 - TypeScript
 - Open source
-excerpt: >
-  One of the reasons that React got so popular is definitively the syntax it introduced: Writing HTML-like code to declaratively describe components just feels good. But this brought me to the question: Why is this syntax only used for React, basically for describing HTML? Well, it isn't.
+---
+One of the reasons that React got so popular is definitively the syntax it introduced: Writing HTML-like code to declaratively describe components just feels good. But this brought me to the question: Why is this syntax only used for React, basically for describing HTML? Well, it isn't.
 ---
 
 One of the reasons that React got so popular is definitively the syntax it introduced: Writing HTML-like code to declaratively describe components just feels good. But this brought me to the question: Why is this syntax only used for React, basically for describing HTML?

@@ -6,7 +6,8 @@ updatedAt: 2021-01-08T20:54:19.000Z
 tags:
 - Open source
 - GitHub
-excerpt: Maintaining open source is a noble, but can be time-consuming endeavor. It doesn't have to be, though. During Hacktoberfest 2020 I used one of my repositories to experiment with automation around contribution and maintenance of jsx-readme. This is what I learned.
+---
+Maintaining open source is a noble, but can be time-consuming endeavor. It doesn't have to be, though. During Hacktoberfest 2020 I used one of my repositories to experiment with automation around contribution and maintenance of jsx-readme. This is what I learned.
 ---
 
 Maintaining open source is a noble, but can be time-consuming endeavor. It doesn't have to be, though. During Hacktoberfest 2020 I used one of my repositories to experiment with automation around contribution and maintenance of [jsx-readme](https://github.com/dbartholomae/jsx-readme). This is what I learned.

@@ -13,14 +13,17 @@ export interface Post extends PostMetaData {
 
 export async function loadPost(fileName: string): Promise<Post> {
   const file = await fs.promises.readFile(`./content/${fileName}.md`, "utf8");
-  const { data, content } = matter(file, {
+  const { data, content, excerpt } = matter(file, {
     engines: {
       yaml: (input) => yaml.load(input, { schema: yaml.JSON_SCHEMA }) as object,
     },
+    excerpt: true,
   });
-  assertPostMetaData(data);
-  const previewImage = await loadPreviewImage(data.slug);
-  return { ...data, previewImage, source: await serialize(content) };
+
+  const post = { ...data, excerpt };
+  assertPostMetaData(post);
+  const previewImage = await loadPreviewImage(post.slug);
+  return { ...post, previewImage, source: await serialize(content) };
 }
 
 async function loadPreviewImage(slug: string): Promise<string | undefined> {
