@@ -1,6 +1,7 @@
 import { compile, TypeOf, v } from "suretype";
 
 const publishedPostSchema = v.object({
+  content: v.string().required(),
   title: v.string().required(),
   slug: v.string().required(),
   publishedAt: v.string().format("date-time").required(),
