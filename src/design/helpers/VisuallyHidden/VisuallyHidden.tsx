@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 import styles from "./VisuallyHidden.module.css";
 
 interface Props {
-  children?: ReactElement | undefined;
+  children?: ReactNode;
 }
 
 export function VisuallyHidden({ children }: Props) {
