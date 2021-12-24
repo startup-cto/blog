@@ -1,9 +1,9 @@
 import { Box } from "../../elements/Box/Box";
 import { Heading } from "../../elements/Heading/Heading";
-import { PostSummaryType } from "../../../model/PostSummaryType";
+import { DraftPost } from "../../../model/DraftPost";
 
 interface Props {
-  post: Pick<PostSummaryType, "publishedAt" | "title" | "tags">;
+  post: Pick<DraftPost, "publishedAt" | "title" | "tags">;
 }
 
 export function PostHeader({ post }: Props) {

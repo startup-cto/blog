@@ -3,13 +3,11 @@ import { Link } from "../../elements/Link/Link";
 import { ComponentProps, PropsWithChildren } from "react";
 import { Heading } from "../../elements/Heading/Heading";
 import Image from "next/image";
-import { Post as PostType } from "../../../helpers/loadPost";
 import { InlineCode } from "../../elements/InlineCode/InlineCode";
 import { CodeBlock } from "../../elements/CodeBlock/CodeBlock";
+import { PostSource } from "../../../model/PostSource";
 
-interface Props {
-  source: PostType["source"];
-}
+interface Props extends PostSource {}
 
 export function PostContent({ source }: Props) {
   const components = {

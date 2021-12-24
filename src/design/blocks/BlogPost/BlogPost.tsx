@@ -1,11 +1,12 @@
-import { Post as PostType } from "../../../helpers/loadPost";
 import "prismjs/themes/prism-tomorrow.css";
 import { PostHeader } from "../PostHeader/PostHeader";
 import { PostContent } from "../PostContent/PostContent";
 import { Container } from "../../elements/Container/Container";
+import { PublishedPost } from "../../../model/PublishedPost";
+import { PostSource } from "../../../model/PostSource";
 
 interface Props {
-  post: Pick<PostType, "publishedAt" | "source" | "tags" | "title">;
+  post: PublishedPost & PostSource;
 }
 
 export function BlogPost({

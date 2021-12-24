@@ -1,12 +1,15 @@
 import NextLink from "next/link";
-import { PostSummaryType } from "../../../model/PostSummaryType";
 import { Link } from "../../elements/Link/Link";
 import { VisuallyHidden } from "../../helpers/VisuallyHidden/VisuallyHidden";
 import { PostHeader } from "../PostHeader/PostHeader";
 import { Container } from "../../elements/Container/Container";
+import { PublishedPost } from "../../../model/PublishedPost";
 
-interface Props {
-  post: PostSummaryType;
+export interface Props {
+  post: Pick<
+    PublishedPost,
+    "excerpt" | "publishedAt" | "slug" | "tags" | "title"
+  >;
 }
 
 export function PostSummary({

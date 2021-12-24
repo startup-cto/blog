@@ -1,7 +1,7 @@
 import RSS from "rss";
-import { PostSummaryType } from "../model/PostSummaryType";
+import { PublishedPost } from "../model/PublishedPost";
 
-export function createRSSFeed(posts: PostSummaryType[]) {
+export function createRSSFeed(posts: Omit<PublishedPost, "content">[]) {
   const feed = new RSS({
     title: "The Startup CTO",
     description: "Building companies with web technology",
