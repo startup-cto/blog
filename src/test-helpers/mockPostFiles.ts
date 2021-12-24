@@ -1,13 +1,16 @@
-import type { MockPost } from "./MockPost";
 import mockFs from "mock-fs";
 import path from "path";
+import { Post } from "../model/Post";
 
-export function mockPostFiles(posts: MockPost[]) {
+export function mockPostFiles(posts: Post[]) {
   mockFs(
     posts.reduce(
       (obj, file) => ({
         ...obj,
-        [`./content/${file.name}.md`]: file.toString(),
+        [`./content/${file.slug}.md`]: file.toString(),
+        ...(file.draft
+          ? {}
+          : { [`./public/images/teaser/${file.slug}.png`]: "" }),
       }),
       {
         "./public/images/teaser": {},

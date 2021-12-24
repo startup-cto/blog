@@ -1,6 +1,6 @@
 import { compile, TypeOf, v } from "suretype";
 
-const draftPostSchema = v.object({
+export const draftPostSchema = v.object({
   title: v.string(),
   draft: v.boolean().const(true).required(),
   slug: v.string(),

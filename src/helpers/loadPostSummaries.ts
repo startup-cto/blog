@@ -1,34 +1,41 @@
 import { loadPostFileNames } from "./loadPostFileNames";
 import { loadPost } from "./loadPost";
+import { isPublishedPost, PublishedPost } from "../model/PublishedPost";
 
-export const loadPostSummaries = async () => {
+export async function loadPostSummaries(): Promise<{
+  props: { posts: Omit<PublishedPost, "content">[] };
+}> {
   const paths = await loadPostFileNames();
   const posts = await Promise.all(
     paths.map(async (path) => {
-      const {
-        draft = false,
-        excerpt,
-        publishedAt,
-        previewImage,
-        slug,
-        tags,
-        title,
-      } = await loadPost(path);
-      return {
-        draft,
-        excerpt,
-        ...(publishedAt && { publishedAt }),
-        ...(previewImage && { previewImage }),
-        slug,
-        ...(tags && { tags }),
-        title,
-      };
+      const { source, ...post } = await loadPost(path);
+      return post;
     })
   );
   return {
     props: {
       posts: posts
-        .filter((post) => !post.draft)
+        .filter(isPublishedPost)
+        .map((post) => {
+          const {
+            excerpt,
+            publishedAt,
+            previewImage,
+            slug,
+            tags,
+            title,
+            updatedAt,
+          } = post;
+          return {
+            excerpt,
+            publishedAt,
+            previewImage,
+            slug,
+            tags,
+            title,
+            updatedAt,
+          };
+        })
         .sort(({ publishedAt: firstDate }, { publishedAt: secondDate }) => {
           if (firstDate === secondDate) {
             return 0;
@@ -37,4 +44,4 @@ export const loadPostSummaries = async () => {
         }),
     },
   };
-};
+}
