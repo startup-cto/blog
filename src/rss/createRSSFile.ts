@@ -1,5 +1,5 @@
 import { mkdir, writeFile } from "fs/promises";
-import { loadPostSummaries } from "./loadPostSummaries";
+import { loadPostSummaries } from "../helpers/loadPostSummaries";
 import { createRSSFeed } from "./createRSSFeed";
 
 export async function createRSSFile() {

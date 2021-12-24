@@ -1,4 +1,4 @@
-import { Post } from "./loadPost";
+import { Post } from "../helpers/loadPost";
 import { exampleBlogPost } from "../fixtures/exampleBlogPost";
 import { createRSSFeed } from "./createRSSFeed";
 import MockDate from "mockdate";

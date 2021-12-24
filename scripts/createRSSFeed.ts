@@ -1,4 +1,4 @@
-import { createRSSFile } from "../src/helpers/createRSSFile";
+import { createRSSFile } from "../src/rss/createRSSFile";
 
 createRSSFile().catch((err) => {
   console.error(err);
