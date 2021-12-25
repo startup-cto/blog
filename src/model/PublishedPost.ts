@@ -8,7 +8,7 @@ export const publishedPostSchema = v.object({
   updatedAt: v.string().format("date-time").required(),
   tags: v.array(v.string()),
   excerpt: v.string().required(),
-  previewImage: v.string().format("uri-reference").required(),
+  previewImage: v.string().format("uri-reference"),
 });
 
 export type PublishedPost = TypeOf<typeof publishedPostSchema>;
