@@ -29,9 +29,9 @@ export async function loadPostSummaries(): Promise<{
           return {
             excerpt,
             publishedAt,
-            previewImage,
+            ...(previewImage && { previewImage }),
             slug,
-            tags,
+            tags: tags ?? [],
             title,
             updatedAt,
           };
