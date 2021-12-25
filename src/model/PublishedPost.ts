@@ -7,7 +7,7 @@ export const publishedPostSchema = v.object({
   slug: v.string().required(),
   publishedAt: v.string().format("date-time").required(),
   updatedAt: v.string().format("date-time").required(),
-  tags: v.array(v.string()).required(),
+  tags: v.array(v.string()),
   excerpt: v.string().required(),
   previewImage: v.string().format("uri-reference").required(),
 });
