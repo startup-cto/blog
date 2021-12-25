@@ -3,6 +3,7 @@ import React from "react";
 import { BlogPost } from "./BlogPost";
 import { ComponentStory } from "@storybook/react";
 import { exampleBlogPost } from "../../../fixtures/exampleBlogPost";
+import { PublishedPostMock } from "../../../model/PublishedPostMock";
 
 export default {
   title: "blocks/BlogPost",
@@ -16,9 +17,7 @@ const Template: ComponentStory<typeof BlogPost> = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   post: {
-    title: "Blog title",
-    publishedAt: "2020-01-01",
+    ...new PublishedPostMock(),
     source: exampleBlogPost,
-    tags: ["Tag 1"],
   },
 };
