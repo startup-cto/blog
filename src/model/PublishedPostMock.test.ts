@@ -8,15 +8,17 @@ describe("PublishedPostMock", () => {
 
   describe("#toString", () => {
     it("returns a markdown representation of the post", () => {
-      const post = new PublishedPostMock({
-        content: "# Hello World",
-        title: "title",
-        excerpt: "excerpt\n",
-        slug: "slug",
-        publishedAt: new Date("2021-01-01").toISOString(),
-        updatedAt: new Date("2021-01-01").toISOString(),
-        tags: [],
-      });
+      const post = new PublishedPostMock(
+        {
+          title: "title",
+          excerpt: "excerpt\n",
+          slug: "slug",
+          publishedAt: new Date("2021-01-01").toISOString(),
+          updatedAt: new Date("2021-01-01").toISOString(),
+          tags: [],
+        },
+        "# Hello World"
+      );
       expect(post.toString()).toBe(`---
 slug: slug
 tags: []

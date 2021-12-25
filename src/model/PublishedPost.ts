@@ -1,7 +1,6 @@
 import { compile, TypeOf, v } from "suretype";
 
 export const publishedPostSchema = v.object({
-  content: v.string().required(),
   draft: v.unknown(),
   title: v.string().required(),
   slug: v.string().required(),

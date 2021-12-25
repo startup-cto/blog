@@ -13,9 +13,11 @@ export class PublishedPostMock implements PublishedPost {
   publishedAt: string = "2021-01-19T22:32:26.000Z";
   updatedAt: string = "2021-01-19T22:40:10.000Z";
 
-  constructor(override: Partial<PublishedPost> = {}) {
+  constructor(override: Partial<PublishedPost> = {}, content?: string) {
     Object.assign(this, override);
+    this.content = content ?? this.content;
   }
+
   toString() {
     const { content, excerpt, previewImage, ...metaData } = this;
     return `---
