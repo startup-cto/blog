@@ -2,6 +2,7 @@ import { loadPost } from "../src/helpers/loadPost";
 import { loadPostFileNames } from "../src/helpers/loadPostFileNames";
 import { GetStaticProps } from "next";
 import { Post, Props } from "../src/design/templates/Post/Post";
+import { isPublishedPost } from "../src/model/PublishedPost";
 
 export default Post;
 
@@ -17,18 +18,23 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({
   params,
 }) => {
   const slug = params?.slug ?? "";
-  const { source, ...data } = await loadPost(slug);
+  const post = await loadPost(slug);
+  if (!isPublishedPost(post)) {
+    return { notFound: true };
+  }
+  const { source, previewImage, excerpt, tags, updatedAt, title, publishedAt } =
+    post;
   return {
     props: {
       post: {
         source,
-        title: data.title,
-        excerpt: data.excerpt,
+        title,
+        excerpt,
         slug,
-        ...(data.previewImage && { previewImage: data.previewImage }),
-        ...(data.publishedAt && { publishedAt: data.publishedAt }),
-        ...(data.updatedAt && { updatedAt: data.updatedAt }),
-        tags: data.tags ?? [],
+        ...(previewImage && { previewImage }),
+        publishedAt,
+        updatedAt,
+        tags: tags ?? [],
       },
     },
   };
