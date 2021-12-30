@@ -16,15 +16,10 @@ export class DraftPostMock implements DraftPost {
     Object.assign(this, override);
   }
   toString() {
-    const { content, excerpt, previewImage, ...metaData } = this;
+    const { content, previewImage, ...metaData } = this;
     return `---
-${yaml.dump(metaData)}---${
-      excerpt
-        ? `
-${excerpt}}---
-`
-        : ""
-    }${content}
+${yaml.dump(metaData)}---
+${content}
 `;
   }
 }

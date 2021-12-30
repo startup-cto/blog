@@ -19,11 +19,9 @@ export class PublishedPostMock implements PublishedPost {
   }
 
   toString() {
-    const { content, excerpt, previewImage, ...metaData } = this;
+    const { content, previewImage, ...metaData } = this;
     return `---
 ${yaml.dump(metaData)}---
-${excerpt}---
-
 ${content}
 `;
   }

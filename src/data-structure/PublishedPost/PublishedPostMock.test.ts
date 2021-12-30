@@ -20,15 +20,14 @@ describe("PublishedPostMock", () => {
         "# Hello World"
       );
       expect(post.toString()).toBe(`---
+excerpt: |
+  excerpt
 slug: slug
 tags: []
 title: title
 publishedAt: '2021-01-01T00:00:00.000Z'
 updatedAt: '2021-01-01T00:00:00.000Z'
 ---
-excerpt
----
-
 # Hello World
 `);
     });

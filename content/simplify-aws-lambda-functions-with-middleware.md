@@ -7,8 +7,7 @@ tags:
 - AWS
 - TypeScript
 - Lambda
----
-Writing server code can be messy. For servers this is usually solved with the pattern of middlewares. For AWS lambdas we have multiple ways to handle it.
+excerpt: Writing server code can be messy. For servers this is usually solved with the pattern of middlewares. For AWS lambdas we have multiple ways to handle it.
 ---
 
 Writing server code can be messy: In addition to the actual business logic, we need to take care of headers, cors, security, validation, and much more. Moving to a serverless world with AWS lambda does not take away this responsibility.

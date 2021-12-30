@@ -6,8 +6,7 @@ updatedAt: 2021-01-19T22:40:10.000Z
 tags:
 - React
 - tdd
----
-Only few professional developers seriously doubt the value of tdd. But in reality, tdd is often limited to the backend. Part of it is due to missing skills on how to tdd in the frontend.
+excerpt: Only few professional developers seriously doubt the value of tdd. But in reality, tdd is often limited to the backend. Part of it is due to missing skills on how to tdd in the frontend.
 ---
 
 Nowadays, only a few professional developers are left that seriously doubt the value of test-driven-development and test-driven-design (tdd). But the reality of many codebases I have seen is that tdd is often limited to the backend, where the "business logic" lives.

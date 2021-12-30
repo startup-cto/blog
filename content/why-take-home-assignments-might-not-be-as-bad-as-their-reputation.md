@@ -6,8 +6,7 @@ updatedAt: 2021-02-07T19:14:02.000Z
 tags:
 - Hiring
 - People
----
-I have dropped out of recruiting processes in the past after they asked me to do a take-home assignment. Still, a take-home assignment is part of almost every recruiting process I define. Here I'll write about how these two go together, and what a typical recruiting process I design looks like.
+excerpt: I have dropped out of recruiting processes in the past after they asked me to do a take-home assignment. Still, a take-home assignment is part of almost every recruiting process I define. Here I'll write about how these two go together, and what a typical recruiting process I design looks like.
 ---
 
 I have dropped out of recruiting processes in the past after they asked me to do a take-home assignment. Still, a take-home assignment is part of almost every recruiting process I define. Here I'll write about why most take-home assignments suck, and how I design my own to avoid the same mistakes.

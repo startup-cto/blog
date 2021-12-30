@@ -6,8 +6,7 @@ updatedAt: 2021-02-13T10:59:05.000Z
 tags:
 - Marketing
 - Competitive Analysis
----
-So you are in interviews as an engineer with an SaaS-startup and want to impress them with your deep knowledge of their tech stack? Here are some tricks I have used in the past to know more about their technology than the interviewer themself.
+excerpt: So you are in interviews as an engineer with an SaaS-startup and want to impress them with your deep knowledge of their tech stack? Here are some tricks I have used in the past to know more about their technology than the interviewer themself.
 ---
 
 So you are in interviews as an engineer with an SaaS-startup and want to impress them with your deep knowledge of their tech stack? Or you have been working on learning projects but want to see some real-world code? Here are some tricks I have used in the past to know more about a startup's technology than their recruiter.
