@@ -1,0 +1,18 @@
+import { PublishedPostMock } from "../../src/data-structure/PublishedPost/PublishedPostMock";
+import { DevToPublisher } from "./DevToPublisher";
+import nock from "nock";
+
+describe("DevToPublisher", () => {
+  const apiKey = "test-api-key";
+  const origin = "https://dev-to-test-host";
+
+  describe("#publishPost", () => {
+    it("sends a post request to the /articles path of the host", async () => {
+      const postMock = nock(origin).post("/articles").reply(201);
+      const post = new PublishedPostMock();
+      const devToPublisher = new DevToPublisher(origin, apiKey);
+      await devToPublisher.publishPost(post);
+      expect(postMock.isDone()).toBe(true);
+    });
+  });
+});
