@@ -9,7 +9,7 @@ export class DevToPublisher {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Api-Key": this.apiKey,
+        "api-key": this.apiKey,
       },
       body: JSON.stringify({
         title: post.title,
