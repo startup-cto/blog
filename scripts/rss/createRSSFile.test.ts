@@ -1,7 +1,7 @@
-import { mockPostFiles, resetPostFiles } from "../test-helpers";
+import { mockPostFiles, resetPostFiles } from "../../src/test-helpers";
 import { readFile } from "fs/promises";
 import { createRSSFile } from "./createRSSFile";
-import { PublishedPostMock } from "../data-structure/PublishedPost/PublishedPostMock";
+import { PublishedPostMock } from "../../src/data-structure/PublishedPost/PublishedPostMock";
 
 describe("createRSSFile", () => {
   const post = new PublishedPostMock();
