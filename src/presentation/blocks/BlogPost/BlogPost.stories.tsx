@@ -2,7 +2,7 @@ import React from "react";
 
 import { BlogPost } from "./BlogPost";
 import { ComponentStory } from "@storybook/react";
-import { exampleBlogPost } from "../../../test-helpers/exampleBlogPost";
+import { exampleBlogPost } from "../../../test-helpers";
 import { PublishedPostMock } from "../../../data-structure/PublishedPost/PublishedPostMock";
 
 export default {
