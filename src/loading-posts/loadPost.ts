@@ -7,10 +7,11 @@ import { PublishedPost } from "../data-structure/PublishedPost/PublishedPost";
 import { DraftPost } from "../data-structure/DraftPost/DraftPost";
 import { assertPost } from "../data-structure/Post";
 import { PostSource } from "../data-structure/PostSource";
+import { PostContent } from "../data-structure/PostContent";
 
 export async function loadPost(
   fileName: string
-): Promise<(DraftPost | PublishedPost) & PostSource> {
+): Promise<(DraftPost | PublishedPost) & PostSource & PostContent> {
   const file = await fs.promises.readFile(`./content/${fileName}.md`, "utf8");
   const { data, content, excerpt } = matter(file, {
     engines: {
@@ -21,7 +22,7 @@ export async function loadPost(
   const previewImage = await loadPreviewImage(data.slug);
   const post = { ...data, content, excerpt, previewImage };
   assertPost(post);
-  return { ...post, source: await serialize(content) };
+  return { ...post, content, source: await serialize(content) };
 }
 
 async function loadPreviewImage(slug: string): Promise<string | undefined> {

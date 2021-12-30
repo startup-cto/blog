@@ -33,5 +33,10 @@ describe("loadPost", () => {
       const post = await loadPost(postFile.slug);
       expect(post.source).toBeDefined();
     });
+
+    it("returns the content of the post", async () => {
+      const post = await loadPost(postFile.slug);
+      expect(post.content).toBeDefined();
+    });
   });
 });

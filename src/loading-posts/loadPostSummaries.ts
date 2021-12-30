@@ -11,7 +11,7 @@ export async function loadPostSummaries(): Promise<{
   const paths = await loadPostFileNames();
   const posts = await Promise.all(
     paths.map(async (path) => {
-      const { source, ...post } = await loadPost(path);
+      const { source, content, ...post } = await loadPost(path);
       return post;
     })
   );
