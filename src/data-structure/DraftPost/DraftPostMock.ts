@@ -18,10 +18,13 @@ export class DraftPostMock implements DraftPost {
   toString() {
     const { content, excerpt, previewImage, ...metaData } = this;
     return `---
-${yaml.dump(metaData)}---
-${excerpt}---
-
-${content}
+${yaml.dump(metaData)}---${
+      excerpt
+        ? `
+${excerpt}}---
+`
+        : ""
+    }${content}
 `;
   }
 }
