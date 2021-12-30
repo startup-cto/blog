@@ -1,0 +1,1 @@
+export { createRSSFile } from "./createRSSFile";
