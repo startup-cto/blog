@@ -20,5 +20,10 @@ describe("findUnpublishedPosts", () => {
       const unpublishedPosts = await findUnpublishedPosts();
       expect(unpublishedPosts).toContainEqual(unpublishedPost);
     });
+
+    it("does not return the published post", async () => {
+      const unpublishedPosts = await findUnpublishedPosts();
+      expect(unpublishedPosts.length).toBe(1);
+    });
   });
 });

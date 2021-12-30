@@ -6,8 +6,10 @@ export async function findUnpublishedPosts() {
   const posts = await Promise.all(
     fileNames.map((fileName) => loadPost(fileName))
   );
-  return posts.map((post) => ({
-    content: post.content,
-    draft: post.draft,
-  }));
+  return posts
+    .filter((post) => post.publishedAt === undefined)
+    .map((post) => ({
+      content: post.content,
+      draft: post.draft,
+    }));
 }
