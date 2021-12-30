@@ -1,6 +1,6 @@
 import { loadPost } from "./loadPost";
 import { mockPostFiles, resetPostFiles } from "../test-helpers";
-import { PublishedPostMock } from "../model/PublishedPostMock";
+import { PublishedPostMock } from "../data-structure/PublishedPost/PublishedPostMock";
 
 describe("loadPost", () => {
   describe("with a post", () => {

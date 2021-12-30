@@ -3,7 +3,7 @@ import { Link } from "../../elements/Link/Link";
 import { VisuallyHidden } from "../../helpers/VisuallyHidden/VisuallyHidden";
 import { PostHeader } from "../PostHeader/PostHeader";
 import { Container } from "../../elements/Container/Container";
-import { PublishedPost } from "../../../model/PublishedPost";
+import { PublishedPost } from "../../../data-structure/PublishedPost/PublishedPost";
 
 export interface Props {
   post: Pick<

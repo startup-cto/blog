@@ -2,7 +2,7 @@ import React from "react";
 
 import { PostContent } from "./PostContent";
 import { ComponentStory } from "@storybook/react";
-import { exampleBlogPost } from "../../../fixtures/exampleBlogPost";
+import { exampleBlogPost } from "../../../test-helpers/exampleBlogPost";
 
 export default {
   title: "blocks/PostContent",

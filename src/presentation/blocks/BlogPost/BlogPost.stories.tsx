@@ -2,8 +2,8 @@ import React from "react";
 
 import { BlogPost } from "./BlogPost";
 import { ComponentStory } from "@storybook/react";
-import { exampleBlogPost } from "../../../fixtures/exampleBlogPost";
-import { PublishedPostMock } from "../../../model/PublishedPostMock";
+import { exampleBlogPost } from "../../../test-helpers/exampleBlogPost";
+import { PublishedPostMock } from "../../../data-structure/PublishedPost/PublishedPostMock";
 
 export default {
   title: "blocks/BlogPost",

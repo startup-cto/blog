@@ -1,6 +1,6 @@
 import { createRSSFeed } from "./createRSSFeed";
 import MockDate from "mockdate";
-import { PublishedPostMock } from "../model/PublishedPostMock";
+import { PublishedPostMock } from "../data-structure/PublishedPost/PublishedPostMock";
 
 describe("createRSSFeed", () => {
   beforeEach(() => {

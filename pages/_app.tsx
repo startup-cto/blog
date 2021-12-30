@@ -1,5 +1,5 @@
 import "normalize.css";
-import styles from "../src/design/base.module.css";
+import styles from "../src/presentation/base.module.css";
 import { AppProps } from "next/app";
 
 export default function MyApp({ Component, pageProps }: AppProps) {

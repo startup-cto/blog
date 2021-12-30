@@ -1,5 +1,5 @@
-import { publishedPostSchema } from "./PublishedPost";
-import { draftPostSchema } from "./DraftPost";
+import { publishedPostSchema } from "./PublishedPost/PublishedPost";
+import { draftPostSchema } from "./DraftPost/DraftPost";
 import { compile, TypeOf, v } from "suretype";
 
 const postSchema = v.anyOf([publishedPostSchema, draftPostSchema]);

@@ -3,10 +3,10 @@ import matter from "gray-matter";
 import yaml from "js-yaml";
 import { serialize } from "next-mdx-remote/serialize";
 import { readdir } from "fs/promises";
-import { PublishedPost } from "../model/PublishedPost";
-import { DraftPost } from "../model/DraftPost";
-import { assertPost } from "../model/Post";
-import { PostSource } from "../model/PostSource";
+import { PublishedPost } from "../data-structure/PublishedPost/PublishedPost";
+import { DraftPost } from "../data-structure/DraftPost/DraftPost";
+import { assertPost } from "../data-structure/Post";
+import { PostSource } from "../data-structure/PostSource";
 
 export async function loadPost(
   fileName: string

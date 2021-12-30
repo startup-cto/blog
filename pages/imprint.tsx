@@ -1,3 +1,3 @@
-import { Imprint } from "../src/design/templates/Imprint/Imprint";
+import { Imprint } from "../src/presentation/templates/Imprint/Imprint";
 
 export default Imprint;

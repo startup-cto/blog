@@ -1,9 +1,9 @@
 import React from "react";
 
 import { ComponentStory } from "@storybook/react";
-import { exampleBlogPost } from "../../../fixtures/exampleBlogPost";
+import { exampleBlogPost } from "../../../test-helpers/exampleBlogPost";
 import { Post } from "./Post";
-import { PublishedPostMock } from "../../../model/PublishedPostMock";
+import { PublishedPostMock } from "../../../data-structure/PublishedPost/PublishedPostMock";
 
 export default {
   title: "templates/Post",

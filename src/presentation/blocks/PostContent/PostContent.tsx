@@ -5,7 +5,7 @@ import { Heading } from "../../elements/Heading/Heading";
 import Image from "next/image";
 import { InlineCode } from "../../elements/InlineCode/InlineCode";
 import { CodeBlock } from "../../elements/CodeBlock/CodeBlock";
-import { PostSource } from "../../../model/PostSource";
+import { PostSource } from "../../../data-structure/PostSource";
 
 interface Props extends PostSource {}
 

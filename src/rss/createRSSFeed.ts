@@ -1,5 +1,5 @@
 import RSS from "rss";
-import { PublishedPost } from "../model/PublishedPost";
+import { PublishedPost } from "../data-structure/PublishedPost/PublishedPost";
 
 export function createRSSFeed(posts: Omit<PublishedPost, "content">[]) {
   const feed = new RSS({

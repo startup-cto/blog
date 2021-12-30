@@ -1,6 +1,9 @@
 import { loadPostFileNames } from "./loadPostFileNames";
 import { loadPost } from "./loadPost";
-import { isPublishedPost, PublishedPost } from "../model/PublishedPost";
+import {
+  isPublishedPost,
+  PublishedPost,
+} from "../data-structure/PublishedPost/PublishedPost";
 
 export async function loadPostSummaries(): Promise<{
   props: { posts: Omit<PublishedPost, "content">[] };

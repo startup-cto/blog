@@ -1,7 +1,7 @@
 import { loadPostSummaries } from "./loadPostSummaries";
 import { mockPostFiles, resetPostFiles } from "../test-helpers";
-import { PublishedPostMock } from "../model/PublishedPostMock";
-import { DraftPostMock } from "../model/DraftPostMock";
+import { PublishedPostMock } from "../data-structure/PublishedPost/PublishedPostMock";
+import { DraftPostMock } from "../data-structure/DraftPost/DraftPostMock";
 
 describe("loadPostSummaries", () => {
   describe("with one post", () => {

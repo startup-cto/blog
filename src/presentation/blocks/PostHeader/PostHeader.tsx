@@ -1,6 +1,6 @@
 import { Box } from "../../elements/Box/Box";
 import { Heading } from "../../elements/Heading/Heading";
-import { DraftPost } from "../../../model/DraftPost";
+import { DraftPost } from "../../../data-structure/DraftPost/DraftPost";
 
 interface Props {
   post: Pick<DraftPost, "publishedAt" | "title" | "tags">;

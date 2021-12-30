@@ -1,6 +1,6 @@
 import mockFs from "mock-fs";
 import path from "path";
-import { Post } from "../model/Post";
+import { Post } from "../data-structure/Post";
 
 export function mockPostFiles(posts: Post[]) {
   mockFs(

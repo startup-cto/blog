@@ -1,6 +1,6 @@
 import * as nextImage from "next/image";
 import "normalize.css";
-import styles from "../src/design/base.module.css";
+import styles from "../src/presentation/base.module.css";
 
 Object.defineProperty(nextImage, "default", {
   configurable: true,

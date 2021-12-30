@@ -4,8 +4,8 @@ import { BlogPost } from "../../blocks/BlogPost/BlogPost";
 import { AuthorInfo } from "../../blocks/AuthorInfo/AuthorInfo";
 import { Footer } from "../../blocks/Footer/Footer";
 import styles from "./Post.module.css";
-import { PublishedPost } from "../../../model/PublishedPost";
-import { PostSource } from "../../../model/PostSource";
+import { PublishedPost } from "../../../data-structure/PublishedPost/PublishedPost";
+import { PostSource } from "../../../data-structure/PostSource";
 
 export interface Props {
   post: PublishedPost & PostSource;
