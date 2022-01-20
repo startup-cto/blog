@@ -1,9 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "npm run create-rss-feed && next build && next export",
-    "start": "next start",
+    "start": "next dev",
     "test": "jest",
     "create-rss-feed": "tsc --project ./scripts/tsconfig.json && node ./scripts/createRSSFeed.js",
     "storybook": "start-storybook -p 6006",
