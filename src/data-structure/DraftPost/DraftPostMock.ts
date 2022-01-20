@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 
 export class DraftPostMock implements DraftPost {
   draft: true = true;
-  content?: string = "";
+  content: string = "";
   excerpt?: string;
   previewImage?: string;
   publishedAt?: string;
@@ -14,14 +14,14 @@ export class DraftPostMock implements DraftPost {
   updatedAt?: string;
   fileName = `/draftFile-${uuid()}.md`;
 
-  constructor(override: Partial<DraftPost> = {}) {
+  constructor(override: Partial<DraftPost> = {}, content?: string) {
     Object.assign(this, override);
+    this.content = content ?? this.content;
   }
   toString() {
-    const { content, previewImage, ...metaData } = this;
+    const { content, previewImage, fileName, ...metaData } = this;
     return `---
 ${yaml.dump(metaData)}---
-${content}
-`;
+${content}`;
   }
 }
