@@ -1,7 +1,6 @@
 ---
 title: Summarized – Tech and business books I read in 2021
 slug: summarized-tech-and-business-books-i-read-in-2021
-publishedAt: 1970-01-01T00:00:00.000Z
 updatedAt: 2021-02-01T21:13:16.000Z
 draft: true
 excerpt: Tech and business books I read in 2021
