@@ -6,6 +6,11 @@ describe("PublishedPostMock", () => {
     expect(isPublishedPost(new PublishedPostMock())).toBe(true);
   });
 
+  it("returns a random file name", () => {
+    const post = new PublishedPostMock();
+    expect(post.fileName).toMatch(/\.md$/);
+  });
+
   describe("#toString", () => {
     it("returns a markdown representation of the post", () => {
       const post = new PublishedPostMock(

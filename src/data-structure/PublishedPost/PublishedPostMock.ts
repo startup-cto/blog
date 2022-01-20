@@ -1,5 +1,6 @@
 import { PublishedPost } from "./PublishedPost";
 import yaml from "js-yaml";
+import { v4 as uuid } from "uuid";
 
 export class PublishedPostMock implements PublishedPost {
   content: string =
@@ -12,6 +13,7 @@ export class PublishedPostMock implements PublishedPost {
   title: string = "TDD in a React frontend";
   publishedAt: string = "2021-01-19T22:32:26.000Z";
   updatedAt: string = "2021-01-19T22:40:10.000Z";
+  fileName = `/draftFile-${uuid()}.md`;
 
   constructor(override: Partial<PublishedPost> = {}, content?: string) {
     Object.assign(this, override);
@@ -19,7 +21,7 @@ export class PublishedPostMock implements PublishedPost {
   }
 
   toString() {
-    const { content, previewImage, ...metaData } = this;
+    const { content, fileName, previewImage, ...metaData } = this;
     return `---
 ${yaml.dump(metaData)}---
 ${content}`;
