@@ -3,7 +3,8 @@ title: Preparing your repositories for Hacktoberfest
 slug: preparing-your-repositories-for-hacktoberfest
 publishedAt: 2020-09-26T13:46:50.000Z
 updatedAt: 2020-10-03T10:19:02.000Z
-excerpt: Hacktoberfest is upon us. Starting 1st of October, we will all be celebrating Open Source contributions with tons of swag. But while contributors still have to wait for the 1st of October to get their contributions counted, now is still Preptember: The time to prepare your repositories.  
+excerpt: >
+  Hacktoberfest is upon us. Starting 1st of October, we will all be celebrating Open Source contributions with tons of swag. But while contributors still have to wait for the 1st of October to get their contributions counted, now is still Preptember: The time to prepare your repositories.  
 ---
 
 Hacktoberfest is upon us. Starting 1st of October, we will all be celebrating Open Source contributions with [tons of swag](https://hacktoberfest.digitalocean.com/). But while contributors still have to wait for the 1st of October to get their contributions counted, now is still Preptember: The time to prepare your repositories.
