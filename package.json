@@ -10,6 +10,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "dynamoose": "^2.8.5",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
     "next": "latest",
@@ -54,6 +55,7 @@
     "mock-fs": "^5.1.2",
     "mockdate": "^3.0.5",
     "nock": "^13.2.1",
+    "node-fetch": "^2.6.7",
     "prettier": "^2.5.1",
     "storybook-css-modules-preset": "^1.1.1",
     "ts-jest": "^27.1.1",
