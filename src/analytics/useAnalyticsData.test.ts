@@ -6,11 +6,11 @@ import { renderHook } from "@testing-library/react-hooks";
 import { useAnalyticsData } from "./useAnalyticsData";
 import nock from "nock";
 import { publicApiKey } from "../infrastructure/constants/publicApiKey";
-import { fullDomainName } from "../infrastructure/constants/domainName";
+import { domainName } from "../infrastructure/constants/domainName";
 
 describe("useAnalyticsData", () => {
   it("starts in loading state", async () => {
-    nock(`https://${fullDomainName}`)
+    nock(`https://${domainName}`)
       .get("/")
       .matchHeader("x-api-key", publicApiKey)
       .reply(200, []);
@@ -24,7 +24,7 @@ describe("useAnalyticsData", () => {
   });
 
   it("returns the data from the endpoint", async () => {
-    nock(`https://${fullDomainName}`)
+    nock(`https://${domainName}`)
       .get("/")
       .matchHeader("x-api-key", publicApiKey)
       .reply(200, []);
@@ -41,7 +41,7 @@ describe("useAnalyticsData", () => {
 
   it("returns the error from the endpoint", async () => {
     const error = { message: "error" };
-    nock(`https://${fullDomainName}`)
+    nock(`https://${domainName}`)
       .get("/")
       .matchHeader("x-api-key", publicApiKey)
       .reply(400, error);

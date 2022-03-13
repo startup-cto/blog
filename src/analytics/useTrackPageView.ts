@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { fullDomainName } from "../infrastructure/constants/domainName";
+import { domainName } from "../infrastructure/constants/domainName";
 import { publicApiKey } from "../infrastructure/constants/publicApiKey";
 
 export function useTrackPageView() {
   useEffect(() => {
     (async () => {
-      await fetch(`https://${fullDomainName}`, {
+      await fetch(`https://${domainName}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

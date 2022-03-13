@@ -5,7 +5,7 @@ import "../test-helpers/polyfillFetch";
 import { renderHook } from "@testing-library/react-hooks";
 import { useTrackPageView } from "./useTrackPageView";
 import nock from "nock";
-import { fullDomainName } from "../infrastructure/constants/domainName";
+import { domainName } from "../infrastructure/constants/domainName";
 import { publicApiKey } from "../infrastructure/constants/publicApiKey";
 
 describe("useTrackPageView", () => {
@@ -17,7 +17,7 @@ describe("useTrackPageView", () => {
     // @ts-ignore
     window.location = { pathname };
 
-    const postMock = nock(`https://${fullDomainName}`)
+    const postMock = nock(`https://${domainName}`)
       .post("/", { path: pathname })
       .matchHeader("x-api-key", publicApiKey)
       .reply(201, "");
@@ -34,7 +34,7 @@ describe("useTrackPageView", () => {
     // @ts-ignore
     window.location = { pathname };
 
-    const postMock = nock(`https://${fullDomainName}`)
+    const postMock = nock(`https://${domainName}`)
       .post("/", { path: pathname })
       .matchHeader("x-api-key", publicApiKey)
       .reply(500, "");

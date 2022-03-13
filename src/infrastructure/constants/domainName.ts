@@ -1,2 +1,2 @@
-export const domainName = "startup-cto.net";
-export const fullDomainName = `analytics.${domainName}`;
+export const origin = "startup-cto.net";
+export const domainName = `analytics.${origin}`;

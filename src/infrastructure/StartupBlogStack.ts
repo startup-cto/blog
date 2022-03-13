@@ -7,7 +7,7 @@ import {
 } from "aws-cdk-lib/aws-certificatemanager";
 import { ARecord, HostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
 import { ApiGateway } from "aws-cdk-lib/aws-route53-targets";
-import { domainName, fullDomainName } from "./constants/domainName";
+import { domainName, origin } from "./constants/domainName";
 import { publicApiKey } from "./constants/publicApiKey";
 
 export class StartupBlogStack extends Stack {
@@ -15,23 +15,24 @@ export class StartupBlogStack extends Stack {
     super(scope, id, props);
 
     const hostedZone = HostedZone.fromLookup(this, "HostedZone", {
-      domainName,
+      domainName: origin,
     });
 
     const certificate = new Certificate(this, "Certificate", {
-      domainName: fullDomainName,
+      domainName: domainName,
       validation: CertificateValidation.fromDns(hostedZone),
     });
 
     const analytics = new WebAnalytics(this, "WebAnalytics", {
       certificate,
-      domainName: fullDomainName,
+      origin: origin,
+      domainName: domainName,
       publicApiKey,
     });
 
     new ARecord(this, "AnalyticsAPIDomainAliasRecord", {
       zone: hostedZone,
-      recordName: fullDomainName,
+      recordName: domainName,
       target: RecordTarget.fromAlias(new ApiGateway(analytics.api)),
     });
   }

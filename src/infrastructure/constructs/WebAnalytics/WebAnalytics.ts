@@ -14,6 +14,7 @@ import { ICertificate } from "aws-cdk-lib/aws-certificatemanager";
 interface Props {
   publicApiKey: string;
   certificate: ICertificate;
+  origin: string;
   domainName: string;
 }
 
@@ -23,7 +24,7 @@ export class WebAnalytics extends Construct {
   constructor(
     scope: Construct,
     id: string,
-    { certificate, domainName, publicApiKey }: Props
+    { certificate, origin, domainName, publicApiKey }: Props
   ) {
     super(scope, id);
     const timeToLiveAttribute = "ttl";
@@ -64,7 +65,7 @@ export class WebAnalytics extends Construct {
       },
       defaultCorsPreflightOptions: {
         allowOrigins: [
-          `https://${domainName}`,
+          `https://${origin}`,
           `http://localhost:3000`,
           `http://localhost:6006`,
         ],

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fullDomainName } from "../infrastructure/constants/domainName";
+import { domainName } from "../infrastructure/constants/domainName";
 import { publicApiKey } from "../infrastructure/constants/publicApiKey";
 import { Statistic } from "../infrastructure/constructs/WebAnalytics/Statistic";
 
@@ -18,7 +18,7 @@ export function useAnalyticsData(): Response<Statistic[]> {
     (async () => {
       const timeout = setTimeout(() => controller.abort(), 30 * 1000);
 
-      const response = await fetch(`https://${fullDomainName}`, {
+      const response = await fetch(`https://${domainName}`, {
         headers: {
           "x-api-key": publicApiKey,
         },

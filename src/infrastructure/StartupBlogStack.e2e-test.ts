@@ -1,9 +1,9 @@
 import fetch from "node-fetch";
 import { v4 as uuid } from "uuid";
-import { fullDomainName } from "./constants/domainName";
+import { domainName } from "./constants/domainName";
 import { publicApiKey } from "./constants/publicApiKey";
 
-const url = `https://${fullDomainName}`;
+const url = `https://${domainName}`;
 
 describe("WebAnalytics", () => {
   it("returns an event that was just created", async () => {
