@@ -14,8 +14,8 @@ export function useAnalyticsData(): Response<Statistic[]> {
   const [error, setError] = useState(undefined);
 
   useEffect(() => {
+    const controller = new AbortController();
     (async () => {
-      const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 30 * 1000);
 
       const response = await fetch(`https://${fullDomainName}`, {
@@ -34,6 +34,7 @@ export function useAnalyticsData(): Response<Statistic[]> {
       }
       setLoading(false);
     })();
+    return () => controller.abort();
   }, []);
 
   return { data, loading, error };
