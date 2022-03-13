@@ -2,7 +2,7 @@ import { compile, extractSingleJsonSchema, TypeOf, v } from "suretype";
 
 const analyticsEventSuretypeSchema = v.object({
   timestamp: v.string().format("date-time").required(),
-  name: v.string().const("pageview").required(),
+  name: v.string().enum("pageview").required(),
   url: v.string().format("uri-reference").required(),
   utmSource: v.string(),
   utmMedium: v.string(),
