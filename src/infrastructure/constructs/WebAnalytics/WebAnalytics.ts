@@ -1,10 +1,16 @@
 import { Construct } from "constructs";
 import { AttributeType, BillingMode, Table } from "aws-cdk-lib/aws-dynamodb";
 import { RemovalPolicy } from "aws-cdk-lib";
-import { LambdaRestApi, RestApi } from "aws-cdk-lib/aws-apigateway";
+import {
+  ApiKey,
+  LambdaRestApi,
+  RestApi,
+  UsagePlan,
+} from "aws-cdk-lib/aws-apigateway";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { analyticsEventInputSchema } from "./AnalyticsEventInput";
 import { ICertificate } from "aws-cdk-lib/aws-certificatemanager";
+import { publicApiKey } from "./publicApiKey";
 
 interface Props {
   certificate: ICertificate;
@@ -63,7 +69,8 @@ export class WebAnalytics extends Construct {
       contentType: "application/json",
       schema: analyticsEventInputSchema,
     });
-    api.root.addMethod("POST", undefined, {
+    const collectEventMethod = api.root.addMethod("POST", undefined, {
+      apiKeyRequired: true,
       requestModels: {
         "application/json": analyticsEventModel,
       },
@@ -72,7 +79,39 @@ export class WebAnalytics extends Construct {
         validateRequestBody: true,
       },
     });
-    api.root.addMethod("GET");
+    const getStatisticsMethod = api.root.addMethod("GET", undefined, {
+      apiKeyRequired: true,
+    });
+
+    const plan = new UsagePlan(this, "ReadUsagePlan", {
+      throttle: {
+        rateLimit: 10,
+        burstLimit: 100,
+      },
+    });
+    plan.addApiStage({
+      stage: api.deploymentStage,
+      throttle: [
+        {
+          method: getStatisticsMethod,
+          throttle: {
+            rateLimit: 1,
+            burstLimit: 1,
+          },
+        },
+        {
+          method: collectEventMethod,
+          throttle: {
+            rateLimit: 10,
+            burstLimit: 100,
+          },
+        },
+      ],
+    });
+
+    plan.addApiKey(
+      new ApiKey(this, "WebAnalyticsApiKey", { value: publicApiKey })
+    );
 
     events.grantReadWriteData(handler);
     this.api = api;
