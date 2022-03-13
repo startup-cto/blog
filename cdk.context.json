@@ -1,5 +1,9 @@
 {
   "acknowledged-issue-numbers": [
     19179
-  ]
+  ],
+  "hosted-zone:account=112125362830:domainName=startup-cto.net:region=eu-central-1": {
+    "Id": "/hostedzone/Z04921301JEN0EZA94OX1",
+    "Name": "startup-cto.net."
+  }
 }

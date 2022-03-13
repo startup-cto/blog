@@ -1,14 +1,24 @@
 import { Construct } from "constructs";
 import { AttributeType, BillingMode, Table } from "aws-cdk-lib/aws-dynamodb";
 import { RemovalPolicy } from "aws-cdk-lib";
-import { LambdaRestApi } from "aws-cdk-lib/aws-apigateway";
+import { LambdaRestApi, RestApi } from "aws-cdk-lib/aws-apigateway";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { analyticsEventInputSchema } from "./AnalyticsEventInput";
+import { ICertificate } from "aws-cdk-lib/aws-certificatemanager";
+
+interface Props {
+  certificate: ICertificate;
+  domainName: string;
+}
 
 export class WebAnalytics extends Construct {
-  public readonly apiUrl: string;
+  public readonly api: RestApi;
 
-  constructor(scope: Construct, id: string) {
+  constructor(
+    scope: Construct,
+    id: string,
+    { certificate, domainName }: Props
+  ) {
     super(scope, id);
     const timeToLiveAttribute = "ttl";
 
@@ -42,6 +52,10 @@ export class WebAnalytics extends Construct {
     const api = new LambdaRestApi(this, "Api", {
       handler,
       proxy: false,
+      domainName: {
+        domainName,
+        certificate,
+      },
     });
 
     const analyticsEventModel = api.addModel("AnalyticsEvent", {
@@ -61,6 +75,6 @@ export class WebAnalytics extends Construct {
     api.root.addMethod("GET");
 
     events.grantReadWriteData(handler);
-    this.apiUrl = api.url;
+    this.api = api;
   }
 }
