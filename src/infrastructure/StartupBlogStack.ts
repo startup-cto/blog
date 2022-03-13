@@ -1,4 +1,4 @@
-import { CfnOutput, Stack, StackProps } from "aws-cdk-lib";
+import { Stack, StackProps } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { WebAnalytics } from "./constructs/WebAnalytics/WebAnalytics";
 import {
@@ -33,10 +33,6 @@ export class StartupBlogStack extends Stack {
       zone: hostedZone,
       recordName: fullDomainName,
       target: RecordTarget.fromAlias(new ApiGateway(analytics.api)),
-    });
-
-    new CfnOutput(this, "ApiUrl", {
-      value: analytics.api.url,
     });
   }
 }
