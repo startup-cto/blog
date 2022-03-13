@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { fullDomainName } from "../infrastructure/constants/domainName";
 import { publicApiKey } from "../infrastructure/constants/publicApiKey";
+import { Statistic } from "../infrastructure/constructs/WebAnalytics/Statistic";
 
 type Response<Data, Error = unknown> =
   | { loading: true; data: undefined; error: undefined }
   | { loading: false; data: Data; error: undefined }
   | { loading: false; data: undefined; error: Error };
 
-export function useAnalyticsData(): Response<unknown[]> {
+export function useAnalyticsData(): Response<Statistic[]> {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(undefined);
   const [error, setError] = useState(undefined);

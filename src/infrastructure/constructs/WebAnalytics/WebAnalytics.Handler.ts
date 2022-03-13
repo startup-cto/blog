@@ -2,12 +2,18 @@ import { APIGatewayProxyHandler } from "aws-lambda";
 import { loadEventsByMonth } from "./handler/loadEventsByMonth";
 import { saveEvent } from "./handler/saveEvent";
 import { ensureAnalyticsEventInput } from "./AnalyticsEventInput";
+import { aggregateEvents } from "./handler/aggregateEvents";
 
 export const handler: APIGatewayProxyHandler = async function (event) {
   if (event.httpMethod === "GET") {
+    const now = new Date();
+    const events = await loadEventsByMonth(
+      now.getFullYear(),
+      now.getMonth() + 1
+    );
     return {
       statusCode: 200,
-      body: JSON.stringify(await loadEventsByMonth(2022, 3), null, 2),
+      body: JSON.stringify(aggregateEvents(events), null, 2),
     };
   }
 

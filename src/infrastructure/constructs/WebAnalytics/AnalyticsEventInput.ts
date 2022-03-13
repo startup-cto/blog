@@ -1,6 +1,6 @@
 import { compile, extractSingleJsonSchema, TypeOf, v } from "suretype";
 
-export const analyticsEentInputSchemaProps = {
+export const analyticsEventInputSchemaProps = {
   path: v.string().format("uri-reference").required(),
   utmSource: v.string(),
   utmMedium: v.string(),
@@ -10,7 +10,7 @@ export const analyticsEentInputSchemaProps = {
 };
 
 const analyticsEventInputSuretypeSchema = v.object(
-  analyticsEentInputSchemaProps
+  analyticsEventInputSchemaProps
 );
 
 export type AnalyticsEventInput = TypeOf<
