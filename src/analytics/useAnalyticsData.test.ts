@@ -1,13 +1,12 @@
 /** @jest-environment jsdom */
 
+import "../test-helpers/polyfillFetch";
+
 import { renderHook } from "@testing-library/react-hooks";
 import { useAnalyticsData } from "./useAnalyticsData";
 import nock from "nock";
-import fetch from "node-fetch";
 import { publicApiKey } from "../infrastructure/constants/publicApiKey";
 import { fullDomainName } from "../infrastructure/constants/domainName";
-
-global["fetch"] = fetch as any;
 
 describe("useAnalyticsData", () => {
   it("starts in loading state", async () => {
