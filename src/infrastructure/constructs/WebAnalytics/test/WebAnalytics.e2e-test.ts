@@ -1,10 +1,9 @@
 import fetch from "node-fetch";
 import { v4 as uuid } from "uuid";
-import { publicApiKey } from "../publicApiKey";
+import { fullDomainName } from "../../../constants/domainName";
+import { publicApiKey } from "../../../constants/publicApiKey";
 
-const domainName = "analytics.startup-cto.net";
-const url = `https://${domainName}`;
-const apiKey = publicApiKey;
+const url = `https://${fullDomainName}`;
 
 describe("WebAnalytics", () => {
   it("returns an event that was just created", async () => {
@@ -14,7 +13,7 @@ describe("WebAnalytics", () => {
       body: JSON.stringify({ url: path }),
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": apiKey,
+        "x-api-key": publicApiKey,
       },
     });
 
@@ -22,7 +21,7 @@ describe("WebAnalytics", () => {
 
     const response = await fetch(url, {
       headers: {
-        "x-api-key": apiKey,
+        "x-api-key": publicApiKey,
       },
     });
     expect(await response.json()).toContainEqual(

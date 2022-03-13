@@ -10,7 +10,7 @@ import {
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { analyticsEventInputSchema } from "./AnalyticsEventInput";
 import { ICertificate } from "aws-cdk-lib/aws-certificatemanager";
-import { publicApiKey } from "./publicApiKey";
+import { publicApiKey } from "../../constants/publicApiKey";
 
 interface Props {
   certificate: ICertificate;
