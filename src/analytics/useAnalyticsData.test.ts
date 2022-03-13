@@ -10,9 +10,17 @@ import { fullDomainName } from "../infrastructure/constants/domainName";
 
 describe("useAnalyticsData", () => {
   it("starts in loading state", async () => {
-    const { result } = renderHook(() => useAnalyticsData());
+    nock(`https://${fullDomainName}`)
+      .get("/")
+      .matchHeader("x-api-key", publicApiKey)
+      .reply(200, []);
+
+    const { result, waitForValueToChange } = renderHook(() =>
+      useAnalyticsData()
+    );
 
     expect(result.current.loading).toBe(true);
+    await waitForValueToChange(() => result.current.loading);
   });
 
   it("returns the data from the endpoint", async () => {
