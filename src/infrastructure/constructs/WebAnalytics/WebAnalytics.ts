@@ -45,6 +45,8 @@ export class WebAnalytics extends Construct {
     });
 
     const analyticsEventModel = api.addModel("AnalyticsEvent", {
+      modelName: "AnalyticsEvent",
+      contentType: "application/json",
       schema: analyticsEventSchema,
     });
     api.root.addMethod("POST", undefined, {
@@ -52,6 +54,7 @@ export class WebAnalytics extends Construct {
         "application/json": analyticsEventModel,
       },
       requestValidatorOptions: {
+        requestValidatorName: "Validate body",
         validateRequestBody: true,
       },
     });
