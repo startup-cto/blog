@@ -17,4 +17,5 @@ Default.args = {
     { timestamp: "2022-03-02", count: 2 },
     { timestamp: "2022-03-03", count: 1 },
   ],
+  title: "Time Series Graph",
 };
