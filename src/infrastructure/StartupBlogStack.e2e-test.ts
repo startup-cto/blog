@@ -10,7 +10,7 @@ describe("WebAnalytics", () => {
     const path = `/test-url/${uuid()}`;
     const postResponse = await fetch(url, {
       method: "POST",
-      body: JSON.stringify({ url: path }),
+      body: JSON.stringify({ path }),
       headers: {
         "Content-Type": "application/json",
         "x-api-key": publicApiKey,
@@ -25,7 +25,7 @@ describe("WebAnalytics", () => {
       },
     });
     expect(await response.json()).toContainEqual(
-      expect.objectContaining({ url: path })
+      expect.objectContaining({ path })
     );
   });
 });

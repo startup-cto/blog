@@ -7,7 +7,7 @@ import { DBSchema } from "./DBSchema";
 const dbEventSchema: DBSchema<AnalyticsEvent> = {
   name: { type: String, required: true },
   timestamp: { type: String, required: true, rangeKey: true },
-  url: { type: String, required: true },
+  path: { type: String, required: true },
   utmCampaign: String,
   utmContent: String,
   utmTerm: String,

@@ -1,7 +1,7 @@
 import { compile, extractSingleJsonSchema, TypeOf, v } from "suretype";
 
 export const analyticsEentInputSchemaProps = {
-  url: v.string().format("uri-reference").required(),
+  path: v.string().format("uri-reference").required(),
   utmSource: v.string(),
   utmMedium: v.string(),
   utmCampaign: v.string(),
