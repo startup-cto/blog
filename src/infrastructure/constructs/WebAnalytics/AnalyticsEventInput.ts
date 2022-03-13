@@ -17,7 +17,7 @@ export type AnalyticsEventInput = TypeOf<
   typeof analyticsEventInputSuretypeSchema
 >;
 
-export const ensureAnalyticsInputEvent = compile(
+export const ensureAnalyticsEventInput = compile(
   analyticsEventInputSuretypeSchema,
   {
     ensure: true,

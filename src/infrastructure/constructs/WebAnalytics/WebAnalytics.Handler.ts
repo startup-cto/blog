@@ -1,7 +1,7 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
 import { loadEventsByMonth } from "./handler/loadEventsByMonth";
 import { saveEvent } from "./handler/saveEvent";
-import { AnalyticsEvent, ensureAnalyticsEvent } from "./AnalyticsEvent";
+import { ensureAnalyticsEventInput } from "./AnalyticsEventInput";
 
 export const handler: APIGatewayProxyHandler = async function (event) {
   if (event.httpMethod === "GET") {
@@ -16,23 +16,15 @@ export const handler: APIGatewayProxyHandler = async function (event) {
       event.requestContext.requestTimeEpoch
     ).toISOString();
 
-    let analyticsEvent: AnalyticsEvent;
-    try {
-      analyticsEvent = ensureAnalyticsEvent({
-        ...JSON.parse(event.body!),
-        name: "pageview",
-        timestamp,
-      });
-    } catch {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({
-          error: "Invalid event",
-        }),
-      };
-    }
+    const analyticsEventInput = ensureAnalyticsEventInput(
+      JSON.parse(event.body!)
+    );
 
-    await saveEvent(analyticsEvent);
+    await saveEvent({
+      ...analyticsEventInput,
+      name: "pageview",
+      timestamp,
+    });
 
     return {
       statusCode: 201,
