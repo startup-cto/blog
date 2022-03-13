@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import { v4 as uuid } from "uuid";
-import { fullDomainName } from "../../../constants/domainName";
-import { publicApiKey } from "../../../constants/publicApiKey";
+import { fullDomainName } from "./constants/domainName";
+import { publicApiKey } from "./constants/publicApiKey";
 
 const url = `https://${fullDomainName}`;
 
