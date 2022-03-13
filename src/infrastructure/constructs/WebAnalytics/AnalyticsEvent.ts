@@ -1,14 +1,10 @@
 import { compile, extractSingleJsonSchema, TypeOf, v } from "suretype";
+import { analyticsEentInputSchemaProps } from "./AnalyticsEventInput";
 
 const analyticsEventSuretypeSchema = v.object({
   timestamp: v.string().format("date-time").required(),
   name: v.string().enum("pageview").required(),
-  url: v.string().format("uri-reference").required(),
-  utmSource: v.string(),
-  utmMedium: v.string(),
-  utmCampaign: v.string(),
-  utmTerm: v.string(),
-  utmContent: v.string(),
+  ...analyticsEentInputSchemaProps,
 });
 
 export type AnalyticsEvent = TypeOf<typeof analyticsEventSuretypeSchema>;

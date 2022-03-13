@@ -3,7 +3,7 @@ import { AttributeType, BillingMode, Table } from "aws-cdk-lib/aws-dynamodb";
 import { RemovalPolicy } from "aws-cdk-lib";
 import { LambdaRestApi } from "aws-cdk-lib/aws-apigateway";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
-import { analyticsEventSchema } from "./AnalyticsEvent";
+import { analyticsEventInputSchema } from "./AnalyticsEventInput";
 
 export class WebAnalytics extends Construct {
   public readonly apiUrl: string;
@@ -47,7 +47,7 @@ export class WebAnalytics extends Construct {
     const analyticsEventModel = api.addModel("AnalyticsEvent", {
       modelName: "AnalyticsEvent",
       contentType: "application/json",
-      schema: analyticsEventSchema,
+      schema: analyticsEventInputSchema,
     });
     api.root.addMethod("POST", undefined, {
       requestModels: {
