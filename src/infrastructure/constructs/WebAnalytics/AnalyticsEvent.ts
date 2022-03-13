@@ -1,6 +1,6 @@
 import { compile, extractSingleJsonSchema, TypeOf, v } from "suretype";
 
-const eventSuretypeSchema = v.object({
+const analyticsEventSuretypeSchema = v.object({
   timestamp: v.string().format("date-time").required(),
   name: v.string().const("pageview").required(),
   url: v.string().format("uri-reference").required(),
@@ -11,11 +11,13 @@ const eventSuretypeSchema = v.object({
   utmContent: v.string(),
 });
 
-export type Event = TypeOf<typeof eventSuretypeSchema>;
+export type AnalyticsEvent = TypeOf<typeof analyticsEventSuretypeSchema>;
 
-export const ensureEvent = compile(eventSuretypeSchema, {
+export const ensureAnalyticsEvent = compile(analyticsEventSuretypeSchema, {
   ensure: true,
   ajvOptions: { removeAdditional: "all" },
 });
 
-export const eventSchema = extractSingleJsonSchema(eventSuretypeSchema).schema;
+export const analyticsEventSchema = extractSingleJsonSchema(
+  analyticsEventSuretypeSchema
+).schema;

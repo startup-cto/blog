@@ -1,10 +1,10 @@
 import { model } from "dynamoose";
 import type { Document } from "dynamoose/dist/Document";
 import { config } from "./config";
-import { Event } from "../Event";
+import { AnalyticsEvent } from "../AnalyticsEvent";
 import { DBSchema } from "./DBSchema";
 
-const dbEventSchema: DBSchema<Event> = {
+const dbEventSchema: DBSchema<AnalyticsEvent> = {
   name: { type: String, required: true },
   timestamp: { type: String, required: true, rangeKey: true },
   url: { type: String, required: true },
@@ -20,7 +20,7 @@ interface EventDBSpecifics {
   ttl: number;
 }
 
-export const DBEvent = model<Document & Event & EventDBSpecifics>(
+export const DBEvent = model<Document & AnalyticsEvent & EventDBSpecifics>(
   config.tableName,
   {
     ...dbEventSchema,

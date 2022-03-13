@@ -1,11 +1,11 @@
-import { ensureEvent, Event } from "../Event";
+import { AnalyticsEvent, ensureAnalyticsEvent } from "../AnalyticsEvent";
 import { DBEvent } from "./DBEvent";
 import { config } from "./config";
 
 export async function loadEventsByMonth(
   year: number,
   month: number
-): Promise<Event[]> {
+): Promise<AnalyticsEvent[]> {
   const scatters = Array.from(Array(config.maxScatter).keys());
   const results = await Promise.all(
     scatters.map(async (scatter) =>
@@ -18,5 +18,5 @@ export async function loadEventsByMonth(
     )
   );
   const events = results.flat();
-  return events.map((event) => ensureEvent(event));
+  return events.map((event) => ensureAnalyticsEvent(event));
 }

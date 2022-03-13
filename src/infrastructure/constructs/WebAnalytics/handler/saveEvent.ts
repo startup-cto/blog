@@ -1,8 +1,8 @@
-import { Event } from "../Event";
+import { AnalyticsEvent } from "../AnalyticsEvent";
 import { DBEvent } from "./DBEvent";
 import { createScatter } from "./createScatter";
 
-export async function saveEvent(event: Event) {
+export async function saveEvent(event: AnalyticsEvent) {
   const oneYearInSeconds = 60 * 60 * 24 * 365;
   const ttl = Math.floor(
     new Date(event.timestamp).getTime() / 1000 + oneYearInSeconds
