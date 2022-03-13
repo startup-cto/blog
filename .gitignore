@@ -37,3 +37,6 @@ build-storybook.log
 
 # Auto-generated files
 public/rss.xml
+
+# CDK
+cdk.out
