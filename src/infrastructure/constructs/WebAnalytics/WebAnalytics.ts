@@ -12,7 +12,8 @@ export class WebAnalytics extends Construct {
     const timeToLiveAttribute = "ttl";
 
     const dynamoDBPartitionKey = "scatter";
-    let dynamoDBSortKey = "timestamp";
+    const dynamoDBSortKey = "timestamp";
+
     const events = new Table(this, "Events", {
       billingMode: BillingMode.PAY_PER_REQUEST,
       partitionKey: {
