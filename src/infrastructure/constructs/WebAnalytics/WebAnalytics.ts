@@ -62,6 +62,13 @@ export class WebAnalytics extends Construct {
         domainName,
         certificate,
       },
+      defaultCorsPreflightOptions: {
+        allowOrigins: [
+          `https://${domainName}`,
+          `http://localhost:3000`,
+          `http://localhost:6006`,
+        ],
+      },
     });
 
     const analyticsEventModel = api.addModel("AnalyticsEvent", {

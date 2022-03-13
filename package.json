@@ -10,6 +10,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@lambda-middleware/cors": "^2.0.0",
     "dynamoose": "^2.8.5",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
