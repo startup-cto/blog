@@ -8,6 +8,7 @@ import {
 import { ARecord, HostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
 import { ApiGateway } from "aws-cdk-lib/aws-route53-targets";
 import { domainName, fullDomainName } from "./constants/domainName";
+import { publicApiKey } from "./constants/publicApiKey";
 
 export class StartupBlogStack extends Stack {
   constructor(scope: Construct, id: string, props: StackProps) {
@@ -25,6 +26,7 @@ export class StartupBlogStack extends Stack {
     const analytics = new WebAnalytics(this, "WebAnalytics", {
       certificate,
       domainName: fullDomainName,
+      publicApiKey,
     });
 
     new ARecord(this, "AnalyticsAPIDomainAliasRecord", {

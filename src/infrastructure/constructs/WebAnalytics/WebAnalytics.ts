@@ -10,9 +10,9 @@ import {
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { analyticsEventInputSchema } from "./AnalyticsEventInput";
 import { ICertificate } from "aws-cdk-lib/aws-certificatemanager";
-import { publicApiKey } from "../../constants/publicApiKey";
 
 interface Props {
+  publicApiKey: string;
   certificate: ICertificate;
   domainName: string;
 }
@@ -23,7 +23,7 @@ export class WebAnalytics extends Construct {
   constructor(
     scope: Construct,
     id: string,
-    { certificate, domainName }: Props
+    { certificate, domainName, publicApiKey }: Props
   ) {
     super(scope, id);
     const timeToLiveAttribute = "ttl";
