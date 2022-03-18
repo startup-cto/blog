@@ -26,6 +26,28 @@ describe("useTrackPageView", () => {
     await waitFor(() => expect(postMock.isDone()).toBe(true));
   });
 
+  it.each(["Source", "Medium", "Campaign", "Term", "Content"])(
+    "tracks the utm %s",
+    async (utmType) => {
+      const pathname = "/";
+      const utmValue = `some-value`;
+      const search = `?utm_${utmType.toLowerCase()}=${utmValue}`;
+
+      // @ts-ignore
+      delete window.location;
+      // @ts-ignore
+      window.location = { pathname, search };
+
+      const postMock = nock(`https://${domainName}`)
+        .post("/", { path: pathname, [`utm${utmType}`]: utmValue })
+        .matchHeader("x-api-key", publicApiKey)
+        .reply(201, "");
+
+      const { waitFor } = renderHook(() => useTrackPageView());
+      await waitFor(() => expect(postMock.isDone()).toBe(true));
+    }
+  );
+
   it("does not crash in case of an error response", async () => {
     const pathname = "/some-path";
 
