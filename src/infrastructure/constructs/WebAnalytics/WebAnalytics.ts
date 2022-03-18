@@ -1,6 +1,6 @@
 import { Construct } from "constructs";
 import { AttributeType, BillingMode, Table } from "aws-cdk-lib/aws-dynamodb";
-import { RemovalPolicy } from "aws-cdk-lib";
+import { Duration, RemovalPolicy } from "aws-cdk-lib";
 import {
   ApiKey,
   LambdaRestApi,
@@ -54,6 +54,7 @@ export class WebAnalytics extends Construct {
         DYNAMODB_SORT_KEY: dynamoDBSortKey,
         MAX_SCATTER: "1",
       },
+      timeout: Duration.minutes(1),
     });
 
     const api = new LambdaRestApi(this, "Api", {
