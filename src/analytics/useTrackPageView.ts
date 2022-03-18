@@ -1,28 +1,36 @@
 import { useEffect } from "react";
 import { domainName } from "../infrastructure/constants/domainName";
 import { publicApiKey } from "../infrastructure/constants/publicApiKey";
+import { useRouter } from "next/router";
 
 export function useTrackPageView() {
+  const router = useRouter();
   useEffect(() => {
-    (async () => {
-      const searchParams = new URLSearchParams(window.location.search);
-      const entries = Array.from(searchParams.entries()).map(([key, value]) => [
-        transformUtmParam(key),
-        value,
-      ]);
-      await fetch(`https://${domainName}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": publicApiKey,
-        },
-        body: JSON.stringify({
-          path: window.location.pathname,
-          ...Object.fromEntries(entries),
-        }),
-      });
-    })();
+    void logPageView();
+    router.events.on("routeChangeComplete", logPageView);
+    return () => {
+      router.events.off("routeChangeComplete", logPageView);
+    };
   }, []);
+}
+
+async function logPageView() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const entries = Array.from(searchParams.entries()).map(([key, value]) => [
+    transformUtmParam(key),
+    value,
+  ]);
+  await fetch(`https://${domainName}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": publicApiKey,
+    },
+    body: JSON.stringify({
+      path: window.location.pathname,
+      ...Object.fromEntries(entries),
+    }),
+  });
 }
 
 function transformUtmParam(param: string): string {
