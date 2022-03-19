@@ -1,6 +1,13 @@
 import { AnalyticsEvent, ensureAnalyticsEvent } from "../AnalyticsEvent";
 import { DBEvent } from "./DBEvent";
 import { config } from "./config";
+import { DynamoDB } from "aws-sdk";
+import { DataMapper } from "@aws/dynamodb-data-mapper";
+import { beginsWith, equals } from "@aws/dynamodb-expressions";
+import { toArray } from "./toArray";
+
+const client = new DynamoDB();
+const mapper = new DataMapper({ client });
 
 export async function loadEventsByMonth(
   year: number,
@@ -8,14 +15,16 @@ export async function loadEventsByMonth(
 ): Promise<AnalyticsEvent[]> {
   const scatters = Array.from(Array(config.maxScatter).keys());
   const results = await Promise.all(
-    scatters.map(async (scatter) =>
-      DBEvent.query(config.partitionKey)
-        .eq(scatter)
-        .where(config.sortKey)
-        .beginsWith(`${year}-${month.toString().padStart(2, "0")}`)
-        .all()
-        .exec()
-    )
+    scatters.flatMap((scatter) => {
+      return toArray(
+        mapper.query(DBEvent, {
+          [config.partitionKey]: equals(scatter),
+          [config.sortKey]: beginsWith(
+            `${year}-${month.toString().padStart(2, "0")}`
+          ),
+        })
+      );
+    })
   );
   const events = results.flat();
   return events.map((event) => ensureAnalyticsEvent(event));

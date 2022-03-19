@@ -1,33 +1,16 @@
-interface Required<Type> {
+interface SchemaType<Type> {
   type: Type;
-  rangeKey?: true;
-  required: true;
+  keyType?: "HASH" | "RANGE";
 }
 
 export type DBSchema<Type extends {}> = {
-  [Key in keyof Type]: Type[Key] extends string
-    ? Required<StringConstructor>
-    : Type[Key] extends boolean
-    ? Required<BooleanConstructor>
-    : Type[Key] extends number
-    ? Required<NumberConstructor>
-    : Type[Key] extends Buffer
-    ? Required<BufferConstructor>
-    : Type[Key] extends Date
-    ? Required<DateConstructor>
-    : Type[Key] extends Array<unknown>
-    ? Required<ArrayConstructor>
-    : Type[Key] extends string | undefined
-    ? StringConstructor
+  [Key in keyof Type]: Type[Key] extends string | undefined
+    ? SchemaType<"String">
     : Type[Key] extends boolean | undefined
-    ? BooleanConstructor
+    ? SchemaType<"Boolean">
     : Type[Key] extends number | undefined
-    ? NumberConstructor
-    : Type[Key] extends Buffer | undefined
-    ? BufferConstructor
+    ? SchemaType<"Number">
     : Type[Key] extends Date | undefined
-    ? DateConstructor
-    : Type[Key] extends Array<unknown> | undefined
-    ? ArrayConstructor
+    ? SchemaType<"Date">
     : never;
 };

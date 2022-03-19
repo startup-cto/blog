@@ -1,30 +1,58 @@
-import { model } from "dynamoose";
-import type { Document } from "dynamoose/dist/Document";
 import { config } from "./config";
 import { AnalyticsEvent } from "../AnalyticsEvent";
 import { DBSchema } from "./DBSchema";
+import { DynamoDbSchema, DynamoDbTable } from "@aws/dynamodb-data-mapper";
+import { createScatter } from "./createScatter";
 
 const dbEventSchema: DBSchema<AnalyticsEvent> = {
-  name: { type: String, required: true },
-  timestamp: { type: String, required: true, rangeKey: true },
-  path: { type: String, required: true },
-  utmCampaign: String,
-  utmContent: String,
-  utmTerm: String,
-  utmMedium: String,
-  utmSource: String,
+  name: { type: "String" },
+  timestamp: { type: "String", keyType: "RANGE" },
+  path: { type: "String" },
+  utmCampaign: { type: "String" },
+  utmContent: { type: "String" },
+  utmTerm: { type: "String" },
+  utmMedium: { type: "String" },
+  utmSource: { type: "String" },
 };
 
 interface EventDBSpecifics {
   scatter: number;
-  ttl: number;
+  ttl: Date;
 }
 
-export const DBEvent = model<Document & AnalyticsEvent & EventDBSpecifics>(
-  config.tableName,
-  {
-    ...dbEventSchema,
-    scatter: { type: Number, required: true, hashKey: true },
-    ttl: { type: Number, required: true },
+export class DBEvent implements AnalyticsEvent, EventDBSpecifics {
+  // @ts-ignore
+  path: string;
+  // @ts-ignore
+  timestamp: string;
+  // @ts-ignore
+  name: "pageview";
+  // @ts-ignore
+  scatter: number;
+  // @ts-ignore
+  ttl: Date;
+
+  constructor(event?: AnalyticsEvent) {
+    if (!event) {
+      return;
+    }
+    const oneYearInMilliseconds = 60 * 60 * 24 * 365 * 1000;
+    this.ttl = new Date(
+      new Date(event.timestamp).getTime() + oneYearInMilliseconds
+    );
+    this.scatter = createScatter();
+
+    Object.assign(this, event);
   }
-);
+}
+
+Object.defineProperties(DBEvent.prototype, {
+  [DynamoDbTable]: { value: config.tableName },
+  [DynamoDbSchema]: {
+    value: {
+      ...dbEventSchema,
+      scatter: { type: "Number", keyType: "HASH" },
+      ttl: { type: "Date" },
+    },
+  },
+});

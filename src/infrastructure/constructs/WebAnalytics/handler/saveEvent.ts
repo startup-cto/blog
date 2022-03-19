@@ -1,13 +1,11 @@
 import { AnalyticsEvent } from "../AnalyticsEvent";
 import { DBEvent } from "./DBEvent";
-import { createScatter } from "./createScatter";
+import { DynamoDB } from "aws-sdk";
+import { DataMapper } from "@aws/dynamodb-data-mapper";
+
+const client = new DynamoDB();
+const mapper = new DataMapper({ client });
 
 export async function saveEvent(event: AnalyticsEvent) {
-  const oneYearInSeconds = 60 * 60 * 24 * 365;
-  const ttl = Math.floor(
-    new Date(event.timestamp).getTime() / 1000 + oneYearInSeconds
-  );
-
-  const scatter = createScatter();
-  await DBEvent.create({ ...event, scatter, ttl });
+  await mapper.put(new DBEvent(event));
 }
