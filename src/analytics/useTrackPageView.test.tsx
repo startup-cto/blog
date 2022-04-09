@@ -8,6 +8,14 @@ import nock from "nock";
 import { domainName } from "../infrastructure/constants/domainName";
 import { publicApiKey } from "../infrastructure/constants/publicApiKey";
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn().mockReturnValue({
+    events: {
+      on: jest.fn(),
+    },
+  }),
+}));
+
 describe("useTrackPageView", () => {
   it("tracks the current path", async () => {
     const pathname = "/some-path";
