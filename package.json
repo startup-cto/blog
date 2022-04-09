@@ -46,6 +46,7 @@
     "@types/rss": "^0.0.29",
     "@types/uuid": "^8.3.4",
     "aws-cdk-lib": "^2.15.0",
+    "aws-sdk": "^2.1111.0",
     "babel-loader": "^8.2.3",
     "cdk": "^2.14.0",
     "chroma-js": "^2.1.2",
