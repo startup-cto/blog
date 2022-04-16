@@ -1,0 +1,11 @@
+@value typography: 'tokens/typography/typography.module.css';
+@value fontFamily from typography;
+
+@value colors: 'tokens/colors/colors.module.css';
+@value text from colors;
+
+.base {
+    font-family: fontFamily;
+    color: text;
+    line-height: 1.6rem;
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+
+  "rushVersion": "5.59.2",
+  "pnpmVersion": "6.7.1",
+
+  "pnpmOptions": {
+    "strictPeerDependencies": true,
+    "preventManualShrinkwrapChanges": true,
+    "useWorkspaces": true
+  },
+
+  "nodeSupportedVersionRange": ">=16.13.1",
+
+  "projectFolderMinDepth": 1,
+  "projectFolderMaxDepth": 1,
+
+  "repository": {
+     "url": "https://github.com/dbartholomae/startup-cto-blog",
+     "defaultBranch": "main"
+  },
+
+  "projects": [
+     {
+       "packageName": "blog",
+       "projectFolder": "blog"
+     }
+  ]
+}
