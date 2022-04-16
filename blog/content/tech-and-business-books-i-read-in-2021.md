@@ -5,7 +5,8 @@ publishedAt: 2022-04-10T19:20:00.000Z
 updatedAt: 2022-04-10T19:20:00.000Z
 tags:
 - Books
-excerpt: After last year's focus on customer development and agile architecture, the books I read in 2021 mainly focused on three areas: building agile teams, Organization, and Product Strategy.
+excerpt: >
+  After last year's focus on customer development and agile architecture, the books I read in 2021 mainly focused on three areas: building agile teams, Organization, and Product Strategy.
 ---
 
 After [last year's focus on customer development and agile architecture](/tech-and-business-books-i-read-in-2020/),
