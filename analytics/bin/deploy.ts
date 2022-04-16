@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import "source-map-support/register";
 import { App } from "aws-cdk-lib";
-import { StartupBlogStack } from "../src/infrastructure/StartupBlogStack";
+import { StartupBlogStack } from "../src/StartupBlogStack";
 
 const app = new App();
 

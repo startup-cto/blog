@@ -1,5 +1,5 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-  ...require("./jest.config"),
+  ...require("../blog/jest.config"),
   testRegex: "\\.e2e-test\\.ts$",
 };

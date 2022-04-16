@@ -5,8 +5,7 @@ import "../test-helpers/polyfillFetch";
 import { renderHook } from "@testing-library/react-hooks";
 import { useTrackPageView } from "./useTrackPageView";
 import nock from "nock";
-import { domainName } from "../infrastructure/constants/domainName";
-import { publicApiKey } from "../infrastructure/constants/publicApiKey";
+import { domainName, publicApiKey } from "analytics";
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn().mockReturnValue({

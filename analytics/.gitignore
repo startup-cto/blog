@@ -8,13 +8,6 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
 # misc
 .DS_Store
 
@@ -32,5 +25,8 @@ yarn-error.log*
 # Logs
 build-storybook.log
 
-# Auto-generated files
-public/rss.xml
+# CDK
+cdk.out
+
+# Build
+build

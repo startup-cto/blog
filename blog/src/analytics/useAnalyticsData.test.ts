@@ -5,8 +5,7 @@ import "../test-helpers/polyfillFetch";
 import { renderHook } from "@testing-library/react-hooks";
 import { useAnalyticsData } from "./useAnalyticsData";
 import nock from "nock";
-import { publicApiKey } from "../infrastructure/constants/publicApiKey";
-import { domainName } from "../infrastructure/constants/domainName";
+import { domainName, publicApiKey } from "analytics";
 
 describe("useAnalyticsData", () => {
   it("starts in loading state", async () => {

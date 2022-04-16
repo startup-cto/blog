@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { domainName } from "../infrastructure/constants/domainName";
-import { publicApiKey } from "../infrastructure/constants/publicApiKey";
+import { domainName, publicApiKey } from "analytics";
 import { useRouter } from "next/router";
 
 export function useTrackPageView() {

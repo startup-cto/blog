@@ -1,4 +1,4 @@
-import { Statistic } from "../../../infrastructure/constructs/WebAnalytics/Statistic";
+import { Statistic } from "../../../../../analytics/src/constructs/WebAnalytics/Statistic";
 import { TimeSeriesGraph } from "../../elements/TimeSeriesGraph/TimeSeriesGraph";
 
 interface Props {

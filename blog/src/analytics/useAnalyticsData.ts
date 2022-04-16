@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { domainName } from "../infrastructure/constants/domainName";
-import { publicApiKey } from "../infrastructure/constants/publicApiKey";
-import { Statistic } from "../infrastructure/constructs/WebAnalytics/Statistic";
+import { domainName, publicApiKey, Statistic } from "analytics";
 
 type Response<Data, Error = unknown> =
   | { loading: true; data: undefined; error: undefined }
