@@ -13,6 +13,9 @@ export class ToPublishPostMock implements ToPublishPost {
 
   constructor(override: Partial<ToPublishPost> = {}, content?: string) {
     Object.assign(this, override);
+
+    this.previewImage =
+      override.previewImage ?? `/images/teaser/${this.slug}.png`;
     this.content = content ?? this.content;
   }
 
