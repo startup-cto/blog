@@ -1,5 +1,5 @@
 import { mockPostFiles, resetPostFiles } from "../../src/test-helpers";
-import { readFile } from "fs/promises";
+import { promises } from "fs";
 import { createRSSFile } from "./createRSSFile";
 import { PublishedPostMock } from "../../src/data-structure/PublishedPost/PublishedPostMock";
 
@@ -14,8 +14,10 @@ describe("createRSSFile", () => {
   });
 
   it("creates an RSS file with the post title in it", async () => {
+    promises.writeFile = jest.fn();
     await createRSSFile();
-    const file = await readFile("./public/rss.xml", "utf8");
-    expect(file).toContain(post.title);
+    const firstCall = (promises.writeFile as any).mock.calls[0];
+    expect(firstCall[0]).toBe("public/rss.xml");
+    expect(firstCall[1]).toContain(post.title);
   });
 });
