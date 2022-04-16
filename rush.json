@@ -10,7 +10,7 @@
     "useWorkspaces": true
   },
 
-  "nodeSupportedVersionRange": ">=16.13.1",
+  "nodeSupportedVersionRange": ">=14.19.0",
 
   "projectFolderMinDepth": 1,
   "projectFolderMaxDepth": 1,
