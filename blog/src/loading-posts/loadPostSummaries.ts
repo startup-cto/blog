@@ -2,12 +2,10 @@ import { loadPostFileNames } from "./loadPostFileNames";
 import { loadPost } from "./loadPost";
 import {
   isPublishedPost,
-  PublishedPost,
+  PublishedPost
 } from "../data-structure/PublishedPost/PublishedPost";
 
-export async function loadPostSummaries(): Promise<{
-  props: { posts: Omit<PublishedPost, "content">[] };
-}> {
+export async function loadPostSummaries(): Promise<Omit<PublishedPost, "content">[]> {
   const paths = await loadPostFileNames();
   const posts = await Promise.all(
     paths.map(async (path) => {
@@ -15,36 +13,29 @@ export async function loadPostSummaries(): Promise<{
       return post;
     })
   );
-  return {
-    props: {
-      posts: posts
-        .filter(isPublishedPost)
-        .map((post) => {
-          const {
-            excerpt,
-            publishedAt,
-            previewImage,
-            slug,
-            tags,
-            title,
-            updatedAt,
-          } = post;
-          return {
-            excerpt,
-            publishedAt,
-            ...(previewImage && { previewImage }),
-            slug,
-            tags: tags ?? [],
-            title,
-            updatedAt,
-          };
-        })
-        .sort(({ publishedAt: firstDate }, { publishedAt: secondDate }) => {
-          if (firstDate === secondDate) {
-            return 0;
-          }
-          return firstDate! > secondDate! ? -1 : 1;
-        }),
-    },
-  };
+  return posts.filter(isPublishedPost).map((post) => {
+    const {
+      excerpt,
+      publishedAt,
+      previewImage,
+      slug,
+      tags,
+      title,
+      updatedAt
+    } = post;
+    return {
+      excerpt,
+      publishedAt,
+      ...(previewImage && { previewImage }),
+      slug,
+      tags: tags ?? [],
+      title,
+      updatedAt
+    };
+  }).sort(({ publishedAt: firstDate }, { publishedAt: secondDate }) => {
+    if (firstDate === secondDate) {
+      return 0;
+    }
+    return firstDate! > secondDate! ? -1 : 1;
+  });
 }

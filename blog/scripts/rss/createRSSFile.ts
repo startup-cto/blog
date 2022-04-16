@@ -3,7 +3,7 @@ import { loadPostSummaries } from "../../src/loading-posts/loadPostSummaries";
 import { createRSSFeed } from "./createRSSFeed";
 
 export async function createRSSFile() {
-  const postSummaries = (await loadPostSummaries()).props.posts;
+  const postSummaries = await loadPostSummaries();
   const rss = createRSSFeed(postSummaries);
   await createDirUnlessExists("public");
   await writeFile("public/rss.xml", rss);

@@ -16,7 +16,7 @@ describe("loadPostSummaries", () => {
     });
 
     it("loads the summary of the first post", async () => {
-      const posts = (await loadPostSummaries()).props.posts;
+      const posts = await loadPostSummaries();
       expect(posts).toContainEqual(
         expect.objectContaining({ slug: postFiles[0].slug })
       );
@@ -48,7 +48,7 @@ describe("loadPostSummaries", () => {
     });
 
     it("loads the summaries ordered by publishedAt", async () => {
-      const posts = (await loadPostSummaries()).props.posts;
+      const posts = await loadPostSummaries();
       expect(posts[0].publishedAt).toBe(lastPublishedAt);
     });
   });
@@ -65,7 +65,7 @@ describe("loadPostSummaries", () => {
     });
 
     it("loads no posts", async () => {
-      const posts = (await loadPostSummaries()).props.posts;
+      const posts = await loadPostSummaries();
       expect(posts).toEqual([]);
     });
   });
