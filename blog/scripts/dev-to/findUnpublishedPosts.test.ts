@@ -5,8 +5,8 @@ import { ToPublishPostMock } from "../../src/data-structure/ToPublishPost/ToPubl
 
 describe("findUnpublishedPosts", () => {
   describe("with a published and an unpublished post", () => {
-    const publishedPost = new PublishedPostMock();
-    const unpublishedPost = new ToPublishPostMock();
+    const publishedPost = new PublishedPostMock({ slug: "published" });
+    const unpublishedPost = new ToPublishPostMock({ slug: "to-publish" });
 
     beforeAll(() => {
       mockPostFiles([publishedPost, unpublishedPost]);
