@@ -9,6 +9,8 @@
     "module": "CommonJS",
     "moduleResolution": "node"
   },
-  "include": ["./createRSSFeed.ts"],
+  "include": [
+    "./createRSSFeed.ts"
+  ],
   "exclude": ["node_modules"]
 }
