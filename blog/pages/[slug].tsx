@@ -7,9 +7,9 @@ import { isPublishedPost } from "../src/data-structure/PublishedPost/PublishedPo
 export default Post;
 
 export async function getStaticPaths() {
-  const paths = await loadPostFileNames();
+  const names = await loadPostFileNames();
   return {
-    paths,
+    paths: names.map((name) => `/${name}`),
     fallback: false,
   };
 }
