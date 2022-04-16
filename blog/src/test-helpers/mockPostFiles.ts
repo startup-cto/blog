@@ -6,6 +6,11 @@ import { Post } from "../data-structure/Post";
 export function mockPostFiles(posts: Post[]) {
   jest.mock("fs");
 
+  const postNames = posts.map((post) => post.slug);
+  if (new Set(postNames).size !== postNames.length) {
+    throw new TypeError("Files with identical names detected");
+  }
+
   const dirs = normalizePathKeys({
     content: posts.map((post) => `${post.slug}.md`),
     "public/images/teaser": posts.map((post) => `${post.slug}.png`),
