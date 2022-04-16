@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: '16'
       - name: Install Packages
-        run: npm install --prefer-offline --no-audit
+        run: node ../common/scripts/install-run-rush.js install
       - name: Restore cache
         uses: actions/cache@v2
         with:

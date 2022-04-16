@@ -1,0 +1,18 @@
+version: 1
+applications:
+  - appRoot: blog
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - node ../common/scripts/install-run-rush.js install
+        build:
+          commands:
+            - npx concurrently -s -n "test,build" "npm test" "npm run build"
+      artifacts:
+        baseDirectory: out
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
