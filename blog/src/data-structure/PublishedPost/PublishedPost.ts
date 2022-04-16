@@ -1,4 +1,5 @@
-import { compile, raw, TypeOf, v } from "suretype";
+import { compile, TypeOf, v } from "suretype";
+import { never } from "../never";
 
 export const publishedPostSchema = v.object({
   draft: never(),
@@ -10,10 +11,6 @@ export const publishedPostSchema = v.object({
   excerpt: v.string().required(),
   previewImage: v.string().format("uri-reference"),
 });
-
-function never() {
-  return raw({ not: {} });
-}
 
 export type PublishedPost = TypeOf<typeof publishedPostSchema>;
 
