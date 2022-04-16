@@ -5,36 +5,8 @@
   "pnpmVersion": "6.7.1",
 
   "pnpmOptions": {
-    /**
-     * If true, then Rush will add the "--strict-peer-dependencies" option when invoking PNPM.
-     * This causes "rush install" to fail if there are unsatisfied peer dependencies, which is
-     * an invalid state that can cause build failures or incompatible dependency versions.
-     * (For historical reasons, JavaScript package managers generally do not treat this invalid
-     * state as an error.)
-     *
-     * The default value is false to avoid legacy compatibility issues.
-     * It is strongly recommended to set strictPeerDependencies=true.
-     */
-    // "strictPeerDependencies": true,
-
-    /**
-     * If true, then `rush install` will report an error if manual modifications
-     * were made to the PNPM shrinkwrap file without running "rush update" afterwards.
-     *
-     * This feature protects against accidental inconsistencies that may be introduced
-     * if the PNPM shrinkwrap file ("pnpm-lock.yaml") is manually edited.  When this
-     * feature is enabled, "rush update" will append a hash to the file as a YAML comment,
-     * and then "rush update" and "rush install" will validate the hash.  Note that this does not prohibit
-     * manual modifications, but merely requires "rush update" be run
-     * afterwards, ensuring that PNPM can report or repair any potential inconsistencies.
-     *
-     * To temporarily disable this validation when invoking "rush install", use the
-     * "--bypass-policy" command-line parameter.
-     *
-     * The default value is false.
-     */
-    // "preventManualShrinkwrapChanges": true,
-
+    "strictPeerDependencies": true,
+    "preventManualShrinkwrapChanges": true,
     "useWorkspaces": true
   },
 
