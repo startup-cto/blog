@@ -44,7 +44,6 @@ importers:
       gray-matter: ^4.0.3
       jest: ^27.4.4
       js-yaml: ^4.1.0
-      mock-fs: ^5.1.2
       mockdate: ^3.0.5
       next: latest
       next-mdx-remote: ^3.0.8
@@ -118,7 +117,6 @@ importers:
       eslint-config-prettier: 8.5.0_eslint@8.4.1
       eslint-plugin-storybook: 0.5.10_eslint@8.4.1+typescript@4.6.3
       jest: 27.5.1_ts-node@10.7.0
-      mock-fs: 5.1.2
       mockdate: 3.0.5
       nock: 13.2.4
       prettier: 2.6.2
@@ -9978,11 +9976,6 @@ packages:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
     hasBin: true
-    dev: true
-
-  /mock-fs/5.1.2:
-    resolution: {integrity: sha512-YkjQkdLulFrz0vD4BfNQdQRVmgycXTV7ykuHMlyv+C8WCHazpkiQRDthwa02kSyo8wKnY9wRptHfQLgmf0eR+A==}
-    engines: {node: '>=12.0.0'}
     dev: true
 
   /mockdate/3.0.5:
