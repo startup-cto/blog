@@ -4,6 +4,10 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -25,6 +29,12 @@ jobs:
         run: node ../common/scripts/install-run-rush.js build
       - name: Test
         run: node ../common/scripts/install-run-rush.js test
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::112125362830:role/AccessStack-GitHubDeploymentRoleD4E2A70A-13MOYB8GA6649
+          role-session-name: GitHubDeploymentSession
+          aws-region: eu-central-1
       - name: Release
         run: node ../common/scripts/install-run-rush.js release
         env:
