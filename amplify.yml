@@ -8,7 +8,7 @@ applications:
             - node ../common/scripts/install-run-rush.js install
         build:
           commands:
-            - npx concurrently -s -n "test,build" "npm test" "npm run build"
+            - node ../common/scripts/install-run-rush.js build
       artifacts:
         baseDirectory: out
         files:
