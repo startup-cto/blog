@@ -5,6 +5,7 @@
   "main": "./build",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "test": "jest",
     "watch": "cdk watch"
   },
   "dependencies": {
