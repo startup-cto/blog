@@ -2,7 +2,6 @@ import { CfnOutput, Stack, StackProps } from "aws-cdk-lib";
 import {
   OpenIdConnectPrincipal,
   OpenIdConnectProvider,
-  Policy,
   PolicyStatement,
   Role,
 } from "aws-cdk-lib/aws-iam";
