@@ -7,6 +7,8 @@
     "test": "jest",
     "cdk:watch": "cdk watch",
     "create-rss-feed": "tsc --project scripts/tsconfig.json && node ./scripts/createRSSFeed.js",
+    "release": "npm run release:chromatic",
+    "release:chromatic": "npx chromatic",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

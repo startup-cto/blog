@@ -1,11 +1,11 @@
-name: Publish Storybook to Chromatic
+name: Release
 on:
   push:
     branches:
       - main
 
 jobs:
-  deploy:
+  release:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -21,11 +21,11 @@ jobs:
           node-version: '16'
       - name: Install Packages
         run: node ../common/scripts/install-run-rush.js install
-      - name: Build dependencies
+      - name: Build
         run: node ../common/scripts/install-run-rush.js build
-      - name: Publish to Chromatic
-        uses: chromaui/action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          workingDir: blog
+      - name: Test
+        run: node ../common/scripts/install-run-rush.js test
+      - name: Release
+        run: node ../common/scripts/install-run-rush.js release
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
