@@ -5,6 +5,7 @@ applications:
       phases:
         preBuild:
           commands:
+            - envCache --set stackInfo ""
             - node ../common/scripts/install-run-rush.js install
         build:
           commands:
