@@ -13,6 +13,3 @@ applications:
         baseDirectory: out
         files:
           - '**/*'
-      cache:
-        paths:
-          - common/temp/**/*
