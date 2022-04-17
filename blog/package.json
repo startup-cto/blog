@@ -7,6 +7,8 @@
     "test": "jest",
     "cdk:watch": "cdk watch",
     "create-rss-feed": "tsc --project scripts/tsconfig.json && node ./scripts/createRSSFeed.js",
+    "release": "npm run release:chromatic",
+    "release:chromatic": "npx chromatic",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -57,6 +59,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-storybook": "^0.5.6",
     "jest": "^27.4.4",
+    "jest-standard-reporter": "^2.0.0",
     "mockdate": "^3.0.5",
     "nock": "^13.2.1",
     "node-fetch": "^2.6.7",
