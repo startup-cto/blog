@@ -7,7 +7,8 @@
     "test": "jest",
     "cdk:watch": "cdk watch",
     "create-rss-feed": "tsc --project scripts/tsconfig.json && node ./scripts/createRSSFeed.js",
-    "release": "npm run release:chromatic",
+    "release": "npm run release:chromatic && npm run release:amplify",
+    "release:amplify": "aws amplify start-job --app-id d1x7ezhrw0p58x --branch-name main --job-type RELEASE --region eu-central-1",
     "release:chromatic": "npx chromatic",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
