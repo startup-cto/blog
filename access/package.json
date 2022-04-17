@@ -3,6 +3,7 @@
   "description": "Access management for the infrastructure behind The Startup CTO",
   "private": true,
   "scripts": {
+    "build": "echo 'No build needed'",
     "deploy": "cdk deploy",
     "test": "echo 'No test implemented yet'"
   },
