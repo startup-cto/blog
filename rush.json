@@ -28,6 +28,10 @@
      {
        "packageName": "analytics",
        "projectFolder": "analytics"
+     },
+     {
+       "packageName": "access",
+       "projectFolder": "access"
      }
   ]
 }
