@@ -1,8 +1,8 @@
-import { loadPost } from "../src/loading-posts/loadPost";
-import { loadPostFileNames } from "../src/loading-posts/loadPostFileNames";
+import { loadPost } from "../loading-posts/loadPost";
+import { loadPostFileNames } from "../loading-posts/loadPostFileNames";
 import { GetStaticProps } from "next";
-import { Post, Props } from "../src/presentation/templates/Post/Post";
-import { isPublishedPost } from "../src/data-structure/PublishedPost/PublishedPost";
+import { Post, Props } from "../presentation/templates/Post/Post";
+import { isPublishedPost } from "../data-structure/PublishedPost/PublishedPost";
 
 export default Post;
 

@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm run create-rss-feed && next build && next export",
     "start": "next dev",
-    "lint": "eslint pages src scripts --ext .ts --ext .tsx",
+    "lint": "eslint src scripts --ext .ts --ext .tsx",
     "test": "jest",
     "cdk:watch": "cdk watch",
     "create-rss-feed": "tsc --project scripts/tsconfig.json && node ./scripts/createRSSFeed.js",

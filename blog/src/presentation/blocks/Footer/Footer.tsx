@@ -10,10 +10,10 @@ export function Footer() {
         rights reserved.
       </div>
       <HorizontalList>
-        <Link color="text" href="/blog/pages/imprint">
+        <Link color="text" href="/blog/src/pages/imprint">
           Imprint
         </Link>
-        <Link color="text" href="/blog/pages/privacy-policy">
+        <Link color="text" href="/blog/src/pages/privacy-policy">
           Privacy policy
         </Link>
       </HorizontalList>

@@ -1,7 +1,7 @@
-import "normalize.css";
-import styles from "../src/presentation/base.module.css";
+import "../../node_modules/normalize.css/normalize.css";
+import styles from "../presentation/base.module.css";
 import { AppProps } from "next/app";
-import { useTrackPageView } from "../src/analytics/useTrackPageView";
+import { useTrackPageView } from "../analytics/useTrackPageView";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   useTrackPageView();
