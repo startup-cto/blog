@@ -12,6 +12,7 @@ describe("PublishedPost", () => {
         "TypeScript and JavaScript have steadily evolved over the last years, and some of the habits we built over the last decades have become obsolete. Some might never have been meaningful. Here's a list of 10 habits that we all should break.",
       previewImage: "/images/teaser/filename.png",
     };
+
     expect(isPublishedPost(publishedPost)).toBe(true);
   });
 
@@ -27,6 +28,7 @@ describe("PublishedPost", () => {
         "TypeScript and JavaScript have steadily evolved over the last years, and some of the habits we built over the last decades have become obsolete. Some might never have been meaningful. Here's a list of 10 habits that we all should break.",
       previewImage: "/images/teaser/filename.png",
     };
+
     expect(isPublishedPost(draftPost)).toBe(false);
   });
 });

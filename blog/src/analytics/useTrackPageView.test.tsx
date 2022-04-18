@@ -70,6 +70,7 @@ describe("useTrackPageView", () => {
 
     const { result, waitFor } = renderHook(() => useTrackPageView());
     await waitFor(() => expect(postMock.isDone()).toBe(true));
+
     expect(result.error).toBeUndefined();
   });
 });

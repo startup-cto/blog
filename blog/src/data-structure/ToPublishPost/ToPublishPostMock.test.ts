@@ -18,6 +18,7 @@ describe("ToPublishPostMock", () => {
         },
         "# Hello World"
       );
+
       expect(post.toString()).toBe(`---
 excerpt: |
   excerpt

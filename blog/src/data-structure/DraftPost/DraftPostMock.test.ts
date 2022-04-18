@@ -8,6 +8,7 @@ describe("DraftPostMock", () => {
 
   it("returns a random file name", () => {
     const draftPostMock = new DraftPostMock();
+
     expect(draftPostMock.fileName).toMatch(/\.md$/);
   });
 
@@ -24,6 +25,7 @@ describe("DraftPostMock", () => {
         },
         "# Hello World"
       );
+
       expect(post.toString()).toBe(`---
 draft: true
 title: title

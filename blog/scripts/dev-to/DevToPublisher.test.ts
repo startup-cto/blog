@@ -23,6 +23,7 @@ describe("DevToPublisher", () => {
 
       const devToPublisher = new DevToPublisher(origin, apiKey);
       await devToPublisher.publishPost(post);
+
       expect(postMock.isDone()).toBe(true);
     });
   });

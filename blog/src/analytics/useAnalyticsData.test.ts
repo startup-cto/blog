@@ -19,6 +19,7 @@ describe("useAnalyticsData", () => {
     );
 
     expect(result.current.loading).toBe(true);
+
     await waitForValueToChange(() => result.current.loading);
   });
 

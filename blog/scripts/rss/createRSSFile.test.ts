@@ -5,6 +5,7 @@ import { PublishedPostMock } from "../../src/data-structure/PublishedPost/Publis
 
 describe("createRSSFile", () => {
   const post = new PublishedPostMock();
+
   beforeAll(() => {
     mockPostFiles([post]);
   });
@@ -17,6 +18,7 @@ describe("createRSSFile", () => {
     promises.writeFile = jest.fn();
     await createRSSFile();
     const firstCall = (promises.writeFile as any).mock.calls[0];
+
     expect(firstCall[0]).toBe("public/rss.xml");
     expect(firstCall[1]).toContain(post.title);
   });

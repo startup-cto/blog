@@ -18,12 +18,14 @@ describe("findUnpublishedPosts", () => {
 
     it("returns the unpublished post", async () => {
       const unpublishedPosts = await findUnpublishedPosts();
+
       expect(unpublishedPosts[0]).toMatchObject(unpublishedPost);
     });
 
     it("does not return the published post", async () => {
       const unpublishedPosts = await findUnpublishedPosts();
-      expect(unpublishedPosts.length).toBe(1);
+
+      expect(unpublishedPosts).toHaveLength(1);
     });
   });
 });

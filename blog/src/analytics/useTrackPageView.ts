@@ -10,7 +10,7 @@ export function useTrackPageView() {
     return () => {
       router.events.off("routeChangeComplete", logPageView);
     };
-  }, []);
+  }, [router.events]);
 }
 
 async function logPageView() {

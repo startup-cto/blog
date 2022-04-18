@@ -16,6 +16,7 @@ describe("loadPostFileNames", () => {
 
     it("loads file name of the post", async () => {
       const posts = await loadPostFileNames();
+
       expect(posts).toContainEqual(postFiles[0].slug);
     });
   });

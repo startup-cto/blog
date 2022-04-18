@@ -28,7 +28,7 @@ export function PostContent({ source }: Props) {
       <Heading variant="h5">{children}</Heading>
     ),
     img: (props: ComponentProps<typeof Image>) => (
-      <Image {...props} width={800} height={640} unoptimized />
+      <Image {...props} width={800} height={640} unoptimized alt={props.alt} />
     ),
     inlineCode: InlineCode,
     code: ({

@@ -16,26 +16,31 @@ describe("loadPost", () => {
 
     it("returns the title of the post", async () => {
       const post = await loadPost(postFile.slug);
+
       expect(post.title).toEqual(postFile.title);
     });
 
     it("returns the publishedAt of the post", async () => {
       const post = await loadPost(postFile.slug);
+
       expect(post.publishedAt).toEqual(postFile.publishedAt);
     });
 
     it("returns the excerpt of the post", async () => {
       const post = await loadPost(postFile.slug);
+
       expect(post.excerpt).toEqual(postFile.excerpt);
     });
 
     it("returns the source for the post", async () => {
       const post = await loadPost(postFile.slug);
+
       expect(post.source).toBeDefined();
     });
 
     it("returns the content of the post", async () => {
       const post = await loadPost(postFile.slug);
+
       expect(post.content).toBeDefined();
     });
   });
