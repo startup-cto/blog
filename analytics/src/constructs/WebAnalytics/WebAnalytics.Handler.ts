@@ -30,7 +30,7 @@ export const handler: APIGatewayProxyHandler = cors({
     ).toISOString();
 
     const analyticsEventInput = ensureAnalyticsEventInput(
-      JSON.parse(event.body!)
+      JSON.parse(event.body ?? "{}")
     );
 
     await saveEvent({

@@ -21,6 +21,7 @@ interface EventDBSpecifics {
 }
 
 export class DBEvent implements AnalyticsEvent, EventDBSpecifics {
+  /* eslint-disable @typescript-eslint/ban-ts-comment */
   // @ts-ignore
   path: string;
   // @ts-ignore
@@ -31,6 +32,7 @@ export class DBEvent implements AnalyticsEvent, EventDBSpecifics {
   scatter: number;
   // @ts-ignore
   ttl: Date;
+  /* eslint-enable @typescript-eslint/ban-ts-comment */
 
   constructor(event?: AnalyticsEvent) {
     if (!event) {

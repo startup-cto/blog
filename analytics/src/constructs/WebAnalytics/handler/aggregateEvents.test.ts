@@ -10,6 +10,7 @@ describe("aggregateEvents", () => {
     const timestamp = "2022-01-01T00:00:00.000Z";
     const path = "/some-path";
     const name = "pageview";
+
     expect(
       aggregateEvents([
         new AnalyticsEventMock({ name, timestamp, path }),
@@ -29,6 +30,7 @@ describe("aggregateEvents", () => {
 
   it("does not aggregate events on different paths", () => {
     const timestamp = "2022-01-01T00:00:00.000Z";
+
     expect(
       aggregateEvents([
         new AnalyticsEventMock({ timestamp, path: "/some-path-1" }),

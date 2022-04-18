@@ -7,7 +7,7 @@ export function aggregateEvents(events: AnalyticsEvent[]): Statistic[] {
   }>((acc, current) => {
     const day = current.timestamp.slice(0, 10);
     const key = `${day}-${current.path}`;
-    const count = acc[key] ? (acc[key] as Statistic).count + 1 : 1;
+    const count = acc[key] ? acc[key].count + 1 : 1;
     return {
       ...acc,
       [key]: {
