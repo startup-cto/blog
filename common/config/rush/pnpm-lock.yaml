@@ -20,6 +20,7 @@ importers:
       eslint-plugin-jest: ^26.1.0
       eslint-plugin-jest-formatting: ^3.1.0
       eslint-plugin-prettier: ^4.0.0
+      npm-run-all: ~4.1.5
       prettier: ^2.5.1
       typescript: ^4.5.3
     devDependencies:
@@ -36,6 +37,7 @@ importers:
       eslint-plugin-jest: 26.1.4_cfaf3c439c087f144a8cebc0e20378e0
       eslint-plugin-jest-formatting: 3.1.0_eslint@8.13.0
       eslint-plugin-prettier: 4.0.0_1815ac95b7fb26c13c7d48a8eef62d0f
+      npm-run-all: 4.1.5
       prettier: 2.6.2
       typescript: 4.6.3
 
@@ -62,6 +64,7 @@ importers:
       jest: ^27.4.4
       jest-standard-reporter: ^2.0.0
       node-fetch: ^2.6.7
+      npm-run-all: ~4.1.5
       prettier: ^2.5.1
       suretype: ^2.4.1
       ts-node: ^10.4.0
@@ -93,6 +96,7 @@ importers:
       jest: 27.5.1_ts-node@10.7.0
       jest-standard-reporter: 2.0.0
       node-fetch: 2.6.7
+      npm-run-all: 4.1.5
       prettier: 2.6.2
       ts-node: 10.7.0_0186ee950d6ca824e1c4f00d888ce453
       typescript: 4.6.3
@@ -105,6 +109,8 @@ importers:
       '@storybook/addon-essentials': ^6.4.14
       '@storybook/addon-links': ^6.4.14
       '@storybook/react': ^6.4.14
+      '@swc-node/core': ^1.8.2
+      '@swc-node/register': ^1.4.2
       '@swc/core': ^1.2.154
       '@swc/jest': ^0.2.20
       '@testing-library/react-hooks': ^7.0.2
@@ -141,6 +147,7 @@ importers:
       nock: ^13.2.1
       node-fetch: ^2.6.6
       normalize.css: ^8.0.1
+      npm-run-all: ~4.1.5
       prettier: ^2.5.1
       prism-react-renderer: ^1.2.1
       prismjs: ^1.25.0
@@ -179,6 +186,8 @@ importers:
       '@storybook/addon-essentials': 6.4.22_ee6b69660426f2d144de8668c13269c5
       '@storybook/addon-links': 6.4.22_react-dom@17.0.2+react@17.0.2
       '@storybook/react': 6.4.22_aabb522cc2a6beda94a22116f5b2cffb
+      '@swc-node/core': 1.8.2
+      '@swc-node/register': 1.4.2
       '@swc/core': 1.2.165
       '@swc/jest': 0.2.20_@swc+core@1.2.165
       '@testing-library/react-hooks': 7.0.2_react-dom@17.0.2+react@17.0.2
@@ -208,6 +217,7 @@ importers:
       jest-standard-reporter: 2.0.0
       mockdate: 3.0.5
       nock: 13.2.4
+      npm-run-all: 4.1.5
       prettier: 2.6.2
       storybook-css-modules-preset: 1.1.1
       ts-jest: 27.1.4_3fba3d968cff4c64fce789a75845c77f
@@ -3729,6 +3739,33 @@ packages:
       store2: 2.13.2
     transitivePeerDependencies:
       - '@types/react'
+    dev: true
+
+  /@swc-node/core/1.8.2:
+    resolution: {integrity: sha512-IoJ7tGHQ6JOMSmFe4VhP64uLmFKMNasS0QEgUrLFQ0h/dTvpQMynnoGBEJoPL6LfsebZ/q4uKqbpWrth6/yrAA==}
+    engines: {node: '>= 10'}
+    dependencies:
+      '@swc/core': 1.2.165
+    dev: true
+
+  /@swc-node/register/1.4.2:
+    resolution: {integrity: sha512-wLZz0J7BTO//1Eq7e4eBQjKF380Hr2eVemz849msQSKcVM1D7UJUt/dP2TinEVGx++/BXJ/0q37i6n9Iw0EM0w==}
+    dependencies:
+      '@swc-node/core': 1.8.2
+      '@swc-node/sourcemap-support': 0.1.11
+      chalk: 4.1.2
+      debug: 4.3.4
+      pirates: 4.0.5
+      tslib: 2.3.1
+      typescript: 4.6.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@swc-node/sourcemap-support/0.1.11:
+    resolution: {integrity: sha512-b+Mn3oQl+7nUSt7hPzIbY9B30YhcFo1PT4kd9P4QmD6raycmIealOAhAdZID/JevphzsOXHQB4OqJm7Yi5tMcA==}
+    dependencies:
+      source-map-support: 0.5.21
     dev: true
 
   /@swc/cli/0.1.57_@swc+core@1.2.165:
@@ -9923,6 +9960,16 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
+  /load-json-file/4.0.0:
+    resolution: {integrity: sha1-L19Fq5HjMhYjT9U62rZo607AmTs=}
+    engines: {node: '>=4'}
+    dependencies:
+      graceful-fs: 4.2.10
+      parse-json: 4.0.0
+      pify: 3.0.0
+      strip-bom: 3.0.0
+    dev: true
+
   /loader-runner/2.4.0:
     resolution: {integrity: sha512-Jsmr89RcXGIwivFY21FcRrisYZfvLMTWx5kOLc+JTxtpBOG6xML0vzbc6SEQG2FO9/4Fc3wW4LVcB5DmGflaRw==}
     engines: {node: '>=4.3.0 <5.0.0 || >=5.10'}
@@ -10164,6 +10211,11 @@ packages:
     dependencies:
       errno: 0.1.8
       readable-stream: 2.3.7
+    dev: true
+
+  /memorystream/0.3.1:
+    resolution: {integrity: sha1-htcJCzDORV1j+64S3aUaR93K+bI=}
+    engines: {node: '>= 0.10.0'}
     dev: true
 
   /merge-descriptors/1.0.1:
@@ -10604,6 +10656,22 @@ packages:
     resolution: {integrity: sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==}
     dev: false
 
+  /npm-run-all/4.1.5:
+    resolution: {integrity: sha512-Oo82gJDAVcaMdi3nuoKFavkIHBRVqQ1qvMb+9LHk/cF4P6B2m8aP04hGf7oL6wZ9BuGwX1onlLhpuoofSyoQDQ==}
+    engines: {node: '>= 4'}
+    hasBin: true
+    dependencies:
+      ansi-styles: 3.2.1
+      chalk: 2.4.2
+      cross-spawn: 6.0.5
+      memorystream: 0.3.1
+      minimatch: 3.1.2
+      pidtree: 0.3.1
+      read-pkg: 3.0.0
+      shell-quote: 1.7.3
+      string.prototype.padend: 3.1.3
+    dev: true
+
   /npm-run-path/2.0.2:
     resolution: {integrity: sha1-NakjLfo11wZ7TLLd8jV7GHFTbF8=}
     engines: {node: '>=4'}
@@ -10954,6 +11022,14 @@ packages:
       is-decimal: 1.0.4
       is-hexadecimal: 1.0.4
 
+  /parse-json/4.0.0:
+    resolution: {integrity: sha1-vjX1Qlvh9/bHRxhPmKeIy5lHfuA=}
+    engines: {node: '>=4'}
+    dependencies:
+      error-ex: 1.3.2
+      json-parse-better-errors: 1.0.2
+    dev: true
+
   /parse-json/5.2.0:
     resolution: {integrity: sha512-ayCKvm/phCGxOkYRSCM82iDwct8/EonSEgCSxWxD7ve6jHggsFl4fZVQBPRNgQoKiuV/odhFrGzQXZwbifC8Rg==}
     engines: {node: '>=8'}
@@ -11067,6 +11143,12 @@ packages:
   /picomatch/2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
+    dev: true
+
+  /pidtree/0.3.1:
+    resolution: {integrity: sha512-qQbW94hLHEqCg7nhby4yRC7G2+jYHY4Rguc2bjw7Uug4GIJuu1tvf2uHaZv5Q8zdt+WKJ6qK1FOI6amaWUo5FA==}
+    engines: {node: '>=0.10'}
+    hasBin: true
     dev: true
 
   /pify/3.0.0:
@@ -11760,6 +11842,15 @@ packages:
       type-fest: 0.8.1
     dev: true
 
+  /read-pkg/3.0.0:
+    resolution: {integrity: sha1-nLxoaXj+5l0WwA4rGcI3/Pbjg4k=}
+    engines: {node: '>=4'}
+    dependencies:
+      load-json-file: 4.0.0
+      normalize-package-data: 2.5.0
+      path-type: 3.0.0
+    dev: true
+
   /read-pkg/5.2.0:
     resolution: {integrity: sha512-Ug69mNOpfvKDAc2Q8DRpMjjzdtrnv9HcSMX+4VsZxD1aZ6ZzrIE7rlzXBtWTyhULSMKg076AW6WR5iZpD0JiOg==}
     engines: {node: '>=8'}
@@ -12368,6 +12459,10 @@ packages:
   /shebang-regex/3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
+    dev: true
+
+  /shell-quote/1.7.3:
+    resolution: {integrity: sha512-Vpfqwm4EnqGdlsBFNmHhxhElJYrdfcxPThu+ryKS5J8L/fhAwLazFZtq+S+TWZ9ANj2piSQLGj6NQg+lKPmxrw==}
     dev: true
 
   /side-channel/1.0.4:
