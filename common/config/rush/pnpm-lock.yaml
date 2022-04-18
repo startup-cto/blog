@@ -127,6 +127,9 @@ importers:
       eslint: 8.4.1
       eslint-config-next: 12.0.7
       eslint-config-prettier: ^8.3.0
+      eslint-plugin-jest: ^26.1.0
+      eslint-plugin-jest-formatting: ^3.1.0
+      eslint-plugin-prettier: ^4.0.0
       eslint-plugin-storybook: ^0.5.6
       gray-matter: ^4.0.3
       jest: ^27.4.4
@@ -197,6 +200,9 @@ importers:
       eslint: 8.4.1
       eslint-config-next: 12.0.7_eb72deed4eb49e1a2be20f1654eb6a59
       eslint-config-prettier: 8.5.0_eslint@8.4.1
+      eslint-plugin-jest: 26.1.4_f6cf2a8314a4f54febc83539675b69da
+      eslint-plugin-jest-formatting: 3.1.0_eslint@8.4.1
+      eslint-plugin-prettier: 4.0.0_171b1f1746434c93453361434f751732
       eslint-plugin-storybook: 0.5.10_eslint@8.4.1+typescript@4.6.3
       jest: 27.5.1_ts-node@10.7.0
       jest-standard-reporter: 2.0.0
@@ -7213,6 +7219,15 @@ packages:
       eslint: 8.13.0
     dev: true
 
+  /eslint-plugin-jest-formatting/3.1.0_eslint@8.4.1:
+    resolution: {integrity: sha512-XyysraZ1JSgGbLSDxjj5HzKKh0glgWf+7CkqxbTqb7zEhW7X2WHo5SBQ8cGhnszKN+2Lj3/oevBlHNbHezoc/A==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: '>=0.8.0'
+    dependencies:
+      eslint: 8.4.1
+    dev: true
+
   /eslint-plugin-jest/26.1.4_cfaf3c439c087f144a8cebc0e20378e0:
     resolution: {integrity: sha512-wgqxujmqc2qpvZqMFWCh6Cniqc8lWpapvXt9j/19DmBDqeDaYhJrSRezYR1SKyemvjx+9e9kny/dgRahraHImA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -7229,6 +7244,27 @@ packages:
       '@typescript-eslint/eslint-plugin': 5.19.0_f34adc8488d2e4f014fe61432d70cbf2
       '@typescript-eslint/utils': 5.19.0_eslint@8.13.0+typescript@4.6.3
       eslint: 8.13.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: true
+
+  /eslint-plugin-jest/26.1.4_f6cf2a8314a4f54febc83539675b69da:
+    resolution: {integrity: sha512-wgqxujmqc2qpvZqMFWCh6Cniqc8lWpapvXt9j/19DmBDqeDaYhJrSRezYR1SKyemvjx+9e9kny/dgRahraHImA==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      '@typescript-eslint/eslint-plugin': ^5.0.0
+      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+      jest: '*'
+    peerDependenciesMeta:
+      '@typescript-eslint/eslint-plugin':
+        optional: true
+      jest:
+        optional: true
+    dependencies:
+      '@typescript-eslint/utils': 5.19.0_eslint@8.4.1+typescript@4.6.3
+      eslint: 8.4.1
+      jest: 27.5.1_ts-node@10.7.0
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -7253,6 +7289,23 @@ packages:
       jsx-ast-utils: 3.2.2
       language-tags: 1.0.5
       minimatch: 3.1.2
+    dev: true
+
+  /eslint-plugin-prettier/4.0.0_171b1f1746434c93453361434f751732:
+    resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
+    engines: {node: '>=6.0.0'}
+    peerDependencies:
+      eslint: '>=7.28.0'
+      eslint-config-prettier: '*'
+      prettier: '>=2.0.0'
+    peerDependenciesMeta:
+      eslint-config-prettier:
+        optional: true
+    dependencies:
+      eslint: 8.4.1
+      eslint-config-prettier: 8.5.0_eslint@8.4.1
+      prettier: 2.6.2
+      prettier-linter-helpers: 1.0.0
     dev: true
 
   /eslint-plugin-prettier/4.0.0_1815ac95b7fb26c13c7d48a8eef62d0f:
