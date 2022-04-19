@@ -8,7 +8,7 @@ import {
   UsagePlan,
 } from "aws-cdk-lib/aws-apigateway";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
-import { analyticsEventInputSchema } from "./AnalyticsEventInput";
+import { analyticsEventInputSchema } from "./model/AnalyticsEventInput";
 import { ICertificate } from "aws-cdk-lib/aws-certificatemanager";
 
 interface Props {

@@ -1,8 +1,8 @@
-import { config } from "./config";
-import { AnalyticsEvent } from "../AnalyticsEvent";
-import { DBSchema } from "./DBSchema";
+import { config } from "../handler/config";
+import { AnalyticsEvent } from "./AnalyticsEvent";
+import { DBSchema } from "../util/DBSchema";
 import { DynamoDbSchema, DynamoDbTable } from "@aws/dynamodb-data-mapper";
-import { createScatter } from "./createScatter";
+import { createScatter } from "../handler/createScatter";
 
 const dbEventSchema: DBSchema<AnalyticsEvent> = {
   name: { type: "String" },

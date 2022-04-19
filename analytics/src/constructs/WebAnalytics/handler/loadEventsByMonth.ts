@@ -1,10 +1,10 @@
-import { AnalyticsEvent, ensureAnalyticsEvent } from "../AnalyticsEvent";
-import { DBEvent } from "./DBEvent";
+import { AnalyticsEvent, ensureAnalyticsEvent } from "../model/AnalyticsEvent";
+import { DBEvent } from "../model/DBEvent";
 import { config } from "./config";
 import { DynamoDB } from "aws-sdk";
 import { DataMapper } from "@aws/dynamodb-data-mapper";
 import { beginsWith, equals } from "@aws/dynamodb-expressions";
-import { toArray } from "./toArray";
+import { toArray } from "../util/toArray";
 
 const client = new DynamoDB();
 const mapper = new DataMapper({ client });

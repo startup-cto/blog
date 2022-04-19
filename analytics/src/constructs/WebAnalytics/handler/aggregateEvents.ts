@@ -1,5 +1,5 @@
-import { AnalyticsEvent } from "../AnalyticsEvent";
-import { Statistic } from "../Statistic";
+import { AnalyticsEvent } from "../model/AnalyticsEvent";
+import { Statistic } from "../model/Statistic";
 
 export function aggregateEvents(events: AnalyticsEvent[]): Statistic[] {
   const statisticsMap = events.reduce<{

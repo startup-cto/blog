@@ -1,5 +1,5 @@
-import { AnalyticsEvent } from "../AnalyticsEvent";
-import { DBEvent } from "./DBEvent";
+import { AnalyticsEvent } from "../model/AnalyticsEvent";
+import { DBEvent } from "../model/DBEvent";
 import { DynamoDB } from "aws-sdk";
 import { DataMapper } from "@aws/dynamodb-data-mapper";
 

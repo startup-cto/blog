@@ -1,5 +1,5 @@
 import { aggregateEvents } from "./aggregateEvents";
-import { AnalyticsEventMock } from "../AnalyticsEventMock";
+import { AnalyticsEventMock } from "../model/AnalyticsEventMock";
 
 describe("aggregateEvents", () => {
   it("returns an array", () => {

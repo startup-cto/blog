@@ -1,7 +1,7 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
 import { loadEventsByMonth } from "./handler/loadEventsByMonth";
 import { saveEvent } from "./handler/saveEvent";
-import { ensureAnalyticsEventInput } from "./AnalyticsEventInput";
+import { ensureAnalyticsEventInput } from "./model/AnalyticsEventInput";
 import { aggregateEvents } from "./handler/aggregateEvents";
 import { cors } from "@lambda-middleware/cors";
 
