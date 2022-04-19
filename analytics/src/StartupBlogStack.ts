@@ -19,14 +19,14 @@ export class StartupBlogStack extends Stack {
     });
 
     const certificate = new Certificate(this, "Certificate", {
-      domainName: domainName,
+      domainName,
       validation: CertificateValidation.fromDns(hostedZone),
     });
 
     const analytics = new WebAnalytics(this, "WebAnalytics", {
       certificate,
-      origin: origin,
-      domainName: domainName,
+      origin,
+      domainName,
       publicApiKey,
     });
 
