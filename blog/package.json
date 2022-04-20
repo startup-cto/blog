@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npm-s build:*",
+    "build": "run-s build:*",
     "build:rss": "node -r @swc-node/register ./scripts/createRSSFeed.ts",
     "build:next": "next build && next export",
     "start": "next dev",
