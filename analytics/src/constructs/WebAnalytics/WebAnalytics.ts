@@ -3,7 +3,7 @@ import { AttributeType, BillingMode, Table } from "aws-cdk-lib/aws-dynamodb";
 import { Duration, RemovalPolicy } from "aws-cdk-lib";
 import {
   ApiKey,
-  LambdaRestApi,
+  LambdaIntegration,
   RestApi,
   UsagePlan,
 } from "aws-cdk-lib/aws-apigateway";
@@ -46,20 +46,32 @@ export class WebAnalytics extends Construct {
       timeToLiveAttribute,
     });
 
-    const handler = new NodejsFunction(this, "Handler", {
-      environment: {
-        DYNAMODB_TABLE: events.tableName,
-        DYNAMODB_TTL_ATTRIBUTE: timeToLiveAttribute,
-        DYNAMODB_PARTITION_KEY: dynamoDBPartitionKey,
-        DYNAMODB_SORT_KEY: dynamoDBSortKey,
-        MAX_SCATTER: "1",
-      },
-      timeout: Duration.minutes(1),
-    });
+    const handlerEnvironment = {
+      DYNAMODB_TABLE: events.tableName,
+      DYNAMODB_TTL_ATTRIBUTE: timeToLiveAttribute,
+      DYNAMODB_PARTITION_KEY: dynamoDBPartitionKey,
+      DYNAMODB_SORT_KEY: dynamoDBSortKey,
+      MAX_SCATTER: "1",
+    };
 
-    const api = new LambdaRestApi(this, "Api", {
-      handler,
-      proxy: false,
+    const collectEventHandler = new NodejsFunction(
+      this,
+      "CollectEventHandler",
+      {
+        environment: handlerEnvironment,
+      }
+    );
+
+    const getEventsByMonthHandler = new NodejsFunction(
+      this,
+      "GetEventsByMonthHandler",
+      {
+        environment: handlerEnvironment,
+        timeout: Duration.minutes(1),
+      }
+    );
+
+    const api = new RestApi(this, "Api", {
       domainName: {
         domainName,
         certificate,
@@ -78,19 +90,27 @@ export class WebAnalytics extends Construct {
       contentType: "application/json",
       schema: analyticsEventInputSchema,
     });
-    const collectEventMethod = api.root.addMethod("POST", undefined, {
-      apiKeyRequired: true,
-      requestModels: {
-        "application/json": analyticsEventModel,
-      },
-      requestValidatorOptions: {
-        requestValidatorName: "Validate body",
-        validateRequestBody: true,
-      },
-    });
-    const getStatisticsMethod = api.root.addMethod("GET", undefined, {
-      apiKeyRequired: true,
-    });
+    const collectEventMethod = api.root.addMethod(
+      "POST",
+      new LambdaIntegration(collectEventHandler),
+      {
+        apiKeyRequired: true,
+        requestModels: {
+          "application/json": analyticsEventModel,
+        },
+        requestValidatorOptions: {
+          requestValidatorName: "Validate body",
+          validateRequestBody: true,
+        },
+      }
+    );
+    const getEventsByMonthMethod = api.root.addMethod(
+      "GET",
+      new LambdaIntegration(getEventsByMonthHandler),
+      {
+        apiKeyRequired: true,
+      }
+    );
 
     const plan = new UsagePlan(this, "ReadUsagePlan", {
       throttle: {
@@ -102,7 +122,7 @@ export class WebAnalytics extends Construct {
       stage: api.deploymentStage,
       throttle: [
         {
-          method: getStatisticsMethod,
+          method: getEventsByMonthMethod,
           throttle: {
             rateLimit: 1,
             burstLimit: 1,
@@ -122,7 +142,8 @@ export class WebAnalytics extends Construct {
       new ApiKey(this, "WebAnalyticsApiKey", { value: publicApiKey })
     );
 
-    events.grantReadWriteData(handler);
+    events.grantReadData(getEventsByMonthHandler);
+    events.grantWriteData(collectEventHandler);
     this.api = api;
   }
 }
