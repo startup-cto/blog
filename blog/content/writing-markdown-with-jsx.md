@@ -2,7 +2,6 @@
 title: What writing my own JSX renderer taught me about React
 slug: writing-markdown-with-jsx
 publishedAt: 2021-01-05T22:11:04.000Z
-updatedAt: 2021-01-05T22:11:04.000Z
 tags:
 - React
 - TypeScript

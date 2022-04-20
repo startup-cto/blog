@@ -5,7 +5,6 @@ export const draftPostSchema = v.object({
   draft: v.boolean().const(true).required(),
   slug: v.string(),
   publishedAt: v.string().format("date-time"),
-  updatedAt: v.string().format("date-time"),
   tags: v.array(v.string()),
   excerpt: v.string(),
   previewImage: v.string().format("uri-reference"),

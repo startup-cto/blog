@@ -22,8 +22,7 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({
   if (!isPublishedPost(post)) {
     return { notFound: true };
   }
-  const { source, previewImage, excerpt, tags, updatedAt, title, publishedAt } =
-    post;
+  const { source, previewImage, excerpt, tags, title, publishedAt } = post;
   return {
     props: {
       post: {
@@ -33,7 +32,6 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({
         slug,
         ...(previewImage && { previewImage }),
         publishedAt,
-        updatedAt,
         tags: tags ?? [],
       },
     },

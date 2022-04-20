@@ -8,7 +8,6 @@ interface Props {
   tags?: string[];
   title: string;
   type: "website" | "article";
-  updatedAt?: Date;
 }
 
 const author = "Daniel Bartholomae";
@@ -36,10 +35,10 @@ export function Head({
   tags,
   title,
   type,
-  updatedAt,
 }: Props) {
   const postUrl = `${baseUrl}${slug}${slug === "" ? "" : "/"}`;
   const imageUrl = imagePath && `${baseUrl}${imagePath}`;
+  const updatedAt = publishedAt;
 
   return (
     <NextHead>

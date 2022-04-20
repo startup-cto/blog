@@ -2,7 +2,6 @@
 title: Summarized – Tech and business books I read in 2020
 slug: tech-and-business-books-i-read-in-2020
 publishedAt: 2021-01-04T19:54:00.000Z
-updatedAt: 2021-01-04T20:29:20.000Z
 tags:
 - Books
 excerpt: In 2020 I thought I would find less time to read, due to the missing commute, my main reading time for 2019. This lead me to explicitly take time to read, and actually finish more books than in the year before. And most of them were great books, too! Here's a summary of what I learned from each.

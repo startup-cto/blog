@@ -13,7 +13,6 @@ describe("ToPublishPostMock", () => {
           title: "title",
           excerpt: "excerpt\n",
           slug: "slug",
-          updatedAt: new Date("2021-01-01").toISOString(),
           tags: [],
         },
         "# Hello World"
@@ -25,7 +24,6 @@ excerpt: |
 slug: slug
 tags: []
 title: title
-updatedAt: '2021-01-01T00:00:00.000Z'
 ---
 # Hello World`);
     });

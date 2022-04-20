@@ -18,15 +18,7 @@ export async function loadPostSummaries(): Promise<
   return posts
     .filter(isPublishedPost)
     .map((post) => {
-      const {
-        excerpt,
-        publishedAt,
-        previewImage,
-        slug,
-        tags,
-        title,
-        updatedAt,
-      } = post;
+      const { excerpt, publishedAt, previewImage, slug, tags, title } = post;
       return {
         excerpt,
         publishedAt,
@@ -34,7 +26,6 @@ export async function loadPostSummaries(): Promise<
         slug,
         tags: tags ?? [],
         title,
-        updatedAt,
       };
     })
     .sort(({ publishedAt: firstDate }, { publishedAt: secondDate }) => {

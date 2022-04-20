@@ -6,7 +6,6 @@ export const toPublishPostSchema = v.object({
   title: v.string().required(),
   slug: v.string().required(),
   publishedAt: never(),
-  updatedAt: never(),
   tags: v.array(v.string()),
   excerpt: v.string().required(),
   previewImage: v.string().format("uri-reference"),

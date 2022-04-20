@@ -2,7 +2,6 @@
 title: Automatically generating README files with jsx-readme
 slug: automatically-generating-readme-files-with-jsx-readme
 publishedAt: 2020-09-24T15:52:38.000Z
-updatedAt: 2020-09-24T15:52:38.000Z
 excerpt: >
   It's the first thing that greets you when you look at an npm package, be it on npm itself or in the source on GitHub: The README.md file. What if, instead of having to update the README file manually whenever your code changes, the README could just stay up-to-date auto-magically?
 ---
