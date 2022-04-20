@@ -18,8 +18,8 @@ jobs:
         with:
           node-version: '16'
       - name: Install Packages
-        run: node ../common/scripts/install-run-rush.js install --to git:origin/main
+        run: node ../common/scripts/install-run-rush.js install --to git:origin/main --from git:origin/main
       - name: Build
-        run: node ../common/scripts/install-run-rush.js build --to git:origin/main
+        run: node ../common/scripts/install-run-rush.js build --to git:origin/main --from git:origin/main
       - name: Test
-        run: node ../common/scripts/install-run-rush.js test --to git:origin/main
+        run: node ../common/scripts/install-run-rush.js test --from git:origin/main
