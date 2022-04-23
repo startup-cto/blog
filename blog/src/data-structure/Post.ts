@@ -1,7 +1,8 @@
+import { FromSchema, makeAssertType } from "validation";
+
 import { publishedPostSchema } from "./PublishedPost/PublishedPost";
 import { draftPostSchema } from "./DraftPost/DraftPost";
 import { toPublishPostSchema } from "./ToPublishPost/ToPublishPost";
-import { FromSchema, makeAssertType } from "./validation";
 
 const postSchema = {
   anyOf: [draftPostSchema, toPublishPostSchema, publishedPostSchema],
