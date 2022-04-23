@@ -1,14 +1,7 @@
-import Ajv from "ajv";
-import addFormats from "ajv-formats";
-import type { FromSchema } from "json-schema-to-ts";
-
 import { publishedPostSchema } from "./PublishedPost/PublishedPost";
 import { draftPostSchema } from "./DraftPost/DraftPost";
 import { toPublishPostSchema } from "./ToPublishPost/ToPublishPost";
-import { makeAssert } from "./validation/makeAssert";
-
-const ajv = new Ajv();
-addFormats(ajv);
+import { FromSchema, makeAssert } from "./validation";
 
 const postSchema = {
   anyOf: [draftPostSchema, toPublishPostSchema, publishedPostSchema],

@@ -1,9 +1,4 @@
-import Ajv from "ajv";
-import addFormats from "ajv-formats";
-import type { FromSchema } from "json-schema-to-ts";
-
-const ajv = new Ajv();
-addFormats(ajv);
+import { type FromSchema, makeIs } from "../validation";
 
 export const publishedPostSchema = {
   title: "publishedPost",
@@ -22,4 +17,4 @@ export const publishedPostSchema = {
 
 export type PublishedPost = FromSchema<typeof publishedPostSchema>;
 
-export const isPublishedPost = ajv.compile(publishedPostSchema);
+export const isPublishedPost = makeIs(publishedPostSchema);

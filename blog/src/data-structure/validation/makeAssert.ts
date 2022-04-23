@@ -1,10 +1,6 @@
-import Ajv from "ajv";
-import addFormats from "ajv-formats";
 import betterAjvErrors from "better-ajv-errors";
 import { JSONSchema } from "json-schema-to-ts";
-
-const ajv = new Ajv();
-addFormats(ajv);
+import { ajv } from "./ajv";
 
 export function makeAssert<Type>(schema: JSONSchema) {
   function assert(data: unknown): asserts data is Type {
