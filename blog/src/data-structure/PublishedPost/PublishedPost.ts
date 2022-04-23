@@ -1,5 +1,5 @@
 import { compile, TypeOf, v } from "suretype";
-import { never } from "../never";
+import { never } from "../util/never";
 
 export const publishedPostSchema = v.object({
   draft: never(),
