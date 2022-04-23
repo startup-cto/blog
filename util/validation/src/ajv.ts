@@ -1,7 +1,9 @@
-import Ajv from "ajv";
+import Ajv, { Options } from "ajv";
 import addFormats from "ajv-formats";
 
-const ajv = new Ajv();
-addFormats(ajv);
+export function createAjv(ajvOptions?: Options) {
+  const ajv = new Ajv(ajvOptions);
+  addFormats(ajv);
 
-export { ajv };
+  return ajv;
+}

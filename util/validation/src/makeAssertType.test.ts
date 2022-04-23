@@ -16,4 +16,13 @@ describe("makeAssertType", () => {
 
     expect(() => assertFoo("bar")).toThrow();
   });
+
+  describe("with ajvOption coerceType", () => {
+    it("creates a function that does not throw for data fitting after coercion", () => {
+      const coerceSchema = { type: "number" } as const;
+      const assertCoerce = makeAssertType(coerceSchema, { coerceTypes: true });
+
+      expect(() => assertCoerce("5")).not.toThrow();
+    });
+  });
 });

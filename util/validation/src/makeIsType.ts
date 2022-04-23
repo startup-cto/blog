@@ -1,6 +1,7 @@
 import { JSONSchema } from "json-schema-to-ts";
-import { ajv } from "./ajv";
+import { createAjv } from "./ajv";
+import { Options } from "ajv";
 
-export function makeIsType(fooSchema: JSONSchema) {
-  return ajv.compile(fooSchema);
+export function makeIsType(fooSchema: JSONSchema, ajvOptions?: Options) {
+  return createAjv(ajvOptions).compile(fooSchema);
 }
