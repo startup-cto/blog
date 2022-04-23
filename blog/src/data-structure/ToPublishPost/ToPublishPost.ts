@@ -1,19 +1,25 @@
-import { compile, TypeOf, v } from "suretype";
-import { never } from "../util/never";
+import Ajv from "ajv";
+import addFormats from "ajv-formats";
+import type { FromSchema } from "json-schema-to-ts";
 
-export const toPublishPostSchema = v.object({
-  draft: never(),
-  title: v.string().required(),
-  slug: v.string().required(),
-  publishedAt: never(),
-  tags: v.array(v.string()),
-  excerpt: v.string().required(),
-  previewImage: v.string().format("uri-reference"),
-});
+const ajv = new Ajv();
+addFormats(ajv);
 
-export type ToPublishPost = TypeOf<typeof toPublishPostSchema>;
+export const toPublishPostSchema = {
+  title: "toPublishPost",
+  type: "object",
+  properties: {
+    title: { type: "string" },
+    draft: { not: {} },
+    slug: { type: "string" },
+    publishedAt: { not: {} },
+    tags: { type: "array", items: { type: "string" } },
+    excerpt: { type: "string" },
+    previewImage: { type: "string", format: "uri-reference" },
+  },
+  required: ["title", "slug", "excerpt"],
+} as const;
 
-export const isToPublishPost: (data: unknown) => data is ToPublishPost =
-  compile(toPublishPostSchema, {
-    simple: true,
-  });
+export type ToPublishPost = FromSchema<typeof toPublishPostSchema>;
+
+export const isToPublishPost = ajv.compile(toPublishPostSchema);

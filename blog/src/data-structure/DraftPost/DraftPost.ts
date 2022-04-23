@@ -1,20 +1,24 @@
-import { compile, TypeOf, v } from "suretype";
+import Ajv from "ajv";
+import addFormats from "ajv-formats";
+import type { FromSchema } from "json-schema-to-ts";
 
-export const draftPostSchema = v.object({
-  title: v.string(),
-  draft: v.boolean().const(true).required(),
-  slug: v.string(),
-  publishedAt: v.string().format("date-time"),
-  tags: v.array(v.string()),
-  excerpt: v.string(),
-  previewImage: v.string().format("uri-reference"),
-});
+const ajv = new Ajv();
+addFormats(ajv);
 
-export type DraftPost = TypeOf<typeof draftPostSchema>;
+export const draftPostSchema = {
+  title: "draftPost",
+  type: "object",
+  properties: {
+    title: { type: "string" },
+    draft: { const: true },
+    slug: { type: "string" },
+    publishedAt: { type: "string", format: "date-time" },
+    tags: { type: "array", items: { type: "string" } },
+    excerpt: { type: "string" },
+    previewImage: { type: "string", format: "uri-reference" },
+  },
+  required: ["draft"],
+} as const;
 
-export const isDraftPost: (data: unknown) => data is DraftPost = compile(
-  draftPostSchema,
-  {
-    simple: true,
-  }
-);
+export type DraftPost = FromSchema<typeof draftPostSchema>;
+export const isDraftPost = ajv.compile(draftPostSchema);

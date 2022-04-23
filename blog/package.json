@@ -18,9 +18,13 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "ajv": "^8.11.0",
+    "ajv-formats": "^2.1.1",
     "analytics": "workspace:*",
+    "better-ajv-errors": "^1.2.0",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
+    "json-schema-to-ts": "^2.2.0",
     "next": "latest",
     "next-mdx-remote": "^3.0.8",
     "node-fetch": "^2.6.6",
@@ -31,7 +35,6 @@
     "react-dom": "17.0.2",
     "recharts": "^2.1.9",
     "rss": "^1.2.2",
-    "suretype": "^2.4.1",
     "webpack": "~5.72.0",
     "prop-types": "~15.8.1"
   },

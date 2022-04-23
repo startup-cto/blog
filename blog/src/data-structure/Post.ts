@@ -1,19 +1,19 @@
+import Ajv from "ajv";
+import addFormats from "ajv-formats";
+import type { FromSchema } from "json-schema-to-ts";
+
 import { publishedPostSchema } from "./PublishedPost/PublishedPost";
 import { draftPostSchema } from "./DraftPost/DraftPost";
-import { compile, TypeOf, v } from "suretype";
 import { toPublishPostSchema } from "./ToPublishPost/ToPublishPost";
+import { makeAssert } from "./validation/makeAssert";
 
-const postSchema = v.anyOf([
-  toPublishPostSchema,
-  publishedPostSchema,
-  draftPostSchema,
-]);
+const ajv = new Ajv();
+addFormats(ajv);
 
-export type Post = TypeOf<typeof postSchema>;
+const postSchema = {
+  anyOf: [draftPostSchema, toPublishPostSchema, publishedPostSchema],
+} as const;
 
-export const assertPost: (data: unknown) => asserts data is Post = compile(
-  postSchema,
-  {
-    ensure: true,
-  }
-);
+export type Post = FromSchema<typeof postSchema>;
+
+export const assertPost = makeAssert(postSchema);
