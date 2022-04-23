@@ -1,4 +1,4 @@
-import { type FromSchema, makeIs } from "../validation";
+import { type FromSchema, makeIsType } from "../validation";
 
 export const toPublishPostSchema = {
   title: "toPublishPost",
@@ -17,4 +17,4 @@ export const toPublishPostSchema = {
 
 export type ToPublishPost = FromSchema<typeof toPublishPostSchema>;
 
-export const isToPublishPost = makeIs(toPublishPostSchema);
+export const isToPublishPost = makeIsType(toPublishPostSchema);

@@ -2,7 +2,7 @@ import betterAjvErrors from "better-ajv-errors";
 import { JSONSchema } from "json-schema-to-ts";
 import { ajv } from "./ajv";
 
-export function makeAssert<Type>(schema: JSONSchema) {
+export function makeAssertType<Type>(schema: JSONSchema) {
   function assert(data: unknown): asserts data is Type {
     const validate = ajv.compile(schema);
     if (!validate(data)) {
