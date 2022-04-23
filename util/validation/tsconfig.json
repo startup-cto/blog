@@ -2,7 +2,8 @@
   "compilerOptions": {
     "moduleResolution": "Node",
     "target": "ES2018",
-    "strict": true
+    "strict": true,
+    "declaration": true
   },
   "include": ["src/**/*.ts"]
 }

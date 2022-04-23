@@ -1,17 +1,13 @@
-import betterAjvErrors from "better-ajv-errors";
-import { JSONSchema } from "json-schema-to-ts";
-import { createAjv } from "./ajv";
-import { Options } from "ajv";
+import type { FromSchema, JSONSchema } from "json-schema-to-ts";
+import type { Options } from "ajv";
+import { makeEnsureType } from "./makeEnsureType";
 
-export function makeAssertType<Type>(schema: JSONSchema, ajvOptions?: Options) {
-  function assert(data: unknown): asserts data is Type {
-    const validate = createAjv(ajvOptions).compile(schema);
-    validate(data);
-    const { errors } = validate;
-    if (errors) {
-      const errorMessage = betterAjvErrors(schema, data, errors);
-      throw new TypeError(errorMessage);
-    }
-  }
-  return assert;
+export function makeAssertType<Schema extends JSONSchema>(
+  schema: Schema,
+  ajvOptions?: Options
+): (data: unknown) => asserts data is FromSchema<Schema> {
+  const ensureType = makeEnsureType(schema, ajvOptions);
+  return function assert(data: unknown): asserts data is FromSchema<Schema> {
+    ensureType(data);
+  };
 }

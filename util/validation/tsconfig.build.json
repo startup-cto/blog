@@ -2,8 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "build",
-    "declaration": true
+    "outDir": "build"
   },
   "files": ["src/index.ts"]
 }
