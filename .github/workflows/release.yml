@@ -35,9 +35,9 @@ jobs:
       - name: Install Packages
         run: node ../common/scripts/install-run-rush.js install
       - name: Build
-        run: node ../common/scripts/install-run-rush.js build --from git:origin/${{ github.event.before }}
+        run: node ../common/scripts/install-run-rush.js build --from git:${{ github.event.before }}
       - name: Test
-        run: node ../common/scripts/install-run-rush.js test --impacted-by git:origin/${{ github.event.before }}
+        run: node ../common/scripts/install-run-rush.js test --impacted-by git:${{ github.event.before }}
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -45,6 +45,6 @@ jobs:
           role-session-name: GitHubDeploymentSession
           aws-region: eu-central-1
       - name: Release
-        run: node ../common/scripts/install-run-rush.js release --impacted-by git:origin/${{ github.event.before }}
+        run: node ../common/scripts/install-run-rush.js release --impacted-by git:${{ github.event.before }}
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
