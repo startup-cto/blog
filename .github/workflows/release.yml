@@ -26,11 +26,11 @@ jobs:
         with:
           node-version: '16'
       - name: Install Packages
-        run: node ../common/scripts/install-run-rush.js install --to git:$LAST_COMMIT
+        run: node ../common/scripts/install-run-rush.js install --to git:${LAST_COMMIT}
       - name: Build
-        run: node ../common/scripts/install-run-rush.js build --to git:$LAST_COMMIT
+        run: node ../common/scripts/install-run-rush.js build --to git:${LAST_COMMIT}
       - name: Test
-        run: node ../common/scripts/install-run-rush.js test --to git:$LAST_COMMIT
+        run: node ../common/scripts/install-run-rush.js test --to git:${LAST_COMMIT}
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -38,6 +38,6 @@ jobs:
           role-session-name: GitHubDeploymentSession
           aws-region: eu-central-1
       - name: Release
-        run: node ../common/scripts/install-run-rush.js release --to git:$LAST_COMMIT
+        run: node ../common/scripts/install-run-rush.js release --to git:${LAST_COMMIT}
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
