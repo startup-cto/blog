@@ -5,8 +5,12 @@ on:
       - main
 
 permissions:
-  id-token: write
+  # For checking out the repository
   contents: read
+  # For caching
+  actions: write
+  # For configuring AWS credentials
+  id-token: write
 
 jobs:
   release:
@@ -14,8 +18,6 @@ jobs:
     defaults:
       run:
         working-directory: blog
-    env:
-      LAST_COMMIT: origin/${{ github.event.before }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -25,12 +27,17 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v3
+        with:
+          path: common/temp/pnpm-store
+          key: ${{ runner.os }}-pnpm-v1-${{ hashFiles('common/config/rush/pnpm-lock.yaml') }}
       - name: Install Packages
-        run: node ../common/scripts/install-run-rush.js install --to git:${LAST_COMMIT}
+        run: node ../common/scripts/install-run-rush.js install
       - name: Build
-        run: node ../common/scripts/install-run-rush.js build --to git:${LAST_COMMIT}
+        run: node ../common/scripts/install-run-rush.js build --from git:origin/${{ github.event.before }}
       - name: Test
-        run: node ../common/scripts/install-run-rush.js test --to git:${LAST_COMMIT}
+        run: node ../common/scripts/install-run-rush.js test --impacted-by git:origin/${{ github.event.before }}
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -38,6 +45,6 @@ jobs:
           role-session-name: GitHubDeploymentSession
           aws-region: eu-central-1
       - name: Release
-        run: node ../common/scripts/install-run-rush.js release --to git:${LAST_COMMIT}
+        run: node ../common/scripts/install-run-rush.js release --impacted-by git:origin/${{ github.event.before }}
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
