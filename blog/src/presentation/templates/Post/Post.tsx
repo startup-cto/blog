@@ -22,7 +22,6 @@ export function Post({ post }: Props) {
         tags={post.tags}
         title={post.title}
         type="article"
-        updatedAt={post.updatedAt ? new Date(post.updatedAt) : undefined}
       />
       <SmallHeader />
       <div className={styles.container}>

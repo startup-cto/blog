@@ -11,7 +11,6 @@ export class DraftPostMock implements DraftPost {
   slug?: string;
   tags?: string[];
   title?: string;
-  updatedAt?: string;
   fileName = `/draftFile-${uuid()}.md`;
 
   constructor(override: Partial<DraftPost> = {}, content?: string) {

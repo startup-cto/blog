@@ -12,7 +12,6 @@ export class PublishedPostMock implements PublishedPost {
   tags: string[] = ["React", "tdd"];
   title: string = "TDD in a React frontend";
   publishedAt: string = "2021-01-19T22:32:26.000Z";
-  updatedAt: string = "2021-01-19T22:40:10.000Z";
   fileName = `/draftFile-${uuid()}.md`;
 
   constructor(override: Partial<PublishedPost> = {}, content?: string) {

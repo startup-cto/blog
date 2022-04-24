@@ -2,7 +2,6 @@
 title: How to read any startup's source code
 slug: how-to-read-any-startups-source-code
 publishedAt: 2021-02-13T10:33:00.000Z
-updatedAt: 2021-02-13T10:59:05.000Z
 tags:
 - Marketing
 - Competitive Analysis

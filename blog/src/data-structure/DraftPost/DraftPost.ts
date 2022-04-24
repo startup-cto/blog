@@ -1,21 +1,19 @@
-import { compile, TypeOf, v } from "suretype";
+import { type FromSchema, makeIsType } from "validation";
 
-export const draftPostSchema = v.object({
-  title: v.string(),
-  draft: v.boolean().const(true).required(),
-  slug: v.string(),
-  publishedAt: v.string().format("date-time"),
-  updatedAt: v.string().format("date-time"),
-  tags: v.array(v.string()),
-  excerpt: v.string(),
-  previewImage: v.string().format("uri-reference"),
-});
+export const draftPostSchema = {
+  title: "draftPost",
+  type: "object",
+  properties: {
+    title: { type: "string" },
+    draft: { const: true },
+    slug: { type: "string" },
+    publishedAt: { type: "string", format: "date-time" },
+    tags: { type: "array", items: { type: "string" } },
+    excerpt: { type: "string" },
+    previewImage: { type: "string", format: "uri-reference" },
+  },
+  required: ["draft"],
+} as const;
 
-export type DraftPost = TypeOf<typeof draftPostSchema>;
-
-export const isDraftPost: (data: unknown) => data is DraftPost = compile(
-  draftPostSchema,
-  {
-    simple: true,
-  }
-);
+export type DraftPost = FromSchema<typeof draftPostSchema>;
+export const isDraftPost = makeIsType<DraftPost>(draftPostSchema);

@@ -1,20 +1,20 @@
-import { compile, TypeOf, v } from "suretype";
-import { never } from "../never";
+import { type FromSchema, makeIsType } from "validation";
 
-export const publishedPostSchema = v.object({
-  draft: never(),
-  title: v.string().required(),
-  slug: v.string().required(),
-  publishedAt: v.string().format("date-time").required(),
-  updatedAt: v.string().format("date-time").required(),
-  tags: v.array(v.string()),
-  excerpt: v.string().required(),
-  previewImage: v.string().format("uri-reference"),
-});
+export const publishedPostSchema = {
+  title: "publishedPost",
+  type: "object",
+  properties: {
+    title: { type: "string" },
+    draft: { not: {} },
+    slug: { type: "string" },
+    publishedAt: { type: "string", format: "date-time" },
+    tags: { type: "array", items: { type: "string" } },
+    excerpt: { type: "string" },
+    previewImage: { type: "string", format: "uri-reference" },
+  },
+  required: ["title", "slug", "excerpt", "publishedAt"],
+} as const;
 
-export type PublishedPost = TypeOf<typeof publishedPostSchema>;
+export type PublishedPost = FromSchema<typeof publishedPostSchema>;
 
-export const isPublishedPost: (data: unknown) => data is PublishedPost =
-  compile(publishedPostSchema, {
-    simple: true,
-  });
+export const isPublishedPost = makeIsType<PublishedPost>(publishedPostSchema);

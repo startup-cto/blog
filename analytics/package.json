@@ -16,7 +16,7 @@
     "@aws/dynamodb-data-mapper": "^0.7.3",
     "@aws/dynamodb-expressions": "^0.7.3",
     "@lambda-middleware/cors": "^2.0.0",
-    "suretype": "^2.4.1",
+    "validation": "workspace:*",
     "webpack": "~5.72.0"
   },
   "devDependencies": {

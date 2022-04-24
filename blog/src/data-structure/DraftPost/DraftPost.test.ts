@@ -15,7 +15,6 @@ describe("DraftPost", () => {
       title: "10 bad TypeScript habits to break this year",
       slug: "10-bad-typescript-habits-to-break-this-year",
       publishedAt: "2021-01-21T21:01:02.000Z",
-      updatedAt: "2021-02-13T10:40:00.000Z",
       previewImage: "/images/teaser/filename.png",
       tags: ["TypeScript"],
       excerpt:

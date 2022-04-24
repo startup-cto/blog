@@ -1,16 +1,27 @@
-import { compile, v } from "suretype";
+import { FromSchema, makeEnsureType } from "validation";
 
-const configSchema = v.object({
-  maxScatter: v.number().integer().gte(1).required(),
-  tableName: v.string().required(),
-  partitionKey: v.string().required(),
-  sortKey: v.string().required(),
-  ttlAttribute: v.string().required(),
-});
+const configSchema = {
+  type: "object",
+  properties: {
+    maxScatter: { type: "integer", minimum: 1 },
+    tableName: { type: "string" },
+    partitionKey: { type: "string" },
+    sortKey: { type: "string" },
+    ttlAttribute: { type: "string" },
+  },
+  required: [
+    "maxScatter",
+    "tableName",
+    "partitionKey",
+    "sortKey",
+    "ttlAttribute",
+  ],
+} as const;
 
-const ensureConfig = compile(configSchema, {
-  ensure: true,
-  ajvOptions: { coerceTypes: true },
+type Config = FromSchema<typeof configSchema>;
+
+const ensureConfig = makeEnsureType<Config>(configSchema, {
+  coerceTypes: true,
 });
 
 export const config = ensureConfig({
