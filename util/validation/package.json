@@ -2,7 +2,8 @@
   "name": "validation",
   "version": "1.0.0",
   "private": true,
-  "main": "build",
+  "main": "./build",
+  "types": "./build/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "test": "run-p test:*",
