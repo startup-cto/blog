@@ -1,0 +1,10 @@
+pull_request_rules:
+  - name: Merge tested PRs from the repo owner
+    conditions:
+      - author=dbartholomae
+      - base=main
+      - status-success=Test
+    actions:
+      merge:
+        method: merge
+
