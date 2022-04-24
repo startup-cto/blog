@@ -15,7 +15,7 @@ jobs:
       run:
         working-directory: blog
     env:
-      $LAST_COMMIT: origin/${{ github.event.before }}
+      LAST_COMMIT: origin/${{ github.event.before }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
