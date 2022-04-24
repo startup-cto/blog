@@ -1,5 +1,7 @@
-import { type FromSchema, JSONSchema } from "json-schema-to-ts";
-import { Options } from "ajv";
+import type { JSONSchema } from "json-schema-to-ts";
+import type { Options } from "ajv";
+
+import type { FromSchema } from "./FromSchema";
 import { makeEnsureType } from "./makeEnsureType";
 
 export function makeIsType<Schema extends JSONSchema>(
