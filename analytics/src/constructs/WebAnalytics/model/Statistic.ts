@@ -1,5 +1,5 @@
 import { analyticsEventSchemaProps } from "./AnalyticsEvent";
-import { FromSchema, makeEnsureType } from "validation";
+import { FromSchema } from "validation";
 
 const statisticSchema = {
   type: "object",
@@ -11,7 +11,3 @@ const statisticSchema = {
 } as const;
 
 export type Statistic = FromSchema<typeof statisticSchema>;
-
-export const ensureStatistic = makeEnsureType(statisticSchema, {
-  removeAdditional: "all",
-});

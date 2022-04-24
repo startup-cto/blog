@@ -1,15 +1,14 @@
 import type { JSONSchema } from "json-schema-to-ts";
 import type { Options } from "ajv";
-import type { FromSchema } from "./FromSchema";
 
 import { makeEnsureType } from "./makeEnsureType";
 
-export function makeAssertType<Schema extends JSONSchema>(
-  schema: Schema,
+export function makeAssertType<Type>(
+  schema: JSONSchema,
   ajvOptions?: Options
-): (data: unknown) => asserts data is FromSchema<Schema> {
+): (data: unknown) => asserts data is Type {
   const ensureType = makeEnsureType(schema, ajvOptions);
-  return function assert(data: unknown): asserts data is FromSchema<Schema> {
+  return function assert(data: unknown): asserts data is Type {
     ensureType(data);
   };
 }

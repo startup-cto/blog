@@ -3,15 +3,10 @@ import type { Options } from "ajv";
 
 import betterAjvErrors from "better-ajv-errors";
 import { klona as clone } from "klona";
-
-import type { FromSchema } from "./FromSchema";
 import { createAjv } from "./ajv";
 
-export function makeEnsureType<Schema extends JSONSchema>(
-  schema: Schema,
-  ajvOptions?: Options
-) {
-  return function ensure(data: unknown): FromSchema<Schema> {
+export function makeEnsureType<Type>(schema: JSONSchema, ajvOptions?: Options) {
+  return function ensure(data: unknown): Type {
     const validate = createAjv(ajvOptions).compile(schema);
     const clonedData = clone(data);
     validate(clonedData);
@@ -20,6 +15,6 @@ export function makeEnsureType<Schema extends JSONSchema>(
       const errorMessage = betterAjvErrors(schema, clonedData, errors);
       throw new TypeError(errorMessage);
     }
-    return clonedData as FromSchema<Schema>;
+    return clonedData as Type;
   };
 }

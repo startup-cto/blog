@@ -3,7 +3,7 @@ import { makeIsType } from "./makeIsType";
 describe("makeIsType", () => {
   const fooSchema = {
     const: "foo",
-  };
+  } as const;
 
   it("creates a function that returns true for data fitting the schema", () => {
     const isFoo = makeIsType(fooSchema);

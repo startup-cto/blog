@@ -1,4 +1,5 @@
 import { makeEnsureType } from "validation";
+import { FromSchema } from "validation/src";
 
 export const analyticsEventInputSchemaProps = {
   path: { type: "string", format: "uri-reference" },
@@ -15,7 +16,9 @@ export const analyticsEventInputSchema = {
   required: ["path"],
 } as const;
 
-export const ensureAnalyticsEventInput = makeEnsureType(
+type AnalyticsEventInput = FromSchema<typeof analyticsEventInputSchema>;
+
+export const ensureAnalyticsEventInput = makeEnsureType<AnalyticsEventInput>(
   analyticsEventInputSchema,
   { removeAdditional: "all" }
 );

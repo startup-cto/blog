@@ -15,6 +15,9 @@ const analyticsEventSchema = {
 
 export type AnalyticsEvent = FromSchema<typeof analyticsEventSchema>;
 
-export const ensureAnalyticsEvent = makeEnsureType(analyticsEventSchema, {
-  removeAdditional: "all",
-});
+export const ensureAnalyticsEvent = makeEnsureType<AnalyticsEvent>(
+  analyticsEventSchema,
+  {
+    removeAdditional: "all",
+  }
+);

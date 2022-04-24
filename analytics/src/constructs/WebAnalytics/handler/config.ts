@@ -1,4 +1,4 @@
-import { makeEnsureType } from "validation";
+import { FromSchema, makeEnsureType } from "validation";
 
 const configSchema = {
   type: "object",
@@ -18,7 +18,9 @@ const configSchema = {
   ],
 } as const;
 
-const ensureConfig = makeEnsureType(configSchema, {
+type Config = FromSchema<typeof configSchema>;
+
+const ensureConfig = makeEnsureType<Config>(configSchema, {
   coerceTypes: true,
 });
 

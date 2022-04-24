@@ -16,4 +16,4 @@ export const draftPostSchema = {
 } as const;
 
 export type DraftPost = FromSchema<typeof draftPostSchema>;
-export const isDraftPost = makeIsType(draftPostSchema);
+export const isDraftPost = makeIsType<DraftPost>(draftPostSchema);

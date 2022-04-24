@@ -17,4 +17,4 @@ export const publishedPostSchema = {
 
 export type PublishedPost = FromSchema<typeof publishedPostSchema>;
 
-export const isPublishedPost = makeIsType(publishedPostSchema);
+export const isPublishedPost = makeIsType<PublishedPost>(publishedPostSchema);
