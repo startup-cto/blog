@@ -1,30 +1,21 @@
-import { compile, extractSingleJsonSchema, TypeOf, v } from "suretype";
+import { makeEnsureType } from "validation";
 
 export const analyticsEventInputSchemaProps = {
-  path: v.string().format("uri-reference").required(),
-  utmSource: v.string(),
-  utmMedium: v.string(),
-  utmCampaign: v.string(),
-  utmTerm: v.string(),
-  utmContent: v.string(),
-};
+  path: { type: "string", format: "uri-reference" },
+  utmSource: { type: "string" },
+  utmMedium: { type: "string" },
+  utmCampaign: { type: "string" },
+  utmTerm: { type: "string" },
+  utmContent: { type: "string" },
+} as const;
 
-const analyticsEventInputSuretypeSchema = v.object(
-  analyticsEventInputSchemaProps
+export const analyticsEventInputSchema = {
+  type: "object",
+  properties: analyticsEventInputSchemaProps,
+  required: ["path"],
+} as const;
+
+export const ensureAnalyticsEventInput = makeEnsureType(
+  analyticsEventInputSchema,
+  { removeAdditional: "all" }
 );
-
-export type AnalyticsEventInput = TypeOf<
-  typeof analyticsEventInputSuretypeSchema
->;
-
-export const ensureAnalyticsEventInput = compile(
-  analyticsEventInputSuretypeSchema,
-  {
-    ensure: true,
-    ajvOptions: { removeAdditional: "all" },
-  }
-);
-
-export const analyticsEventInputSchema = extractSingleJsonSchema(
-  analyticsEventInputSuretypeSchema
-).schema;

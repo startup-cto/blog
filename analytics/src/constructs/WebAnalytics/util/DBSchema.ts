@@ -12,5 +12,7 @@ export type DBSchema<Type extends Record<string, unknown>> = {
     ? SchemaType<"Number">
     : Type[Key] extends Date | undefined
     ? SchemaType<"Date">
+    : Type[Key] extends `${string}`
+    ? SchemaType<"String">
     : never;
 };

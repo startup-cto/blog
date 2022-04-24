@@ -1,20 +1,20 @@
-import { compile, extractSingleJsonSchema, TypeOf, v } from "suretype";
+import { FromSchema, makeEnsureType } from "validation";
 import { analyticsEventInputSchemaProps } from "./AnalyticsEventInput";
 
 export const analyticsEventSchemaProps = {
-  timestamp: v.string().format("date-time").required(),
-  name: v.string().enum("pageview").required(),
+  timestamp: { type: "string", format: "date-time" },
+  name: { enum: ["pageview"] },
   ...analyticsEventInputSchemaProps,
-};
-const analyticsEventSuretypeSchema = v.object(analyticsEventSchemaProps);
+} as const;
 
-export type AnalyticsEvent = TypeOf<typeof analyticsEventSuretypeSchema>;
+const analyticsEventSchema = {
+  type: "object",
+  properties: analyticsEventSchemaProps,
+  required: ["path", "name", "timestamp"],
+} as const;
 
-export const ensureAnalyticsEvent = compile(analyticsEventSuretypeSchema, {
-  ensure: true,
-  ajvOptions: { removeAdditional: "all" },
+export type AnalyticsEvent = FromSchema<typeof analyticsEventSchema>;
+
+export const ensureAnalyticsEvent = makeEnsureType(analyticsEventSchema, {
+  removeAdditional: "all",
 });
-
-export const analyticsEventSchema = extractSingleJsonSchema(
-  analyticsEventSuretypeSchema
-).schema;

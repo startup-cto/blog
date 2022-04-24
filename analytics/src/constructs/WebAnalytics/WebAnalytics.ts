@@ -3,6 +3,7 @@ import { AttributeType, BillingMode, Table } from "aws-cdk-lib/aws-dynamodb";
 import { Duration, RemovalPolicy } from "aws-cdk-lib";
 import {
   ApiKey,
+  JsonSchema,
   LambdaIntegration,
   RestApi,
   UsagePlan,
@@ -88,7 +89,7 @@ export class WebAnalytics extends Construct {
     const analyticsEventModel = api.addModel("AnalyticsEvent", {
       modelName: "AnalyticsEvent",
       contentType: "application/json",
-      schema: analyticsEventInputSchema,
+      schema: analyticsEventInputSchema as unknown as JsonSchema,
     });
     const collectEventMethod = api.root.addMethod(
       "POST",
