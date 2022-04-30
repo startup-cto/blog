@@ -1,4 +1,4 @@
 {
-  "app": "node -r @swc-node/register bin/deploy.ts",
+  "app": "node -r @swc-node/register bin/pipeline.ts",
   "watch": {}
 }

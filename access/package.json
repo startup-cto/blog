@@ -7,7 +7,7 @@
     "build": "run-s build:*",
     "build:synth": "cdk synth",
     "build:zip": "cd cdk.out && zip -r ../output.zip .",
-    "cdk": "cdk",
+    "deploy": "cdk deploy --app=\"node -r @swc-node/register bin/deploy.ts\" **",
     "release": "aws s3 cp ./output.zip s3://accesspipelinestack-bucket83908e77-1ko1d37f56ydg/",
     "test": "run-p test:*",
     "test:lint": "eslint src/** bin/**"
