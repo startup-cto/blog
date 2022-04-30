@@ -10,9 +10,6 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:jest/recommended",
-    "plugin:jest/style",
-    "plugin:jest-formatting/strict",
     "prettier",
   ],
   rules: {
