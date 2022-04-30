@@ -3,6 +3,17 @@
 
   "commands": [
      {
+       "name": "build",
+       "commandKind": "bulk",
+       "summary": "Build all projects that haven't been built, or have changed since they were last built",
+       "incremental": true,
+       "enableParallelism": true,
+       "allowWarningsInSuccessfulBuild": true,
+       "ignoreMissingScript": true,
+       "ignoreDependencyOrder": false,
+       "safeForSimultaneousRushProcesses": false
+     },
+     {
        "commandKind": "bulk",
        "name": "test",
        "summary": "Ensure the package is mergeable",
