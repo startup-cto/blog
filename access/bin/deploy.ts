@@ -12,8 +12,7 @@ const app = new App();
 new PipelineStack(app, "AccessPipelineStack", {
   env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: "eu-central-1" },
   deploymentRoleName: githubDeploymentRoleName,
-  stageFactory: (scope: Construct) =>
-    new AccessStage(scope, "AccessStage", { githubDeploymentRoleName }),
+  stageFactory: (scope: Construct) => new AccessStage(scope, "AccessStage"),
   synthZipFileName: synthZipFileName,
 });
 
