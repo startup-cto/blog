@@ -1,8 +1,8 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
 
-  "rushVersion": "5.59.2",
-  "pnpmVersion": "6.7.1",
+  "rushVersion": "5.68.0",
+  "pnpmVersion": "6.32.11",
 
   "pnpmOptions": {
     "strictPeerDependencies": true,

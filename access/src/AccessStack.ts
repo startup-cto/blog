@@ -7,8 +7,12 @@ import {
 } from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
 
+interface Props extends StackProps {
+  githubDeploymentRoleName: string;
+}
+
 export class AccessStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps) {
+  constructor(scope: Construct, id: string, props: Props) {
     super(scope, id, props);
 
     const provider = new OpenIdConnectProvider(this, "GithubProvider", {
@@ -17,6 +21,7 @@ export class AccessStack extends Stack {
     });
 
     const role = new Role(this, "GitHubDeploymentRole", {
+      roleName: props.githubDeploymentRoleName,
       description: "Role assumed by GitHub when deploying an application",
       assumedBy: new OpenIdConnectPrincipal(provider, {
         "ForAllValues:StringEquals": {
