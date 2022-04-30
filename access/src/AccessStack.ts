@@ -6,6 +6,7 @@ import {
   Role,
 } from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
+import { gitHubDeploymentRoleName } from "./gitHubDeploymentRoleName";
 
 export class AccessStack extends Stack {
   constructor(scope: Construct, id: string, props: StackProps) {
@@ -17,6 +18,7 @@ export class AccessStack extends Stack {
     });
 
     const role = new Role(this, "GitHubDeploymentRole", {
+      roleName: gitHubDeploymentRoleName,
       description: "Role assumed by GitHub when deploying an application",
       assumedBy: new OpenIdConnectPrincipal(provider, {
         "ForAllValues:StringEquals": {
