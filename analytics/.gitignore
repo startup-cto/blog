@@ -27,6 +27,7 @@ build-storybook.log
 
 # CDK
 cdk.out
+output.zip
 
 # Build
 build

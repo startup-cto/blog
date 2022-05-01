@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 import "source-map-support/register";
 import { App } from "aws-cdk-lib";
-import { StartupBlogStack } from "../src/StartupBlogStack";
+import { AnalyticsStack } from "../src/AnalyticsStack";
 
 const app = new App();
 
-new StartupBlogStack(app, "StartupBlogStack", {
+new AnalyticsStack(app, "StartupBlogStack", {
   env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: "eu-central-1" },
 });
 
