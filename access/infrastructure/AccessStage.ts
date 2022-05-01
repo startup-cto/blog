@@ -1,7 +1,7 @@
 import { Stage, StageProps } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { AccessStack } from "./AccessStack";
-import { githubDeploymentRoleName } from "../config/githubDeploymentRoleName";
+import { githubDeploymentRoleName } from "../src";
 
 export class AccessStage extends Stage {
   constructor(scope: Construct, id: string, props?: StageProps) {

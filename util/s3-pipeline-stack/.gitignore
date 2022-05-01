@@ -31,6 +31,3 @@ output.zip
 
 # Build
 build
-
-# Lock file is managed centrally by rush, but a local copy is needed for cdk
-pnpm-lock.yaml

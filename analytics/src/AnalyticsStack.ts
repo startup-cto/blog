@@ -10,8 +10,8 @@ import { ApiGateway } from "aws-cdk-lib/aws-route53-targets";
 import { domainName, origin } from "./constants/domainName";
 import { publicApiKey } from "./constants/publicApiKey";
 
-export class StartupBlogStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps) {
+export class AnalyticsStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
     const hostedZone = HostedZone.fromLookup(this, "HostedZone", {
