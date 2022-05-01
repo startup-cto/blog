@@ -3,7 +3,7 @@ pull_request_rules:
     conditions:
       - author=dbartholomae
       - base=main
-      - status-success=Test
+      - status-success=test
     actions:
       merge:
         method: merge
