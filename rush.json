@@ -36,6 +36,10 @@
     {
       "packageName": "validation",
       "projectFolder": "util/validation"
+    },
+    {
+      "packageName": "s3-pipeline-stack",
+      "projectFolder": "util/s3-pipeline-stack"
     }
   ]
 }
