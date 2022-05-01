@@ -21,18 +21,18 @@
   },
 
   "projects": [
-     {
-       "packageName": "blog",
-       "projectFolder": "blog"
-     },
-     {
-       "packageName": "analytics",
-       "projectFolder": "analytics"
-     },
-     {
-       "packageName": "access",
-       "projectFolder": "access"
-     },
+    {
+      "packageName": "blog",
+      "projectFolder": "blog"
+    },
+    {
+      "packageName": "analytics",
+      "projectFolder": "analytics"
+    },
+    {
+      "packageName": "access",
+      "projectFolder": "access"
+    },
     {
       "packageName": "validation",
       "projectFolder": "util/validation"
