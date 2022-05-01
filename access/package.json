@@ -10,7 +10,7 @@
     "deploy": "cdk deploy --app=\"node -r @swc-node/register bin/deploy.ts\" **",
     "release": "aws s3 cp ./output.zip s3://accesspipelinestack-bucket83908e77-1ko1d37f56ydg/",
     "test": "run-p test:*",
-    "test:lint": "eslint src/** bin/**"
+    "test:lint": "eslint src/** infrastructure/** bin/**"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.57",

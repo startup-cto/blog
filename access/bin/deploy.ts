@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import "source-map-support/register";
 import { App } from "aws-cdk-lib";
-import { AccessStage } from "../src/AccessStage";
+import { AccessStage } from "../infrastructure/AccessStage";
 
 const app = new App();
 
