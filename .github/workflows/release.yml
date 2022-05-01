@@ -27,6 +27,15 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
+      - name: Get pnpm version
+        id: pnpmVersion
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: 'rush.json'
+          prop_path: 'pnpmVersion'
+      - uses: pnpm/action-setup@v2.1.0
+        with:
+          version: ${{steps.pnpmVersion.outputs.prop}}
       - name: Cache pnpm dependencies
         uses: actions/cache@v3
         with:
