@@ -6,6 +6,7 @@ applications:
         preBuild:
           commands:
             - rm -rf ../node_modules
+            - npm install -g pnpm
             - node ../common/scripts/install-run-rush.js install --to .
         build:
           commands:
