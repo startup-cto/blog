@@ -17,14 +17,14 @@ const twitterHandle = "@the_startup_cto";
 const imageWidth = 2553;
 const imageHeight = 1126;
 const logoUrl =
-  "http://startup-cto.net/content/images/2021/03/Avatar-240x240.jpg";
+  "https://startup-cto.net/content/images/2021/03/Avatar-240x240.jpg";
 const logoWidth = 60;
 const logoHeight = 60;
 const profilePictureUrl =
-  "http://startup-cto.net/content/images/2020/08/2015-08-20-15.06.07-quadratisch-1.jpg";
+  "https://startup-cto.net/content/images/2020/08/2015-08-20-15.06.07-quadratisch-1.jpg";
 const profilePictureWidth = 993;
 const profilePictureHeight = 993;
-const authorUrl = "http://twitter.com/the_startup_cto";
+const authorUrl = "https://twitter.com/the_startup_cto";
 const assetPrefix = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function Head({
