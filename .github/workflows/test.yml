@@ -21,13 +21,17 @@ jobs:
           node-version: '16'
       - name: Get pnpm version
         id: pnpmVersion
-        uses: notiz-dev/github-action-json-property@release
+        uses: actions/github-script@v6
         with:
-          path: 'rush.json'
-          prop_path: 'pnpmVersion'
+          script: |
+            const { readFile } = require('fs/promises');
+            const rushFile = await readFile('./rush.json');
+            const config = JSON.parse(rushFile);
+            return config.pnpmVersion;
+          result-encoding: string
       - uses: pnpm/action-setup@v2
         with:
-          version: ${{steps.pnpmVersion.outputs.prop}}
+          version: ${{steps.pnpmVersion.outputs.result}}
       - name: Install Packages
         run: node ../common/scripts/install-run-rush.js install --from git:origin/main
       - name: Build
