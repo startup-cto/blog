@@ -12,11 +12,11 @@ jobs:
         working-directory: blog
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Use Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
       - name: Get pnpm version
@@ -25,7 +25,7 @@ jobs:
         with:
           path: 'rush.json'
           prop_path: 'pnpmVersion'
-      - uses: pnpm/action-setup@v2.1.0
+      - uses: pnpm/action-setup@v2
         with:
           version: ${{steps.pnpmVersion.outputs.prop}}
       - name: Install Packages
