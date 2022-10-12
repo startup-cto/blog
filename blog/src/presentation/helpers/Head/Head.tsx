@@ -37,11 +37,7 @@ export function Head({
   type,
 }: Props) {
   const postUrl = `${baseUrl}${slug}${slug === "" ? "" : "/"}`;
-  const image = {
-    url: imagePath ? `${baseUrl}${imagePath}` : logoUrl,
-    width: imageWidth,
-    height: imageHeight,
-  };
+  const imageUrl = imagePath && `${baseUrl}${imagePath}`;
   const updatedAt = publishedAt;
 
   return (
@@ -72,7 +68,7 @@ export function Head({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={postUrl} />
-      <meta property="og:image" content={image.url} />
+      {imageUrl && <meta property="og:image" content={imageUrl} />}
       {publishedAt && (
         <meta
           property="article:published_time"
@@ -97,7 +93,7 @@ export function Head({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:url" content={postUrl} />
-      <meta name="twitter:image" content={image.url} />
+      {imageUrl && <meta name="twitter:image" content={imageUrl} />}
       <meta name="twitter:label1" content="Written by" />
       <meta name="twitter:data1" content={author} />
       {tags && (
@@ -108,8 +104,12 @@ export function Head({
       )}
       <meta name="twitter:site" content={twitterHandle} />
       <meta name="twitter:creator" content={twitterHandle} />
-      <meta property="og:image:width" content={image.width.toString()} />
-      <meta property="og:image:height" content={image.height.toString()} />
+      {imageUrl && (
+        <>
+          <meta property="og:image:width" content={imageWidth.toString()} />
+          <meta property="og:image:height" content={imageHeight.toString()} />
+        </>
+      )}
 
       <script type="application/ld+json">
         {JSON.stringify({
@@ -139,14 +139,16 @@ export function Head({
           },
           headline: title,
           url: postUrl,
-          image: {
-            "@type": "ImageObject",
-            url: image.url,
-            width: image.width,
-            height: image.height,
-          },
           ...(publishedAt && { datePublished: publishedAt.toISOString() }),
           ...(updatedAt && { dateModified: updatedAt.toISOString() }),
+          ...(imageUrl && {
+            image: {
+              "@type": "ImageObject",
+              url: imageUrl,
+              width: imageWidth,
+              height: imageHeight,
+            },
+          }),
           ...(tags && { keywords: tags.join(", ") }),
           description,
           mainEntityOfPage: {
