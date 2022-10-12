@@ -111,52 +111,55 @@ export function Head({
         </>
       )}
 
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": type === "article" ? "Article" : "WebSite",
-          publisher: {
-            "@type": "Organization",
-            name: siteName,
-            url: baseUrl,
-            logo: {
-              "@type": "ImageObject",
-              url: logoUrl,
-              width: logoWidth,
-              height: logoHeight,
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": type === "article" ? "Article" : "WebSite",
+            publisher: {
+              "@type": "Organization",
+              name: siteName,
+              url: baseUrl,
+              logo: {
+                "@type": "ImageObject",
+                url: logoUrl,
+                width: logoWidth,
+                height: logoHeight,
+              },
             },
-          },
-          author: {
-            "@type": "Person",
-            name: author,
-            image: {
-              "@type": "ImageObject",
-              url: profilePictureUrl,
-              width: profilePictureWidth,
-              height: profilePictureHeight,
+            author: {
+              "@type": "Person",
+              name: author,
+              image: {
+                "@type": "ImageObject",
+                url: profilePictureUrl,
+                width: profilePictureWidth,
+                height: profilePictureHeight,
+              },
+              url: authorUrl,
             },
-            url: authorUrl,
-          },
-          headline: title,
-          url: postUrl,
-          ...(publishedAt && { datePublished: publishedAt.toISOString() }),
-          ...(updatedAt && { dateModified: updatedAt.toISOString() }),
-          ...(imageUrl && {
-            image: {
-              "@type": "ImageObject",
-              url: imageUrl,
-              width: imageWidth,
-              height: imageHeight,
+            headline: title,
+            url: postUrl,
+            ...(publishedAt && { datePublished: publishedAt.toISOString() }),
+            ...(updatedAt && { dateModified: updatedAt.toISOString() }),
+            ...(imageUrl && {
+              image: {
+                "@type": "ImageObject",
+                url: imageUrl,
+                width: imageWidth,
+                height: imageHeight,
+              },
+            }),
+            ...(tags && { keywords: tags.join(", ") }),
+            description,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": baseUrl,
             },
           }),
-          ...(tags && { keywords: tags.join(", ") }),
-          description,
-          mainEntityOfPage: {
-            "@type": "WebPage",
-            "@id": baseUrl,
-          },
-        })}
-      </script>
+        }}
+      />
     </NextHead>
   );
 }
