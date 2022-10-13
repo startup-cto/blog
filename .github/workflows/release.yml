@@ -37,9 +37,10 @@ jobs:
             const config = JSON.parse(rushFile);
             return config.pnpmVersion;
           result-encoding: string
-      - uses: pnpm/action-setup@v2
-        with:
-          version: ${{steps.pnpmVersion.outputs.result}}
+      - name: Install pnpm
+        run: |
+          corepack enable;
+          corepack prepare pnpm@${{steps.pnpmVersion.outputs.result}} --activate;
       - name: Cache pnpm dependencies
         uses: actions/cache@v3
         with:
