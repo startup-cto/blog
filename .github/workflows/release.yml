@@ -52,7 +52,7 @@ jobs:
       - name: Test
         run: node ../common/scripts/install-run-rush.js test --impacted-by git:${{ github.event.before }}
       - name: Configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v1-node16
         with:
           role-to-assume: arn:aws:iam::112125362830:role/GithubDeploymentRole
           role-session-name: GitHubDeploymentSession
