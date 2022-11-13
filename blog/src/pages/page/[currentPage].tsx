@@ -20,18 +20,18 @@ export async function getStaticPaths() {
 
 export const getStaticProps: GetStaticProps<
   Props,
-  { pageNumber: string }
+  { currentPage: string }
 > = async ({ params }) => {
-  const pageNumber = Number.parseInt(params?.pageNumber ?? "1");
+  const currentPage = Number.parseInt(params?.currentPage ?? "1");
   const posts = await loadPostSummaries();
   const postsOnPage = posts.slice(
-    (pageNumber - 1) * pageSize,
-    pageNumber * pageSize
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
   );
   return {
     props: {
       posts: postsOnPage,
-      currentPage: pageNumber,
+      currentPage,
       maxPage: Math.ceil(posts.length / pageSize),
     },
   };
