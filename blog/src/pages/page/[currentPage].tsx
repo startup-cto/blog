@@ -1,15 +1,12 @@
 import { GetStaticProps } from "next";
 import { Home, Props } from "../../presentation/templates/Home/Home";
-import { loadPostFileNames } from "../../loading-posts/loadPostFileNames";
 import { loadPaginatedPostSummaries } from "../../loading-posts/loadPaginatedPostSummaries";
+import { loadPageCount } from "../../loading-posts/loadPageCount";
 
 export default Home;
 
-const pageSize = 10;
-
 export async function getStaticPaths() {
-  const names = await loadPostFileNames();
-  const pages = Math.ceil(names.length / pageSize);
+  const pages = await loadPageCount();
   return {
     paths: Array.from({ length: pages }).map(
       (_, index) => `/page/${index + 1}`
