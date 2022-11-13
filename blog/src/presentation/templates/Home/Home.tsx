@@ -6,6 +6,7 @@ import {
 } from "../../blocks/PostSummary/PostSummary";
 import { Footer } from "../../blocks/Footer/Footer";
 import styles from "./Home.module.css";
+import { Pagination } from "../../blocks/Pagination/Pagination";
 
 export interface Props {
   currentPage: number;
@@ -28,6 +29,9 @@ export function Home({ currentPage, pageCount, posts }: Props) {
         {posts.map((post) => (
           <PostSummary key={post.slug} post={post} />
         ))}
+        <nav className={styles.pagination}>
+          <Pagination pageCount={pageCount} currentPage={currentPage} />
+        </nav>
       </main>
       <Footer />
     </>
