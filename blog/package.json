@@ -20,7 +20,7 @@
     "analytics": "workspace:*",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
-    "next": "latest",
+    "next": "^12.3.3",
     "next-mdx-remote": "^3.0.8",
     "node-fetch": "^2.6.6",
     "normalize.css": "^8.0.1",
