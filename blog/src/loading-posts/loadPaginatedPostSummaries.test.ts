@@ -21,5 +21,11 @@ describe("loadPaginatedPostSummaries", () => {
         expect.objectContaining({ slug: postFiles[0].slug })
       );
     });
+
+    it("returns pageCount 1", async () => {
+      const { pageCount } = await loadPaginatedPostSummaries();
+
+      expect(pageCount).toBe(1);
+    });
   });
 });
