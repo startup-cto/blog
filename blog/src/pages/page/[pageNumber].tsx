@@ -29,6 +29,10 @@ export const getStaticProps: GetStaticProps<
     pageNumber * pageSize
   );
   return {
-    props: { posts: postsOnPage },
+    props: {
+      posts: postsOnPage,
+      currentPage: pageNumber,
+      maxPage: Math.ceil(posts.length / pageSize),
+    },
   };
 };

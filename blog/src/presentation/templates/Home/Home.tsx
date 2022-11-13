@@ -8,10 +8,12 @@ import { Footer } from "../../blocks/Footer/Footer";
 import styles from "./Home.module.css";
 
 export interface Props {
+  currentPage: number;
+  maxPage: number;
   posts: PostSummaryProps["post"][];
 }
 
-export function Home({ posts }: Props) {
+export function Home({ currentPage, maxPage, posts }: Props) {
   return (
     <>
       <Head
