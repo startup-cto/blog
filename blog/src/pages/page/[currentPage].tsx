@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps<
     props: {
       posts: posts,
       currentPage,
-      maxPage: pageCount,
+      pageCount,
     },
   };
 };

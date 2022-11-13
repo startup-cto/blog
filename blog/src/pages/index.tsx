@@ -11,7 +11,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     props: {
       posts,
       currentPage: 1,
-      maxPage: Math.ceil(posts.length / pageSize),
+      pageCount: Math.ceil(posts.length / pageSize),
     },
   };
 };

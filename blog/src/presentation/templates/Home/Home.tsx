@@ -9,11 +9,11 @@ import styles from "./Home.module.css";
 
 export interface Props {
   currentPage: number;
-  maxPage: number;
+  pageCount: number;
   posts: PostSummaryProps["post"][];
 }
 
-export function Home({ currentPage, maxPage, posts }: Props) {
+export function Home({ currentPage, pageCount, posts }: Props) {
   return (
     <>
       <Head
