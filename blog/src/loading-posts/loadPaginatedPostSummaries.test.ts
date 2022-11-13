@@ -28,4 +28,26 @@ describe("loadPaginatedPostSummaries", () => {
       expect(pageCount).toBe(1);
     });
   });
+
+  describe("with 11 posts", () => {
+    const postFiles = Array.from({ length: 11 }).map(
+      () => new PublishedPostMock()
+    );
+
+    beforeAll(() => {
+      mockPostFiles(postFiles);
+    });
+
+    afterAll(() => {
+      resetPostFiles();
+    });
+
+    it("does not load the summary of the eleventh post", async () => {
+      const { posts } = await loadPaginatedPostSummaries(1);
+
+      expect(posts).not.toContainEqual(
+        expect.objectContaining({ slug: postFiles[10].slug })
+      );
+    });
+  });
 });
