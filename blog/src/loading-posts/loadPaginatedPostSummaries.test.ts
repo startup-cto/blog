@@ -15,7 +15,7 @@ describe("loadPaginatedPostSummaries", () => {
     });
 
     it("loads the summary of the first post", async () => {
-      const { posts } = await loadPaginatedPostSummaries();
+      const { posts } = await loadPaginatedPostSummaries(1);
 
       expect(posts).toContainEqual(
         expect.objectContaining({ slug: postFiles[0].slug })
@@ -23,7 +23,7 @@ describe("loadPaginatedPostSummaries", () => {
     });
 
     it("returns pageCount 1", async () => {
-      const { pageCount } = await loadPaginatedPostSummaries();
+      const { pageCount } = await loadPaginatedPostSummaries(1);
 
       expect(pageCount).toBe(1);
     });
