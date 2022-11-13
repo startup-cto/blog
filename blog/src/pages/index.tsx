@@ -1,17 +1,15 @@
 import { GetStaticProps } from "next";
 import { Home, Props } from "../presentation/templates/Home/Home";
-import { loadPostSummaries } from "../loading-posts/loadPostSummaries";
-
-const pageSize = 10;
+import { loadPaginatedPostSummaries } from "../loading-posts/loadPaginatedPostSummaries";
 
 export default Home;
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const posts = await loadPostSummaries();
+  const { pageCount, posts } = await loadPaginatedPostSummaries(1);
   return {
     props: {
       posts,
       currentPage: 1,
-      pageCount: Math.ceil(posts.length / pageSize),
+      pageCount,
     },
   };
 };
