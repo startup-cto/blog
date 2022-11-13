@@ -23,6 +23,10 @@ export const getStaticProps: GetStaticProps<
   if (!Number.isInteger(currentPage)) {
     return { notFound: true };
   }
+
+  if (currentPage === 1) {
+    return { redirect: { destination: "/", permanent: true } };
+  }
   const { posts, pageCount } = await loadPaginatedPostSummaries(currentPage);
   return {
     props: {
