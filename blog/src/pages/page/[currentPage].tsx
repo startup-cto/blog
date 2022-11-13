@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import { Home, Props } from "../../presentation/templates/Home/Home";
-import { loadPostSummaries } from "../../loading-posts/loadPostSummaries";
 import { loadPostFileNames } from "../../loading-posts/loadPostFileNames";
+import { loadPaginatedPostSummaries } from "../../loading-posts/loadPaginatedPostSummaries";
 
 export default Home;
 
@@ -23,16 +23,12 @@ export const getStaticProps: GetStaticProps<
   { currentPage: string }
 > = async ({ params }) => {
   const currentPage = Number.parseInt(params?.currentPage ?? "1");
-  const posts = await loadPostSummaries();
-  const postsOnPage = posts.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
+  const { posts, pageCount } = await loadPaginatedPostSummaries(currentPage);
   return {
     props: {
-      posts: postsOnPage,
+      posts: posts,
       currentPage,
-      maxPage: Math.ceil(posts.length / pageSize),
+      maxPage: pageCount,
     },
   };
 };
