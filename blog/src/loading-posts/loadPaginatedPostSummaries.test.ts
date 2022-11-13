@@ -49,5 +49,11 @@ describe("loadPaginatedPostSummaries", () => {
         expect.objectContaining({ slug: postFiles[10].slug })
       );
     });
+
+    it("returns pageCount 2", async () => {
+      const { pageCount } = await loadPaginatedPostSummaries(1);
+
+      expect(pageCount).toBe(2);
+    });
   });
 });

@@ -8,5 +8,8 @@ export async function loadPaginatedPostSummaries(currentPage: number) {
     (currentPage - 1) * pageSize,
     currentPage * pageSize
   );
-  return { pageCount: 1, posts: postsOnPage };
+  return {
+    pageCount: Math.ceil(posts.length / pageSize),
+    posts: postsOnPage,
+  };
 }
