@@ -22,7 +22,10 @@ export const getStaticProps: GetStaticProps<
   Props,
   { currentPage: string }
 > = async ({ params }) => {
-  const currentPage = Number.parseInt(params?.currentPage ?? "1");
+  const currentPage = Number.parseInt(params?.currentPage ?? "");
+  if (!Number.isInteger(currentPage)) {
+    return { notFound: true };
+  }
   const { posts, pageCount } = await loadPaginatedPostSummaries(currentPage);
   return {
     props: {
