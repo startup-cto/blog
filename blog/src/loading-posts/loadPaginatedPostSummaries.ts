@@ -1,6 +1,5 @@
 import { loadPostSummaries } from "./loadPostSummaries";
-
-const pageSize = 10;
+import { pageSize } from "./pageSize";
 
 export async function loadPaginatedPostSummaries(currentPage: number) {
   const posts = await loadPostSummaries();
