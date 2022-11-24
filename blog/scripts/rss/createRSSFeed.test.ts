@@ -21,7 +21,6 @@ describe("createRSSFeed", () => {
       slug: "how-to-read-any-startups-source-code",
       tags: ["Marketing", "Competitive Analysis"],
       title: "How to read any startup's source code",
-      updatedAt: publishedAt,
     });
     const rssFeed = createRSSFeed([post]);
 
