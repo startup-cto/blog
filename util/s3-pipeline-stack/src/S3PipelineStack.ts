@@ -20,7 +20,7 @@ export class S3PipelineStack extends Stack {
       this,
       "DeploymentRole",
       props.deploymentRoleName,
-      { defaultPolicyName: `${id}DeploymentPolicy${Names.uniqueId(this)}` }
+      { defaultPolicyName: `DeploymentPolicy${Names.uniqueId(this)}` }
     );
 
     bucket.grantWrite(deploymentRole);
