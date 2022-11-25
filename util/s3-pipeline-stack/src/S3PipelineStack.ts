@@ -1,4 +1,4 @@
-import { CfnOutput, Stack, StackProps, Stage } from "aws-cdk-lib";
+import { CfnOutput, Names, Stack, StackProps, Stage } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { CodePipeline, CodePipelineSource } from "aws-cdk-lib/pipelines";
 import { Bucket } from "aws-cdk-lib/aws-s3";
@@ -19,7 +19,8 @@ export class S3PipelineStack extends Stack {
     const deploymentRole = Role.fromRoleName(
       this,
       "DeploymentRole",
-      props.deploymentRoleName
+      props.deploymentRoleName,
+      { defaultPolicyName: `${id}DeploymentPolicy${Names.uniqueId(this)}` }
     );
 
     bucket.grantWrite(deploymentRole);
