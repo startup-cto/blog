@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { loadToPublishPosts } from "../src/loading-posts/loadToPublishPosts";
 import { ToPublishPost } from "../src/data-structure/ToPublishPost/ToPublishPost";
 import { toPostFile } from "../src/loading-posts/toPostFile/toPostFile";
+import { simpleGit } from "simple-git";
 
 async function publishPosts() {
   const postsToPublish = await loadToPublishPosts();
@@ -17,6 +18,16 @@ async function publishPosts() {
   );
 
   await updatePosts(postsToPublish, now);
+  const git = simpleGit();
+  console.log("Preparing commit...");
+  await git.add(
+    postsToPublish.map((post) => join("content", `${post.slug}.md`))
+  );
+  await git.commit("Add publish date to published posts [skip-ci]");
+  console.log("Changes committed");
+  console.log("Preparing push...");
+  await git.push();
+  console.log("Changes pushed");
 }
 
 async function updatePosts(
