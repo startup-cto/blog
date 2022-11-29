@@ -9,6 +9,7 @@ describe("ToPublishPost", () => {
       excerpt:
         "TypeScript and JavaScript have steadily evolved over the last years, and some of the habits we built over the last decades have become obsolete. Some might never have been meaningful. Here's a list of 10 habits that we all should break.",
       previewImage: "/images/teaser/filename.png",
+      content: "",
     };
 
     expect(isToPublishPost(toPublishPost)).toBe(true);
@@ -23,6 +24,7 @@ describe("ToPublishPost", () => {
       excerpt:
         "TypeScript and JavaScript have steadily evolved over the last years, and some of the habits we built over the last decades have become obsolete. Some might never have been meaningful. Here's a list of 10 habits that we all should break.",
       previewImage: "/images/teaser/filename.png",
+      content: "",
     };
 
     expect(isToPublishPost(publishedPost)).toBe(false);
