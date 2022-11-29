@@ -6,7 +6,7 @@ title: ${post.title}
 slug: ${post.slug}
 publishedAt: ${post.publishedAt}
 tags:${
-    post.tags === undefined
+    post.tags === undefined || post.tags.length === 0
       ? " []"
       : `
 ${post.tags.map((tag) => `- ${tag}`).join("\n")}`
