@@ -11,7 +11,7 @@
     "test:lint": "eslint src scripts --ext .ts --ext .tsx",
     "test:unit" : "jest",
     "publishPosts": "node -r @swc-node/register ./scripts/publishPosts.ts",
-    "release": "run-p release:*",
+    "release": "npm-run-all publishPosts build --parallel release:*",
     "release:amplify": "aws amplify start-job --app-id d1x7ezhrw0p58x --branch-name main --job-type RELEASE --region eu-central-1",
     "release:chromatic": "npx chromatic",
     "storybook": "start-storybook -p 6006",
