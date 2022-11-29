@@ -5,19 +5,19 @@ import {
   ToPublishPost,
 } from "../data-structure/ToPublishPost/ToPublishPost";
 
-export async function loadToPublishPosts(): Promise<
-  Omit<ToPublishPost, "content">[]
-> {
+export async function loadToPublishPosts(): Promise<ToPublishPost[]> {
   const fileNames = await loadPostFileNames();
   const posts = await Promise.all(
     fileNames.map(async (name) => {
-      const { source, content, ...post } = await loadPost(name);
+      const { source, ...post } = await loadPost(name);
       return post;
     })
   );
   return posts.filter(isToPublishPost).map((post) => {
-    const { excerpt, publishedAt, previewImage, slug, tags, title } = post;
+    const { content, excerpt, publishedAt, previewImage, slug, tags, title } =
+      post;
     return {
+      content,
       excerpt,
       publishedAt,
       ...(previewImage && { previewImage }),
