@@ -12,7 +12,7 @@ export async function loadPost(
   const file = await fs.promises.readFile(`./content/${fileName}.md`, "utf8");
   const { content, ...postWithoutImage } = fromPostFile(file);
   const previewImage = await loadPreviewImage(postWithoutImage.slug as string);
-  const post = { ...postWithoutImage, previewImage };
+  const post = { ...postWithoutImage, content, previewImage };
   assertPost(post);
   return { ...post, content, source: await serialize(content) };
 }
