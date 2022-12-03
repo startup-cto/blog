@@ -1,6 +1,11 @@
 {
   "name": "Development",
   "dockerFile": "Dockerfile",
+  "features": {
+    "ghcr.io/devcontainers/features/sshd:1": {
+        "version": "latest"
+    }
+  },
   "portsAttributes": {
     "3000": {
       "label": "Blog",
