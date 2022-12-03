@@ -1,18 +1,14 @@
 {
   "name": "Development",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:16-bullseye",
-  "features": {
+  "features": {},
+  "portsAttributes": {
+    "3000": {
+      "label": "Blog",
+      "onAutoForward": "notify"
+    }
   },
-
-	"portsAttributes": {
-		"3000": {
-			"label": "Blog",
-			"onAutoForward": "notify"
-		}
-	},
-
   "onCreateCommand": "npm install -g @microsoft/rush && npm install -g pnpm && rush install",
-
   "codespaces": {
     "openFiles": [
       "CONTRIBUTING.md"
