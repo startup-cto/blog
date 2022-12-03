@@ -1,7 +1,6 @@
 {
   "name": "Development",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:16-bullseye",
-  "features": {},
+  "dockerFile": "Dockerfile",
   "portsAttributes": {
     "3000": {
       "label": "Blog",
