@@ -8,7 +8,6 @@
       "onAutoForward": "notify"
     }
   },
-  "onCreateCommand": "npm install -g @microsoft/rush && npm install -g pnpm && rush install",
   "codespaces": {
     "openFiles": [
       "CONTRIBUTING.md"
