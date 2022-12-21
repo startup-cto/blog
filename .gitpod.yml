@@ -1,6 +1,6 @@
 tasks:
-  - name: Install and run
-    init: rush install
+  - name: Install, build and run
+    init: rush install && rush build
     command: cd blog && rushx start
 
 ports:
