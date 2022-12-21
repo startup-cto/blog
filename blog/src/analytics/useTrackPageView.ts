@@ -19,17 +19,19 @@ async function logPageView() {
     transformUtmParam(key),
     value,
   ]);
-  await fetch(`https://${domainName}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": publicApiKey,
-    },
-    body: JSON.stringify({
-      path: window.location.pathname,
-      ...Object.fromEntries(entries),
-    }),
-  });
+  try {
+    await fetch(`https://${domainName}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": publicApiKey,
+      },
+      body: JSON.stringify({
+        path: window.location.pathname,
+        ...Object.fromEntries(entries),
+      }),
+    });
+  } catch {}
 }
 
 function transformUtmParam(param: string): string {
