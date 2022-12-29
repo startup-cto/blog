@@ -63,3 +63,4 @@ jobs:
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           DEV_TO_API_KEY: ${{ secrets.DEV_TO_API_KEY }}
+          BUTTON_DOWN_API_KEY: ${{ secrets.BUTTON_DOWN_API_KEY }}

@@ -13,7 +13,7 @@ async function publishPosts() {
   }
 
   if (!process.env.BUTTON_DOWN_API_KEY) {
-    throw new TypeError("DEV_TO_API_KEY not set");
+    throw new TypeError("BUTTON_DOWN_API_KEY not set");
   }
 
   const postsToPublish = await loadToPublishPosts();
