@@ -1,4 +1,4 @@
-FROM node:16
+FROM gitpod/workspace-full:latest
 
 WORKDIR /home/
 
