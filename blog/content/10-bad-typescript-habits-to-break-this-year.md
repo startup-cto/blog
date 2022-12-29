@@ -10,7 +10,7 @@ excerpt: TypeScript and JavaScript have steadily evolved over the last years, an
 TypeScript and JavaScript have steadily evolved over the last years, and some of the habits we built over the last decades have become obsolete. Some might never have been meaningful. Here's a list of 10 habits that we all should break.
 
 If you are interested in more articles and news about web product development and entrepreneurship, please feel free
-to subscribe to new articles [via email](https://buttondown.email/startup-cto), [via RSS](https://startup-cto.net/rss.xml), or to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton).
+to subscribe to new articles [via email](https://newsletter.startup-cto.net), [via RSS](https://startup-cto.net/rss.xml), or to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton).
 
 Onto the examples! Please note that each "What it should look like" only fixes the issue discussed, even if there are further code smells that should be addressed.
 
