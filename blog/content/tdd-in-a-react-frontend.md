@@ -14,7 +14,8 @@ Part of this is due to a stigma that frontend development is not "real software 
 
 I'm taking React as an example because it is the framework I am most familiar with and the declarative style makes it easier to some of the tests than when using pure JavaScript, HTML, and CSS. But most of the ideas from this article hold also in other contexts.
 
-If you are interested in more articles and news about web product development and entrepreneurship, please feel free to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton).
+If you are interested in more articles and news about web product development and entrepreneurship, please feel free
+to subscribe to new articles [via email](https://buttondown.email/startup-cto), [via RSS](https://startup-cto.net/rss.xml), or to [follow me on Twitter](https://twitter.com/intent/follow?original_referer=https%253A%252F%252Fstartup-cto.net%252F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=The_Startup_CTO&tw_p=followbutton).
 
 ## Why is frontend testing harder than backend?
 
