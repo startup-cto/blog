@@ -27,7 +27,7 @@ export class AccessStack extends Stack {
         "ForAllValues:StringEquals": {
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
           "token.actions.githubusercontent.com:sub":
-            "repo:dbartholomae/startup-cto-blog:ref:refs/heads/main",
+            "repo:startup-cto/blog:ref:refs/heads/main",
         },
       }),
     });
