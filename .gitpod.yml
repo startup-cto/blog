@@ -1,0 +1,17 @@
+tasks:
+  - name: Install and run
+    init: rush install
+    command: cd blog && rushx start
+
+ports:
+  - port: 3000
+    onOpen: open-preview
+    name: Blog
+    description: Blog
+
+github:
+  prebuilds:
+    addBadge: true
+
+image:
+  file: .devcontainer/Dockerfile
