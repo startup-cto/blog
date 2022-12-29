@@ -5,9 +5,14 @@ import { ToPublishPost } from "../src/data-structure/ToPublishPost/ToPublishPost
 import { toPostFile } from "../src/loading-posts/toPostFile/toPostFile";
 import { simpleGit } from "simple-git";
 import { DevToPublisher } from "./dev-to/DevToPublisher";
+import { ButtonDownPublisher } from "./button-down/ButtonDownPublisher";
 
 async function publishPosts() {
   if (!process.env.DEV_TO_API_KEY) {
+    throw new TypeError("DEV_TO_API_KEY not set");
+  }
+
+  if (!process.env.BUTTON_DOWN_API_KEY) {
     throw new TypeError("DEV_TO_API_KEY not set");
   }
 
@@ -41,6 +46,16 @@ async function publishPosts() {
   );
   await Promise.all(
     updatedPosts.map((post) => devToPublisher.publishPost(post))
+  );
+  console.log("Published to dev.to");
+
+  console.log("Publishing post to ButtonDown...");
+  const buttonDownPublisher = new ButtonDownPublisher(
+    "https://api.buttondown.email",
+    process.env.BUTTON_DOWN_API_KEY
+  );
+  await Promise.all(
+    updatedPosts.map((post) => buttonDownPublisher.publishPost(post))
   );
 }
 
