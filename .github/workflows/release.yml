@@ -49,7 +49,7 @@ jobs:
       - name: Install Packages
         run: node ../common/scripts/install-run-rush.js install
       - name: Build
-        run: node ../common/scripts/install-run-rush.js build --from git:${{ github.event.before }}
+        run: node ../common/scripts/install-run-rush.js build
       - name: Test
         run: node ../common/scripts/install-run-rush.js test --impacted-by git:${{ github.event.before }}
       - name: Identify on git
