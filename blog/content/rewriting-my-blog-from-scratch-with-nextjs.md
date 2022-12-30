@@ -1,7 +1,6 @@
 ---
 title: Rewriting my blog from scratch with NextJS
 slug: rewriting-my-blog-from-scratch-with-nextjs
-publishedAt: 2022-12-30T14:39:59.845Z
 tags:
 - TypeScript
 - NextJS
