@@ -4,6 +4,7 @@
 - Refactor publishing
 - Manage secrets in repo
 - Automatically publish new articles to Twitter
+- Show recommended articles
 - Refactor data loading
 - Manage Amplify setup via CDK
 - Manage domain in CDK
