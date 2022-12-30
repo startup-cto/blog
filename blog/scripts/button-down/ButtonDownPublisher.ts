@@ -10,7 +10,6 @@ export class ButtonDownPublisher {
       body: JSON.stringify({
         subject: `The Startup CTO - ${post.title}`,
         body: post.content,
-        included_tags: post.tags,
         email_type: "public",
       }),
       method: "post",
