@@ -57,6 +57,7 @@ async function publishPosts() {
   await Promise.all(
     updatedPosts.map((post) => buttonDownPublisher.publishPost(post))
   );
+  console.log("Published to buttondown.email");
 }
 
 async function updatePosts(
