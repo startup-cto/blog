@@ -6,7 +6,7 @@ export class DevToPublisher {
   constructor(private origin: string, private apiKey: string) {}
 
   async publishPost(post: PublishedPost & PostContent) {
-    await fetch(`${this.origin}/articles`, {
+    await fetch(`${this.origin}/api/articles`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

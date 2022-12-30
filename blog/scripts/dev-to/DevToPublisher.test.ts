@@ -17,7 +17,7 @@ describe("DevToPublisher", () => {
         tags: post.tags,
       };
       const postMock = nock(origin)
-        .post("/articles", { article: expectedArticle })
+        .post("/api/articles", { article: expectedArticle })
         .matchHeader("api-key", apiKey)
         .reply(201);
 
