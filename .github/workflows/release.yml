@@ -63,7 +63,7 @@ jobs:
           role-session-name: GitHubDeploymentSession
           aws-region: eu-central-1
       - name: Release
-        run: node ../common/scripts/install-run-rush.js release --impacted-by git:${{ github.event.before }}
+        run: node ../common/scripts/install-run-rush.js release
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           DEV_TO_API_KEY: ${{ secrets.DEV_TO_API_KEY }}
