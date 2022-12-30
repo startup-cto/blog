@@ -52,6 +52,10 @@ jobs:
         run: node ../common/scripts/install-run-rush.js build --from git:${{ github.event.before }}
       - name: Test
         run: node ../common/scripts/install-run-rush.js test --impacted-by git:${{ github.event.before }}
+      - name: Identify on git
+        run: |
+          git config user.email "bot@startup-cto.net"
+          git config user.name "Startup CTO Bot"
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1-node16
         with:
