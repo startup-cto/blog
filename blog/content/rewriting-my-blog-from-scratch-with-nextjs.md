@@ -1,6 +1,7 @@
 ---
 title: Rewriting my blog from scratch with NextJS
 slug: rewriting-my-blog-from-scratch-with-nextjs
+publishedAt: 2022-12-30T14:39:59.845Z
 tags:
 - TypeScript
 - NextJS
@@ -8,6 +9,7 @@ tags:
 - Meta
 excerpt: >
   Should I have written articles instead of rewriting the blog itself? Probably. Did I learn a lot about NextJS, Rush monorepos, AWS CDK, validation libraries and more in the process? You bet! So, what did I learn?
+
 ---
 
 "Writing a blog" is usually taken as "writing articles for a blog".
