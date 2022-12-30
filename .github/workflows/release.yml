@@ -6,7 +6,7 @@ on:
 
 permissions:
   # For checking out the repository
-  contents: read
+  contents: write
   # For caching
   actions: write
   # For configuring AWS credentials
