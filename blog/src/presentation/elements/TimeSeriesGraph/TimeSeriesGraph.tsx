@@ -22,7 +22,7 @@ export function TimeSeriesGraph({ data, title }: Props) {
       >
         <XAxis dataKey="timestamp" />
         <YAxis domain={[0, "dataMax"]} />
-        <Line dataKey="count" />
+        <Line dataKey="count" isAnimationActive={false} />
       </LineChart>
     </>
   );
