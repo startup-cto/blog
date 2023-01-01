@@ -1,7 +1,7 @@
 .code {
     padding: 1px 3px;
     font-size: .75em;
-    white-space: pre;
+    line-height: initial;
     border: 1px solid #424a5a;
     background: #27232f;
     border-radius: 2px;
