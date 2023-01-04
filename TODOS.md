@@ -1,5 +1,6 @@
 # Todos
 
+- Add tracing
 - Add ADRs to document how we got here
 - Refactor publishing
 - Manage secrets in repo
