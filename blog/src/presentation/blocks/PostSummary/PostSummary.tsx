@@ -20,7 +20,7 @@ export function PostSummary({
       <Container as="article">
         <PostHeader post={{ publishedAt, tags, title }} />
         <p>{excerpt}</p>
-        <Link href={slug}>
+        <Link href={`/${slug}`}>
           Read the article
           <VisuallyHidden> {title}</VisuallyHidden>
         </Link>
