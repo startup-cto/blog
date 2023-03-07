@@ -2,11 +2,13 @@ import { PublishedPost } from "../../src/data-structure/PublishedPost/PublishedP
 import fetch from "node-fetch";
 import { PostContent } from "../../src/data-structure/PostContent";
 
+const forbiddenTags = ["Meta"];
+const onlyAlphaNumericCharacters = /^[\w\d]+$/;
+
 export class DevToPublisher {
   constructor(private origin: string, private apiKey: string) {}
-
   async publishPost(post: PublishedPost & PostContent) {
-    await fetch(`${this.origin}/api/articles`, {
+    const response = await fetch(`${this.origin}/api/articles`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +19,9 @@ export class DevToPublisher {
           title: post.title,
           published: true,
           body_markdown: post.content,
-          tags: post.tags,
+          tags: post.tags
+            ?.filter((tag) => tag.match(onlyAlphaNumericCharacters))
+            .filter((tag) => !forbiddenTags.includes(tag)),
         },
       }),
     });
