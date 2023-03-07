@@ -1,11 +1,13 @@
 ---
 title: Easily identify technical debt in any repository
 slug: easily-identify-technical-debt-in-any-repository
+publishedAt: 2023-03-07T14:15:24.222Z
 tags:
 - GitHub
 - Architecture
 - Technical Debt
-excerpt: Technical debt is a term used a lot whenever a codebase is not to our liking, and there's never enough time to fix all of it. What actually is technical debt, how do you quickly prioritize what to work on - and what are these GitHub Blocks that people are talking about?
+excerpt: >
+  Technical debt is a term used a lot whenever a codebase is not to our liking, and there's never enough time to fix all of it. What actually is technical debt, how do you quickly prioritize what to work on - and what are these GitHub Blocks that people are talking about?
 ---
 
 Technical debt is a term used a lot whenever a codebase is not to our liking, and there's never enough time to fix all of it. What actually is technical debt, how do you quickly prioritize what to work on - and what are these GitHub Blocks that people are talking about?
