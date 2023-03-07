@@ -21,5 +21,11 @@ export class DevToPublisher {
         },
       }),
     });
+
+    if (response.status !== 201) {
+      throw new Error("Could not publish to DevTo", {
+        cause: await response.json(),
+      });
+    }
   }
 }
