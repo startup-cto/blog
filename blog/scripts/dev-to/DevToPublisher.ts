@@ -11,6 +11,7 @@ export class DevToPublisher {
     const response = await fetch(`${this.origin}/api/articles`, {
       method: "POST",
       headers: {
+        Accept: "application/vnd.forem.api-v1+json",
         "Content-Type": "application/json",
         "api-key": this.apiKey,
       },
