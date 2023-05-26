@@ -30,6 +30,7 @@
        "description": "For apps or infrastructure, this is usually a deploy.",
        "safeForSimultaneousRushProcesses": true,
        "enableParallelism": true,
+       "allowWarningsInSuccessfulBuild": true,
        "ignoreDependencyOrder": true,
        "ignoreMissingScript": true
      }
