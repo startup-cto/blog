@@ -34,13 +34,13 @@ importers:
         specifier: ^5.44.0
         version: 5.62.0(eslint@8.57.0)(typescript@4.9.5)
       aws-cdk-lib:
-        specifier: ^2.81.0
+        specifier: ^2.138.0
         version: 2.138.0(constructs@10.3.0)
       cdk:
-        specifier: ^2.81.0-alpha.0
+        specifier: ^2.138.0
         version: 2.138.0
       constructs:
-        specifier: ^10.2.33
+        specifier: 10.3.0
         version: 10.3.0
       eslint:
         specifier: ^8.28.0
@@ -125,16 +125,16 @@ importers:
         specifier: workspace:*
         version: link:../access
       aws-cdk-lib:
-        specifier: ^2.81.0
+        specifier: ^2.138.0
         version: 2.138.0(constructs@10.3.0)
       aws-sdk:
         specifier: ^2.1261.0
         version: 2.1603.0
       cdk:
-        specifier: ^2.81.0-alpha.0
+        specifier: ^2.138.0
         version: 2.138.0
       constructs:
-        specifier: ^10.2.33
+        specifier: 10.3.0
         version: 10.3.0
       esbuild:
         specifier: ^0.15.15
@@ -384,10 +384,10 @@ importers:
         specifier: ^5.44.0
         version: 5.62.0(eslint@8.57.0)(typescript@4.9.5)
       aws-cdk-lib:
-        specifier: ^2.81.0
+        specifier: ^2.138.0
         version: 2.138.0(constructs@10.3.0)
       constructs:
-        specifier: ^10.2.33
+        specifier: 10.3.0
         version: 10.3.0
       eslint:
         specifier: ^8.28.0
