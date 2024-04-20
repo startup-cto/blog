@@ -57,7 +57,7 @@
     "@types/uuid": "^8.3.4",
     "babel-loader": "^8.2.3",
     "chroma-js": "^2.1.2",
-    "chromatic": "^6.2.0",
+    "chromatic": "^11.3.0",
     "concurrently": "^6.5.0",
     "esbuild": "^0.15.15",
     "eslint": "^8.28.0",
