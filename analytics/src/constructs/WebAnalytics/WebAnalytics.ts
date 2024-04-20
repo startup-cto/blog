@@ -100,7 +100,6 @@ export class WebAnalytics extends Construct {
           "application/json": analyticsEventModel,
         },
         requestValidatorOptions: {
-          requestValidatorName: "Validate body",
           validateRequestBody: true,
         },
       }
