@@ -27,12 +27,12 @@ describe("DraftPostMock", () => {
 
       expect(post.toString()).toBe(`---
 draft: true
-title: title
 excerpt: |
   excerpt
-slug: slug
 publishedAt: '2021-01-01T00:00:00.000Z'
+slug: slug
 tags: []
+title: title
 ---
 # Hello World`);
     });
