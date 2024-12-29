@@ -10,7 +10,9 @@ export function SmallHeader() {
       <br />
       <HorizontalList>
         <Link href="/">Home</Link>
-        <a href="mailto:daniel@startup-cto.net">Hire me as a consultant</a>
+        <Link href="mailto:daniel@startup-cto.net">
+          Hire me as a consultant
+        </Link>
       </HorizontalList>
     </Box>
   );
