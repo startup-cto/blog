@@ -8,7 +8,7 @@ export function Header() {
       <Avatar />
       <Heading variant="h1">The Startup CTO</Heading>
       <Heading variant="h2">Building companies with web technology</Heading>
-      <Heading variant="h2">
+      <Heading variant="h3">
         <a href="mailto:daniel@startup-cto.net">Hire me as a consultant</a>
       </Heading>
     </Box>
