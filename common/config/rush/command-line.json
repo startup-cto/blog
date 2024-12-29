@@ -20,8 +20,9 @@
        "description": "Each package defines by itself what is required to be mergeable. This can include e.g. linting, unit tests, or e2e tests, and might require the package to have been built prior.",
        "safeForSimultaneousRushProcesses": true,
        "enableParallelism": true,
+       "allowWarningsInSuccessfulBuild": true,
        "ignoreDependencyOrder": true,
-       "ignoreMissingScript": false
+       "ignoreMissingScript": false,
      },
      {
        "commandKind": "bulk",
