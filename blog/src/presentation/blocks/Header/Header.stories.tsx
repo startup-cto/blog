@@ -1,10 +1,13 @@
 import React from "react";
-
+import type { Meta, StoryObj } from '@storybook/react';
 import { Header } from "./Header";
 
-export default {
+const meta: Meta<typeof Header> = {
   title: "blocks/Header",
   component: Header,
 };
 
-export const Default = () => <Header />;
+export default meta;
+type Story = StoryObj<typeof Header>;
+
+export const Default: Story = {};
