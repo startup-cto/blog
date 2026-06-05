@@ -12,7 +12,7 @@
 
   "ensureConsistentVersions": true,
 
-  "nodeSupportedVersionRange": ">=14.19.0",
+  "nodeSupportedVersionRange": ">=24.0.0",
 
   "projectFolderMinDepth": 1,
   "projectFolderMaxDepth": 2,
