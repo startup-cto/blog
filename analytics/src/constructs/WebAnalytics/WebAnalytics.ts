@@ -9,6 +9,7 @@ import {
   UsagePlan,
 } from "aws-cdk-lib/aws-apigateway";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
+import { Runtime } from "aws-cdk-lib/aws-lambda";
 import { analyticsEventInputSchema } from "./model/AnalyticsEventInput";
 import { ICertificate } from "aws-cdk-lib/aws-certificatemanager";
 
@@ -59,6 +60,7 @@ export class WebAnalytics extends Construct {
       this,
       "CollectEventHandler",
       {
+        runtime: Runtime.NODEJS_24_X,
         environment: handlerEnvironment,
       }
     );
@@ -67,6 +69,7 @@ export class WebAnalytics extends Construct {
       this,
       "GetEventsByMonthHandler",
       {
+        runtime: Runtime.NODEJS_24_X,
         environment: handlerEnvironment,
         timeout: Duration.minutes(1),
       }
